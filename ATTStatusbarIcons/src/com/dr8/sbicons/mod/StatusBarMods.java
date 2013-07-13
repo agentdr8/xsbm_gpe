@@ -2,6 +2,7 @@ package com.dr8.sbicons.mod;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.getIntField;
+import static de.robv.android.xposed.XposedHelpers.getStaticObjectField;
 import com.dr8.sbicons.R;
 
 import android.content.Context;
@@ -65,33 +66,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 						try {
 							int blevel = getIntField(param.thisObject, "level");
 							XposedBridge.log(TAG + ": our blevel is " + blevel + " and we hopefully set the color");
-							@Override
-							public void handleInitPackageResources(InitPackageResourcesParam resparam) throws Throwable {
-								resparam.res.hookLayout(targetpkg, "layout", "super_status_bar", new XC_LayoutInflated() {
-								@Override
-								public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
-									int i = blevel;
-										XposedBridge.log(TAG + ": our blevel at color change is: " + i);
-										if (i <= 20) {
-											// red
-											final int btcolor = 0xffff0000;
-											battext.setTextColor(btcolor);
-										} else if (i >= 21 && i <= 40) {
-											// yellow
-											final int btcolor = 0xffffff00;
-											battext.setTextColor(btcolor);
-										} else if (i >= 41 && i <= 80) {
-											// green
-											final int btcolor = 0xff00ff00;
-											battext.setTextColor(btcolor);
-										} else if (i >= 81 && i <= 100) {
-											// holo blue
-											final int btcolor = 0xff35b5e5;
-											battext.setTextColor(btcolor);
-										}
-								}
-								});
-							}
+							TextView tv = getStaticObjectField(param., "localTextView");
 						} catch (Throwable t) { XposedBridge.log(t); }
 					}
 
