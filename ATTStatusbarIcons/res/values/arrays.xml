@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_carrier_data_color">        
+        <item>Cyan &amp; Orange</item>
+        <item>White &amp; Orange</item>
+    </string-array>
+    <string-array name="pref_carrier_data_values">        
+        <item>cyan</item>
+        <item>orange</item>
+    </string-array>
+    <string-array name="pref_cid_names">
+        <item>AT&amp;T (E/4G/4G-LTE)</item>
+        <item>T-Mobile (3G/4G/4G-LTE)</item>
+        <item>International (G/E/H/3G/4G/4G-LTE)</item>
+    </string-array>
+    <string-array name="pref_cid_values">
+        <item>att</item>
+        <item>tmobus</item>
+        <item>intl</item>
+    </string-array>
+    <string-array name="pref_intl_style_names">
+        <item>Curved</item>
+        <item>Arrows</item>
+    </string-array>
+    <string-array name="pref_intl_style_values">
+        <item>curved</item>
+        <item>arrows</item>
+    </string-array>
+    <string-array name="pref_battheme_names">
+        <item>Graphical Percentage</item>
+        <item>Text Percentage</item>
+        <item>Circle Percentage</item>
+    </string-array>
+    <string-array name="pref_battheme_values">
+        <item>percent</item>
+        <item>text</item>
+        <item>circle</item>
+    </string-array>
+    <string-array name="pref_wifi_color_names">
+        <item>Cyan</item>
+        <item>Rainbow</item>
+    </string-array>
+    <string-array name="pref_wifi_color_values">
+        <item>cyan</item>
+        <item>rainbow</item>
+    </string-array>
+    <string-array name="pref_signal_names">
+        <item>Cyan</item>
+        <item>Rainbow</item>
+    </string-array>
+    <string-array name="pref_signal_values">
+        <item>cyan</item>
+        <item>rainbow</item>
+    </string-array>
+</resources>

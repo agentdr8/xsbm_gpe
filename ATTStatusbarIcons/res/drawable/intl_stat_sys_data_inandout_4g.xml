@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list android:oneshot="false"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="1000" android:drawable="@drawable/stat_sys_data_4g_downlink_1" />
+    <item android:duration="1000" android:drawable="@drawable/stat_sys_data_4g_downlink_2" />
+    <item android:duration="1000" android:drawable="@drawable/stat_sys_data_4g_downlink_3" />
+    <item android:duration="1000" android:drawable="@drawable/stat_sys_data_4g_uplink_1" />
+    <item android:duration="1000" android:drawable="@drawable/stat_sys_data_4g_uplink_2" />
+    <item android:duration="1000" android:drawable="@drawable/stat_sys_data_4g_uplink_3" />
+</animation-list>
