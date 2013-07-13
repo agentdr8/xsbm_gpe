@@ -3,6 +3,7 @@ package com.dr8.sbicons.mod;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.getIntField;
 import static de.robv.android.xposed.XposedHelpers.getStaticObjectField;
+import static de.robv.android.xposed.XposedHelpers.setStaticObjectField;
 import com.dr8.sbicons.R;
 
 import android.content.Context;
@@ -66,7 +67,9 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 						try {
 							int blevel = getIntField(param.thisObject, "level");
 							XposedBridge.log(TAG + ": our blevel is " + blevel + " and we hopefully set the color");
-							TextView tv = getStaticObjectField(param., "localTextView");
+							TextView tv = (TextView) getStaticObjectField(TextView.class, "localTextView");
+							tv.setTextColor(0xff35b5e5);
+							setStaticObjectField(TextView.class, "localTextView", tv);
 						} catch (Throwable t) { XposedBridge.log(t); }
 					}
 
