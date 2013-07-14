@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
+import android.graphics.PorterDuff.Mode;
 import android.os.Build;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -77,19 +78,19 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 								if (blevel <= 20) {
 									// red
 									final int btcolor = 0xffff0000;
-									iv.setColorFilter(btcolor);
+									iv.setColorFilter(btcolor, Mode.MULTIPLY);
 								} else if (blevel >= 21 && blevel <= 40) {
 									// yellow
 									final int btcolor = 0xffffff00;
-									iv.setColorFilter(btcolor);
+									iv.setColorFilter(btcolor, Mode.MULTIPLY);
 								} else if (blevel >= 41 && blevel <= 80) {
 									// green
 									final int btcolor = 0xff00ff00;
-									iv.setColorFilter(btcolor);
+									iv.setColorFilter(btcolor, Mode.MULTIPLY);
 								} else if (blevel >= 81 && blevel <= 100) {
 									// holo blue
 									final int btcolor = 0xff35b5e5;
-									iv.setColorFilter(btcolor);
+									iv.setColorFilter(btcolor, Mode.MULTIPLY);
 								}
 							}
 							for (int n = 0; n < m; n++) {
