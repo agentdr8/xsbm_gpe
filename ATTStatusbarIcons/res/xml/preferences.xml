@@ -13,7 +13,7 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="hideatt"
-            android:summary="Auto-hide the data indicator when on wifi if using AT&amp;T iconset"
+            android:summary="Auto-hide the data indicator when on WiFi if using AT&amp;T iconset"
             android:title="Auto-hide AT&amp;T data" />
         
         <CheckBoxPreference
@@ -37,7 +37,7 @@
          <CheckBoxPreference
             android:defaultValue="false"
             android:key="batt_text_rainbow"
-            android:summary="Colorizes stock text battery % based on current charge level (overrides manual color selection)"
+            android:summary="Colorizes stock text battery % based on current charge level (overrides manual color selection below)"
             android:title="Text Battery Colorize" />
          
          <net.margaritov.preference.colorpicker.ColorPickerPreference
