@@ -4,6 +4,9 @@ import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.getIntField;
 import static de.robv.android.xposed.XposedHelpers.getObjectField;
 import static de.robv.android.xposed.XposedHelpers.setObjectField;
+
+import java.util.ArrayList;
+
 import com.dr8.sbicons.R;
 
 import android.content.Context;
@@ -67,22 +70,18 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 						try {
 							int blevel = getIntField(param.thisObject, "level");
 							XposedBridge.log(TAG + ": our blevel is " + blevel + " and we hopefully set the color");
-							TextView tv = (TextView) getObjectField(param.thisObject, "localTextView");
-							tv.setTextColor(0xff35b5e5);
-							setObjectField(param.thisObject, "localTextView", tv);
+							@SuppressWarnings("unchecked")
+							int m = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).size();
+							XposedBridge.log(TAG + ": our m int is: " + m);
+							for (int n = 0; n < m; n++) {
+								@SuppressWarnings("unchecked")
+								TextView tv = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).get(n);
+								tv.setTextColor(0xff35b5e5);
+								setObjectField(param.thisObject, "mLabelViews", tv);
+							}
 						} catch (Throwable t) { XposedBridge.log(t); }
 					}
 
-				});
-				findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", lpparam.classLoader, "addLabelView", TextView.class, new XC_MethodHook() {
-					@Override
-					protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-						try {
-							TextView tv = (TextView) getObjectField(param.thisObject, "mLabelViews");
-							tv.setTextColor(0xff35b5e5);
-							setObjectField(param.thisObject, "mLabelViews", tv);
-						} catch (Throwable t) { XposedBridge.log(t); }
-					}
 				});
 			}
 			if (pref.getString("iconset", "att").equals("att") && (!pref.getBoolean("hideatt", false))) {
