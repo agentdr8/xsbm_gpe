@@ -68,7 +68,30 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 						try {
 							int blevel = getIntField(param.thisObject, "level");
 							@SuppressWarnings("unchecked")
+							int j = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).size();
+							@SuppressWarnings("unchecked")
 							int m = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).size();
+							for (int k = 0; k < j; k++) {
+								@SuppressWarnings("unchecked")
+								ImageView iv = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).get(k);
+								if (blevel <= 20) {
+									// red
+									final int btcolor = 0xffff0000;
+									iv.setColorFilter(btcolor);
+								} else if (blevel >= 21 && blevel <= 40) {
+									// yellow
+									final int btcolor = 0xffffff00;
+									iv.setColorFilter(btcolor);
+								} else if (blevel >= 41 && blevel <= 80) {
+									// green
+									final int btcolor = 0xff00ff00;
+									iv.setColorFilter(btcolor);
+								} else if (blevel >= 81 && blevel <= 100) {
+									// holo blue
+									final int btcolor = 0xff35b5e5;
+									iv.setColorFilter(btcolor);
+								}
+							}
 							for (int n = 0; n < m; n++) {
 								@SuppressWarnings("unchecked")
 								TextView tv = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).get(n);
