@@ -9,8 +9,7 @@
         android:key="prefs_tweaks"
         android:title="Tweaks">
         
-           
-        <CheckBoxPreference
+            <CheckBoxPreference
             android:defaultValue="false"
             android:key="hideatt"
             android:summary="Auto-hide the data indicator when on WiFi if using AT&amp;T iconset"
@@ -27,13 +26,33 @@
             android:key="invisclock"
             android:summary="Removes clock from statusbar"
             android:title="Remove Clock" />
-         
+            
+         <net.margaritov.preference.colorpicker.ColorPickerPreference
+            alphaSlider="false"
+            showCheckbox="true"
+            android:defaultValue="#ff35b5e5"
+            android:key="clock_text_color"
+            android:summary="Color of the clock if visible"
+            android:title="Clock color" />
+
+     </PreferenceScreen>
+     
+     <PreferenceScreen 
+     		android:key="prefs_battery"
+        	android:title="Battery Tweaks">
+       
          <CheckBoxPreference
             android:defaultValue="false"
             android:key="invisbatt"
-            android:summary="Removes battery from statusbar"
+            android:summary="Removes battery icon from statusbar"
             android:title="Remove Battery" />
          
+          <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="batt_icon_rainbow"
+            android:summary="Colorizes battery icons based on current charge level (works best with circle battery icons)"
+            android:title="Battery Icon Colorize" />
+          
          <CheckBoxPreference
             android:defaultValue="false"
             android:key="batt_text_rainbow"
@@ -45,19 +64,57 @@
             showCheckbox="true"
             android:defaultValue="#ff35b5e5"
             android:key="batt_text_color"
-            android:summary="Color of the stock 4.2.2 text battery % if enabled"
+            android:summary="Fixed color of the stock 4.2.2 text battery % if enabled"
             android:title="Text Battery % color" />
          
-         <net.margaritov.preference.colorpicker.ColorPickerPreference
-            alphaSlider="false"
-            showCheckbox="true"
-            android:defaultValue="#ff35b5e5"
-            android:key="clock_text_color"
-            android:summary="Color of the clock if visible"
-            android:title="Clock color" />
+         	<PreferenceScreen 
+     			android:key="prefs_battery_color_ranges"
+        		android:title="Battery Range Colors"
+        		android:summary="Applies to colorized text and icon batteries">
+        	
+         	    <net.margaritov.preference.colorpicker.ColorPickerPreference
+		           alphaSlider="false"
+		           showCheckbox="true"
+		           android:defaultValue="#ffff0000"
+		           android:key="batt_color_0-20"
+		           android:summary="Color for 0-20% (default: red)"
+		           android:title="0 - 20" />
+         	    	
+         	    <net.margaritov.preference.colorpicker.ColorPickerPreference
+		           alphaSlider="false"
+		           showCheckbox="true"
+		           android:defaultValue="#ffffff00"
+		           android:key="batt_color_21-40"
+		           android:summary="Color for 21-40% (default: yellow)"
+		           android:title="21 - 40" />
+         	    
+         	    <net.margaritov.preference.colorpicker.ColorPickerPreference
+		           alphaSlider="false"
+		           showCheckbox="true"
+		           android:defaultValue="#ffffff00"
+		           android:key="batt_color_41-60"
+		           android:summary="Color for 41-60% (default: yellow)"
+		           android:title="41 - 60" />
+         	    	
+         	    <net.margaritov.preference.colorpicker.ColorPickerPreference
+		           alphaSlider="false"
+		           showCheckbox="true"
+		           android:defaultValue="#ff00ff00"
+		           android:key="batt_color_61-80"
+		           android:summary="Color for 61-80% (default: green)"
+		           android:title="61 - 80" />
+         	     	
+         	    <net.margaritov.preference.colorpicker.ColorPickerPreference
+		           alphaSlider="false"
+		           showCheckbox="true"
+		           android:defaultValue="#ff35b5e5"
+		           android:key="batt_color_81-100"
+		           android:summary="Color for 81-100% (default: blue)"
+		           android:title="81 - 100" />
+         	</PreferenceScreen>
          
-     </PreferenceScreen>
-        
+    </PreferenceScreen>
+    
 	<PreferenceScreen
 	    android:key="prefs_icons"
 	    android:title="Icon Settings">

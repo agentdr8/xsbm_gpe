@@ -62,7 +62,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 	public void handleLoadPackage(LoadPackageParam lpparam) throws Throwable {
 		pref.reload();
 		if (lpparam.packageName.equals("com.android.systemui")) {
-			if (pref.getBoolean("batt_text_rainbow", false)) {
+			if (pref.getBoolean("batt_icon_rainbow", false)) {
 				findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", lpparam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook() {
 					@Override
 					protected void afterHookedMethod(MethodHookParam param) throws Throwable {
@@ -70,53 +70,61 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 							int blevel = getIntField(param.thisObject, "level");
 							@SuppressWarnings("unchecked")
 							int j = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).size();
-							@SuppressWarnings("unchecked")
-							int m = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).size();
 							for (int k = 0; k < j; k++) {
 								@SuppressWarnings("unchecked")
 								ImageView iv = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).get(k);
 								if (blevel <= 20) {
-									// red
-									final int btcolor = 0xffff0000;
+									final int btcolor = pref.getInt("batt_color_0-20", 0xffff0000);
 									iv.setColorFilter(btcolor, Mode.MULTIPLY);
 								} else if (blevel >= 21 && blevel <= 40) {
-									// yellow
-									final int btcolor = 0xffffff00;
+									final int btcolor = pref.getInt("batt_color_21-40", 0xffffff00);
 									iv.setColorFilter(btcolor, Mode.MULTIPLY);
-								} else if (blevel >= 41 && blevel <= 80) {
-									// green
-									final int btcolor = 0xff00ff00;
+								} else if (blevel >= 41 && blevel <= 60) {
+									final int btcolor = pref.getInt("batt_color_41-60", 0xffffff00);
+									iv.setColorFilter(btcolor, Mode.MULTIPLY);
+								} else if (blevel >= 61 && blevel <= 80) {
+									final int btcolor = pref.getInt("batt_color_61-80", 0xff00ff00);
 									iv.setColorFilter(btcolor, Mode.MULTIPLY);
 								} else if (blevel >= 81 && blevel <= 100) {
-									// holo blue
-									final int btcolor = 0xff35b5e5;
+									final int btcolor = pref.getInt("batt_color_81-100", 0xff35b5e5);
 									iv.setColorFilter(btcolor, Mode.MULTIPLY);
-								}
-							}
-							for (int n = 0; n < m; n++) {
-								@SuppressWarnings("unchecked")
-								TextView tv = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).get(n);
-								if (blevel <= 20) {
-									// red
-									final int btcolor = 0xffff0000;
-									tv.setTextColor(btcolor);
-								} else if (blevel >= 21 && blevel <= 40) {
-									// yellow
-									final int btcolor = 0xffffff00;
-									tv.setTextColor(btcolor);
-								} else if (blevel >= 41 && blevel <= 80) {
-									// green
-									final int btcolor = 0xff00ff00;
-									tv.setTextColor(btcolor);
-								} else if (blevel >= 81 && blevel <= 100) {
-									// holo blue
-									final int btcolor = 0xff35b5e5;
-									tv.setTextColor(btcolor);
 								}
 							}
 						} catch (Throwable t) { XposedBridge.log(t); }
 					}
 
+				});
+			}
+			if (pref.getBoolean("batt_text_rainbow", false)) {
+				findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", lpparam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook() {
+					@Override
+					protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+						try {
+							int blevel = getIntField(param.thisObject, "level");
+							@SuppressWarnings("unchecked")
+							int m = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).size();
+							for (int n = 0; n < m; n++) {
+								@SuppressWarnings("unchecked")
+								TextView tv = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).get(n);
+								if (blevel <= 20) {
+									final int btcolor = pref.getInt("batt_color_0-20", 0xffff0000);
+									tv.setTextColor(btcolor);
+								} else if (blevel >= 21 && blevel <= 40) {
+									final int btcolor = pref.getInt("batt_color_21-40", 0xffffff00);
+									tv.setTextColor(btcolor);
+								} else if (blevel >= 41 && blevel <= 60) {
+									final int btcolor = pref.getInt("batt_color_41-60", 0xffffff00);
+									tv.setTextColor(btcolor);
+								} else if (blevel >= 61 && blevel <= 80) {
+									final int btcolor = pref.getInt("batt_color_61-80", 0xff00ff00);
+									tv.setTextColor(btcolor);
+								} else if (blevel >= 81 && blevel <= 100) {
+									final int btcolor = pref.getInt("batt_color_81-100", 0xff35b5e5);
+									tv.setTextColor(btcolor);
+								}
+							}
+						} catch (Throwable t) { XposedBridge.log(t); }
+					}
 				});
 			}
 			if (pref.getString("iconset", "att").equals("att") && (!pref.getBoolean("hideatt", false))) {
