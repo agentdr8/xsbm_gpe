@@ -3,8 +3,6 @@ package com.dr8.sbicons.mod;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.getIntField;
 import static de.robv.android.xposed.XposedHelpers.getObjectField;
-import static de.robv.android.xposed.XposedHelpers.setObjectField;
-
 import java.util.ArrayList;
 
 import com.dr8.sbicons.R;
@@ -27,7 +25,7 @@ import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPackageResources, IXposedHookLoadPackage {
-	private static final String TAG = "XSBM";
+//	private static final String TAG = "XSBM";
 	private static String MODULE_PATH = null;
 	private static XSharedPreferences pref;
 	private static String targetpkg = "com.android.systemui";
@@ -69,15 +67,30 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 					protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 						try {
 							int blevel = getIntField(param.thisObject, "level");
-							XposedBridge.log(TAG + ": our blevel is " + blevel + " and we hopefully set the color");
+//							XposedBridge.log(TAG + ": our blevel is " + blevel + " and we hopefully set the color");
 							@SuppressWarnings("unchecked")
 							int m = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).size();
-							XposedBridge.log(TAG + ": our m int is: " + m);
+//							XposedBridge.log(TAG + ": our m int is: " + m);
 							for (int n = 0; n < m; n++) {
 								@SuppressWarnings("unchecked")
 								TextView tv = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).get(n);
-								tv.setTextColor(0xff35b5e5);
-								setObjectField(param.thisObject, "mLabelViews", tv);
+								if (blevel <= 20) {
+									// red
+									final int btcolor = 0xffff0000;
+									tv.setTextColor(btcolor);
+								} else if (blevel >= 21 && blevel <= 40) {
+									// yellow
+									final int btcolor = 0xffffff00;
+									tv.setTextColor(btcolor);
+								} else if (blevel >= 41 && blevel <= 80) {
+									// green
+									final int btcolor = 0xff00ff00;
+									tv.setTextColor(btcolor);
+								} else if (blevel >= 81 && blevel <= 100) {
+									// holo blue
+									final int btcolor = 0xff35b5e5;
+									tv.setTextColor(btcolor);
+								}
 							}
 						} catch (Throwable t) { XposedBridge.log(t); }
 					}
@@ -188,35 +201,6 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 					} catch (Throwable t) { XposedBridge.log(t); }
 				}
 			}); 
-		} else if (pref.getBoolean("batt_text_rainbow", false)) {
-			resparam.res.hookLayout(targetpkg, "layout", "super_status_bar", new XC_LayoutInflated() {
-				@Override
-				public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
-					try {
-						TextView battext = (TextView) liparam.view.findViewById(liparam.res.getIdentifier("battery_text", "id", "com.android.systemui"));
-						pref.reload();
-						int i = pref.getInt("cbl", 0);
-						XposedBridge.log(TAG + ": our blevel at color change is: " + i);
-						if (i <= 20) {
-							// red
-							final int btcolor = 0xffff0000;
-							battext.setTextColor(btcolor);
-						} else if (i >= 21 && i <= 40) {
-							// yellow
-							final int btcolor = 0xffffff00;
-							battext.setTextColor(btcolor);
-						} else if (i >= 41 && i <= 80) {
-							// green
-							final int btcolor = 0xff00ff00;
-							battext.setTextColor(btcolor);
-						} else if (i >= 81 && i <= 100) {
-							// holo blue
-							final int btcolor = 0xff35b5e5;
-							battext.setTextColor(btcolor);
-						}
-					} catch (Throwable t) { XposedBridge.log(t); }
-				}
-			});
 		}
 		
 		if (pref.getBoolean("clock_text_color_enabled", false)) {
