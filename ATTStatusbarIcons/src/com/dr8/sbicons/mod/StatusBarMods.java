@@ -67,10 +67,8 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 					protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 						try {
 							int blevel = getIntField(param.thisObject, "level");
-//							XposedBridge.log(TAG + ": our blevel is " + blevel + " and we hopefully set the color");
 							@SuppressWarnings("unchecked")
 							int m = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).size();
-//							XposedBridge.log(TAG + ": our m int is: " + m);
 							for (int n = 0; n < m; n++) {
 								@SuppressWarnings("unchecked")
 								TextView tv = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).get(n);
@@ -178,7 +176,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			}); 
 		}
 		
-		if (pref.getBoolean("tpclock", false)) {
+		if (pref.getBoolean("invisclock", false)) {
 			resparam.res.hookLayout(targetpkg, "layout", "super_status_bar", new XC_LayoutInflated() {
 				@Override
 				public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
