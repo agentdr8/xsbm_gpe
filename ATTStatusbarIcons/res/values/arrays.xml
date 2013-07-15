@@ -28,12 +28,10 @@
     </string-array>
     <string-array name="pref_battheme_names">
         <item>Graphical Percentage</item>
-        <item>Text Percentage</item>
         <item>Circle Percentage</item>
     </string-array>
     <string-array name="pref_battheme_values">
         <item>percent</item>
-        <item>text</item>
         <item>circle</item>
     </string-array>
     <string-array name="pref_wifi_color_names">
