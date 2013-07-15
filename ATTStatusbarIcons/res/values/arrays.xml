@@ -28,11 +28,13 @@
     </string-array>
     <string-array name="pref_battheme_names">
         <item>Graphical Percentage</item>
-        <item>Circle Percentage</item>
+        <item>Circle Percentage (White)</item>
+        <item>Circle Percentage (GE Holo)</item>
     </string-array>
     <string-array name="pref_battheme_values">
         <item>percent</item>
         <item>circle</item>
+        <item>circlege</item>
     </string-array>
     <string-array name="pref_wifi_color_names">
         <item>Cyan</item>
