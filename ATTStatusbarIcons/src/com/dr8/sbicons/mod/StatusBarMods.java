@@ -62,7 +62,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 	public void handleLoadPackage(LoadPackageParam lpparam) throws Throwable {
 		pref.reload();
 		if (lpparam.packageName.equals("com.android.systemui")) {
-			if (pref.getBoolean("batt_icon_rainbow", false)) {
+			if (pref.getBoolean("batt_icon_rainbow", false) && pref.getBoolean("battery", true)) {
 				findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", lpparam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook() {
 					@Override
 					protected void afterHookedMethod(MethodHookParam param) throws Throwable {
