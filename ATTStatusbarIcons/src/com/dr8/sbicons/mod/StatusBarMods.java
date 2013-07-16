@@ -252,7 +252,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			} catch (Throwable t) { XposedBridge.log(t); }
 		} else if (pref.getBoolean("tpstatus", false) && (pref.getString("tpsbstyle", "full").equals("1px"))) {
 			try {
-				resparam.res.setReplacement(targetpkg, "drawable", "status_bar_background", modRes.fwd(R.drawable.status_bar_background));
+				resparam.res.setReplacement(targetpkg, "drawable", "status_bar_background", modRes.fwd(R.drawable.status_bar_background_1px));
 			} catch (Throwable t) { XposedBridge.log(t); }
 		}
 		if (pref.getBoolean("to_the_left", true)) {
