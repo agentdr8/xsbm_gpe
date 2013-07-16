@@ -23,6 +23,12 @@
         
         <CheckBoxPreference
             android:defaultValue="false"
+            android:key="tpstatus1px"
+            android:summary="Transparent statusbar background in launchers with 1px grey divider"
+            android:title="Transparent Statusbar with divider" />
+        
+        <CheckBoxPreference
+            android:defaultValue="false"
             android:key="invisclock"
             android:summary="Removes clock from statusbar"
             android:title="Remove Clock" />
