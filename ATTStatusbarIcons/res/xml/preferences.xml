@@ -18,14 +18,16 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="tpstatus"
-            android:summary="Transparent statusbar background in launchers"
+            android:summary="Transparent statusbar background"
             android:title="Transparent Statusbar" />
         
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="tpstatus1px"
-            android:summary="Transparent statusbar background in launchers with 1px grey divider"
-            android:title="Transparent Statusbar with divider" />
+        <ListPreference 
+            android:entries="@array/pref_tpsb_names" 
+            android:title="Transparent Statusbar Style" 
+            android:key="tpsbstyle" 
+            android:entryValues="@array/pref_tpsb_values" 
+            android:summary="Choose between fully transparent and 1px gray divider" 
+            android:defaultValue="full" />
         
         <CheckBoxPreference
             android:defaultValue="false"
