@@ -36,7 +36,7 @@
             android:title="Remove Clock" />
             
          <net.margaritov.preference.colorpicker.ColorPickerPreference
-            alphaSlider="false"
+            alphaSlider="true"
             showCheckbox="true"
             android:defaultValue="#ff35b5e5"
             android:key="clock_text_color"
@@ -68,7 +68,7 @@
             android:title="Text Battery Colorize" />
          
          <net.margaritov.preference.colorpicker.ColorPickerPreference
-            alphaSlider="false"
+            alphaSlider="true"
             showCheckbox="true"
             android:defaultValue="#ff35b5e5"
             android:key="batt_text_color"
@@ -81,7 +81,7 @@
         		android:summary="Applies to colorized text and icon batteries">
         	
          	    <net.margaritov.preference.colorpicker.ColorPickerPreference
-		           alphaSlider="false"
+		           alphaSlider="true"
 		           showCheckbox="true"
 		           android:defaultValue="#ffff0000"
 		           android:key="batt_color_0-20"
@@ -89,7 +89,7 @@
 		           android:title="0 - 20" />
          	    	
          	    <net.margaritov.preference.colorpicker.ColorPickerPreference
-		           alphaSlider="false"
+		           alphaSlider="true"
 		           showCheckbox="true"
 		           android:defaultValue="#ffffff00"
 		           android:key="batt_color_21-40"
@@ -97,7 +97,7 @@
 		           android:title="21 - 40" />
          	    
          	    <net.margaritov.preference.colorpicker.ColorPickerPreference
-		           alphaSlider="false"
+		           alphaSlider="true"
 		           showCheckbox="true"
 		           android:defaultValue="#ffffff00"
 		           android:key="batt_color_41-60"
@@ -105,7 +105,7 @@
 		           android:title="41 - 60" />
          	    	
          	    <net.margaritov.preference.colorpicker.ColorPickerPreference
-		           alphaSlider="false"
+		           alphaSlider="true"
 		           showCheckbox="true"
 		           android:defaultValue="#ff00ff00"
 		           android:key="batt_color_61-80"
@@ -113,7 +113,7 @@
 		           android:title="61 - 80" />
          	     	
          	    <net.margaritov.preference.colorpicker.ColorPickerPreference
-		           alphaSlider="false"
+		           alphaSlider="true"
 		           showCheckbox="true"
 		           android:defaultValue="#ff35b5e5"
 		           android:key="batt_color_81-100"
