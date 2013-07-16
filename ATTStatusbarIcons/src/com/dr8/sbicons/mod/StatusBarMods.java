@@ -649,11 +649,6 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 					resparam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery", modRes.fwd(R.drawable.stat_sys_battery));
 					resparam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery_charge", modRes.fwd(R.drawable.stat_sys_battery_charge));
 				} catch (Throwable t) { XposedBridge.log(t); }
-			} else if (pref.getString("battstyle", "percent").equals("circlege")) {
-				try {
-					resparam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery", modRes.fwd(R.drawable.theme1_stat_sys_battery));
-					resparam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery_charge", modRes.fwd(R.drawable.theme1_stat_sys_battery_charge));
-				} catch (Throwable t) { XposedBridge.log(t); }
 			} else if (pref.getString("battstyle", "percent").equals("circle")) {
 				try {
 					resparam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery", modRes.fwd(R.drawable.theme2_stat_sys_battery));
