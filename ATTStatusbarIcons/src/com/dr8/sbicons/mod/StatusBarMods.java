@@ -74,12 +74,10 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		pref.reload();
 		XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, resparam.res);
 		
-		if(resparam.packageName.equals("com.android.phone")) {
-			if (pref.getBoolean("to_the_left", true)) {
-				ToTheLeft.initPackageResources(pref, modRes, resparam);
-			}
+		if (pref.getBoolean("to_the_left", true)) {
+			ToTheLeft.initPackageResources(pref, modRes, resparam);
 		}
-
+	
 		if (resparam.packageName.equals("com.htc.launcher")) {
 			if (pref.getBoolean("tpnav", false)) {
 				TpNav.initPackageResources(pref, modRes, resparam);
@@ -142,7 +140,6 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		if (pref.getBoolean("mobile_data", true)) {
 			MobileData.initPackageResources(pref, modRes, resparam);
 		}
-		
 
 		if (pref.getBoolean("battery", true)) {
 			BatteryIcons.initPackageResources(pref, modRes, resparam);
