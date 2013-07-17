@@ -29,14 +29,18 @@
             android:summary="Choose between fully transparent and 1px gray divider" 
             android:defaultValue="full" />
         
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            alphaSlider="true"
-            showCheckbox="true"
-            android:defaultValue="#ffffffff"
-            android:key="tpsbtint"
-            android:summary="Add background color to the transparent statusbar"
-            android:title="Statusbar Tint" />
-        
+       <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="tpnav"
+            android:summary="Transparent Sense Navbar background"
+            android:title="Transparent Sense Navbar" />
+              
+       <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="tpapps"
+            android:summary="Transparent Sense app drawer background"
+            android:title="Transparent Sense App Drawer" />
+              
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="invisclock"

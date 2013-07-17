@@ -192,6 +192,21 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			}
 		}
 		
+		if (resparam.packageName.equals("com.htc.launcher")) {
+			if (pref.getBoolean("tpnav", false)) {
+				try { 
+					resparam.res.setReplacement("com.htc.launcher", "drawable", "home_nav_bg", modRes.fwd(R.drawable.home_nav_bg));
+					resparam.res.setReplacement("com.htc.launcher", "drawable", "automotive_common_app_bkg_top", modRes.fwd(R.drawable.automotive_common_app_bkg_top));
+				} catch (Throwable t) { XposedBridge.log(t); }
+			}
+			if (pref.getBoolean("tpapps", false)) {
+				try { 
+					resparam.res.setReplacement("com.htc.launcher", "drawable", "home_folder_base", modRes.fwd(R.drawable.home_folder_base));
+					resparam.res.setReplacement("com.htc.launcher", "drawable", "home_expanded_panel", modRes.fwd(R.drawable.home_expanded_panel));
+				} catch (Throwable t) { XposedBridge.log(t); }
+			}
+		}
+		
 		if (!resparam.packageName.equals(targetpkg)) {
 			return;
 		}
