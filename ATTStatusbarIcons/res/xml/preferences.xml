@@ -9,13 +9,13 @@
         android:key="prefs_tweaks"
         android:title="Tweaks">
         
-          <CheckBoxPreference
-          android:defaultValue="false"
-          android:key="hideatt"
-          android:summary="Auto-hide the data indicator when on WiFi if using AT&amp;T iconset"
-          android:title="Auto-hide AT&amp;T data" />
+        <CheckBoxPreference
+			android:defaultValue="false"
+			android:key="hideatt"
+			android:summary="Auto-hide the data indicator when on WiFi if using AT&amp;T iconset"
+			android:title="Auto-hide AT&amp;T data" />
        
-         <CheckBoxPreference
+        <CheckBoxPreference
             android:defaultValue="false"
             android:key="delcarrier"
             android:summary="Deletes carrier label from notification handle"
