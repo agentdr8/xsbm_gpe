@@ -87,13 +87,14 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			if (pref.getBoolean("tpapps", false)) {
 				TpApps.initPackageResources(pref, modRes, resparam);
 			}
-			if (pref.getBoolean("qstile_bg_color_enabled", false)) {
-				TpQSTiles.initPackageResources(pref, modRes, resparam);
-			}
 		}
 		
 		if (!resparam.packageName.equals(targetpkg)) {
 			return;
+		}
+		
+		if (pref.getBoolean("qstile_bg_color_enabled", false)) {
+			TpQSTiles.initPackageResources(pref, modRes, resparam);
 		}
 		
 		if (pref.getBoolean("tpnotif", false)) {
