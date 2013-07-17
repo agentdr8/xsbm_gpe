@@ -13,6 +13,7 @@ import android.content.res.XModuleResources;
 import android.content.res.XResources;
 import android.graphics.PorterDuff.Mode;
 import android.os.Build;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
@@ -201,6 +202,10 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			}
 			if (pref.getBoolean("tpapps", false)) {
 				try { 
+					resparam.res.setReplacement("com.htc.launcher", "color", "add_to_home_background_color", 0x00000000);
+					resparam.res.setReplacement("com.htc.launcher", "color", "all_apps_edit_mode_background_color", 0x00000000);
+					resparam.res.setReplacement("com.htc.launcher", "color", "feedview_overlay", 0x00000000);
+					resparam.res.setReplacement("com.htc.launcher", "anim", "all_apps_2d_fade_in", modRes.fwd(R.anim.all_apps_2d_fade_in));
 					resparam.res.setReplacement("com.htc.launcher", "drawable", "all_apps_bkg", modRes.fwd(R.drawable.all_apps_bkg));
 					resparam.res.setReplacement("com.htc.launcher", "drawable", "home_folder_base", modRes.fwd(R.drawable.home_folder_base));
 					resparam.res.setReplacement("com.htc.launcher", "drawable", "home_expanded_panel", modRes.fwd(R.drawable.home_expanded_panel));
@@ -212,6 +217,30 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			return;
 		}
 		
+		if (pref.getBoolean("delcarrier", false)) {
+			resparam.res.hookLayout(targetpkg, "layout", "super_status_bar", new XC_LayoutInflated() {
+				@Override
+				public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
+					try {
+						TextView carrier = (TextView) liparam.view.findViewById(liparam.res.getIdentifier("plmnLabel", "id", "com.android.systemui"));
+						carrier.setVisibility(8);
+					} catch (Throwable t) { XposedBridge.log(t); }
+				}
+			}); 
+		}
+		
+		if (pref.getBoolean("tpnotif", false)) {
+			resparam.res.hookLayout(targetpkg, "layout", "super_status_bar", new XC_LayoutInflated() {
+				@Override
+				public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
+					try {
+						View pv = (View) liparam.view.findViewById(liparam.res.getIdentifier("notification_panel", "id", "com.android.systemui"));
+						pv.setBackgroundColor(pref.getInt("notif_bg_color", 0xff000000));
+					} catch (Throwable t) { XposedBridge.log(t); }
+				}
+			});
+		}
+			
 		if (pref.getBoolean("invisbatt", false)) {
 			resparam.res.hookLayout(targetpkg, "layout", "super_status_bar", new XC_LayoutInflated() {
 				@Override
@@ -261,7 +290,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 				}
 			}); 
 		}
-		
+	
 		if (pref.getBoolean("tpstatus", false) && (pref.getString("tpsbstyle", "full").equals("full"))) {
 			try {
 				resparam.res.setReplacement(targetpkg, "drawable", "status_bar_background", modRes.fwd(R.drawable.status_bar_background));

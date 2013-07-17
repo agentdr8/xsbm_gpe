@@ -9,18 +9,24 @@
         android:key="prefs_tweaks"
         android:title="Tweaks">
         
-            <CheckBoxPreference
+          <CheckBoxPreference
+          android:defaultValue="false"
+          android:key="hideatt"
+          android:summary="Auto-hide the data indicator when on WiFi if using AT&amp;T iconset"
+          android:title="Auto-hide AT&amp;T data" />
+       
+         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="hideatt"
-            android:summary="Auto-hide the data indicator when on WiFi if using AT&amp;T iconset"
-            android:title="Auto-hide AT&amp;T data" />
-        
+            android:key="delcarrier"
+            android:summary="Deletes carrier label from notification handle"
+            android:title="Remove carrier label" />       
+            
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="tpstatus"
             android:summary="Transparent statusbar background"
             android:title="Transparent Statusbar" />
-        
+           
         <ListPreference 
             android:entries="@array/pref_tpsb_names" 
             android:title="Transparent Statusbar Style" 
@@ -28,18 +34,32 @@
             android:entryValues="@array/pref_tpsb_values" 
             android:summary="Choose between fully transparent and 1px gray divider" 
             android:defaultValue="full" />
-        
+       
+       <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="tpnotif"
+            android:summary="Override notification background"
+            android:title="Notification Background" />
+       
+       <net.margaritov.preference.colorpicker.ColorPickerPreference
+            alphaSlider="true"
+            showCheckbox="true"
+            android:defaultValue="#ff000000"
+            android:key="notif_bg_color"
+            android:summary="Color of the notification pulldown bg"
+            android:title="Notification bg color" />
+       
        <CheckBoxPreference
             android:defaultValue="false"
             android:key="tpnav"
             android:summary="Transparent Sense Navbar background"
             android:title="Transparent Sense Navbar" />
               
-       <CheckBoxPreference
+       <!-- <CheckBoxPreference
             android:defaultValue="false"
             android:key="tpapps"
             android:summary="Transparent Sense app drawer background"
-            android:title="Transparent Sense App Drawer" />
+            android:title="Transparent Sense App Drawer" /> -->
               
         <CheckBoxPreference
             android:defaultValue="false"
