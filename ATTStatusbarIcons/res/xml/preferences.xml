@@ -43,6 +43,14 @@
             android:summary="Color of the notification pulldown bg"
             android:title="Notification bg color" />
        
+       <net.margaritov.preference.colorpicker.ColorPickerPreference
+            alphaSlider="true"
+            showCheckbox="true"
+            android:defaultValue="#C0000000"
+            android:key="qstile_bg_color"
+            android:summary="Color of the QS tiles bg"
+            android:title="Quick Settings Tile bg" />
+       
        <CheckBoxPreference
             android:defaultValue="false"
             android:key="tpnav"

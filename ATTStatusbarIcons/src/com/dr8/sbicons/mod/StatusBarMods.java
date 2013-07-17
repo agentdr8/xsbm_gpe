@@ -16,6 +16,7 @@ import com.dr8.sbicons.mod.hax.ToTheLeft;
 import com.dr8.sbicons.mod.hax.TpApps;
 import com.dr8.sbicons.mod.hax.TpNav;
 import com.dr8.sbicons.mod.hax.TpNotif;
+import com.dr8.sbicons.mod.hax.TpQSTiles;
 import com.dr8.sbicons.mod.hax.TpStatusbar;
 import com.dr8.sbicons.mod.hax.Wifi;
 
@@ -85,6 +86,9 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			}
 			if (pref.getBoolean("tpapps", false)) {
 				TpApps.initPackageResources(pref, modRes, resparam);
+			}
+			if (pref.getBoolean("qstile_bg_color_enabled", false)) {
+				TpQSTiles.initPackageResources(pref, modRes, resparam);
 			}
 		}
 		
