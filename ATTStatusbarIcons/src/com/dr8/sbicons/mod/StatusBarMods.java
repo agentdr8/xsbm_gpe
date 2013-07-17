@@ -201,6 +201,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			}
 			if (pref.getBoolean("tpapps", false)) {
 				try { 
+					resparam.res.setReplacement("com.htc.launcher", "drawable", "all_apps_bkg", modRes.fwd(R.drawable.all_apps_bkg));
 					resparam.res.setReplacement("com.htc.launcher", "drawable", "home_folder_base", modRes.fwd(R.drawable.home_folder_base));
 					resparam.res.setReplacement("com.htc.launcher", "drawable", "home_expanded_panel", modRes.fwd(R.drawable.home_expanded_panel));
 				} catch (Throwable t) { XposedBridge.log(t); }
