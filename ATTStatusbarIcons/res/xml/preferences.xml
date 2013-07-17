@@ -15,11 +15,11 @@
 			android:summary="Auto-hide the data indicator when on WiFi if using AT&amp;T iconset"
 			android:title="Auto-hide AT&amp;T data" />
        
-        <CheckBoxPreference
+<!--         <CheckBoxPreference
             android:defaultValue="false"
             android:key="delcarrier"
             android:summary="Deletes carrier label from notification handle"
-            android:title="Remove carrier label" />       
+            android:title="Remove carrier label" />    -->    
             
         <CheckBoxPreference
             android:defaultValue="false"
