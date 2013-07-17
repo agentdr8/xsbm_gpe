@@ -222,8 +222,10 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 				@Override
 				public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
 					try {
-						TextView carrier = (TextView) liparam.view.findViewById(liparam.res.getIdentifier("plmnLabel", "id", "com.android.systemui"));
-						carrier.setVisibility(8);
+						TextView plmn = (TextView) liparam.view.findViewById(liparam.res.getIdentifier("plmnLabel", "id", "com.android.systemui"));
+						plmn.setVisibility(8);
+						TextView spn = (TextView) liparam.view.findViewById(liparam.res.getIdentifier("spnLabel", "id", "com.android.systemui"));
+						spn.setVisibility(8);
 					} catch (Throwable t) { XposedBridge.log(t); }
 				}
 			}); 
