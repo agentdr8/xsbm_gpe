@@ -16,7 +16,7 @@ public class ToTheLeft {
 				resParam.res.setReplacement("com.android.phone", "drawable", "stat_notify_call_mute", modRes.fwd(R.drawable.stat_notify_call_mute));
 				resParam.res.setReplacement("com.android.phone", "drawable", "stat_notify_voicemail", modRes.fwd(R.drawable.stat_notify_voicemail));
 				resParam.res.setReplacement("com.android.phone", "drawable", "stat_sys_speakerphone", modRes.fwd(R.drawable.stat_sys_speakerphone));
-			} else if (resParam.packageName.equals("com.anroid.systemui")) {
+			} else if (resParam.packageName.equals("com.android.systemui")) {
 				String targetpkg = "com.android.systemui";
 				resParam.res.setReplacement(targetpkg , "drawable", "ic_notify_clear", modRes.fwd(R.drawable.ic_notify_clear));
 				resParam.res.setReplacement(targetpkg, "drawable", "ic_notify_notifications", modRes.fwd(R.drawable.ic_notify_notifications));
