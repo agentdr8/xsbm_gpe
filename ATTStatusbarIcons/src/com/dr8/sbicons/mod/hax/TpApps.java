@@ -1,6 +1,7 @@
 package com.dr8.sbicons.mod.hax;
 
 import android.content.res.XModuleResources;
+import android.graphics.Color;
 import android.view.ViewGroup;
 import com.dr8.sbicons.R;
 
@@ -25,6 +26,7 @@ public class TpApps {
 			public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
 				try {
 					ViewGroup vg = (ViewGroup) liparam.view.findViewById(liparam.res.getIdentifier("all_apps_paged_view", "id", "com.htc.launcher"));
+					vg.setBackgroundColor(Color.TRANSPARENT);
 					vg.setBackgroundResource(R.drawable.app_background);
 				} catch (Throwable t) { XposedBridge.log(t); }
 			}
