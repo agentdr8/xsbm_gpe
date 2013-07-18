@@ -89,7 +89,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 				TpApps.initPackageResources(pref, modRes, resparam);
 			}
 			if (pref.getBoolean("tpstatus", false)) {
-				TpApps.initPackageResources(pref, modRes, resparam);
+				TpStatusbar.initPackageResources(pref, modRes, resparam);
 			}
 		}
 		

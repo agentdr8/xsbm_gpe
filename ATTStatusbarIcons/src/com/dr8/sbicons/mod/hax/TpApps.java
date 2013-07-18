@@ -3,7 +3,8 @@ package com.dr8.sbicons.mod.hax;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import android.content.res.XModuleResources;
 import android.util.Log;
-import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
 import com.dr8.sbicons.R;
 
 import de.robv.android.xposed.XC_MethodHook;
@@ -29,9 +30,9 @@ public class TpApps {
 			@Override
 			public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
 				try {
-					ViewGroup vg = (ViewGroup) liparam.view.findViewById(liparam.res.getIdentifier("all_apps_paged_view", "id", "com.htc.launcher"));
-					vg.setBackgroundResource(R.drawable.app_background);
-					Log.i("XSBM:", " hooked viewgroup, trying to set bg");
+					RelativeLayout rl = (RelativeLayout) liparam.view.findViewById(liparam.res.getIdentifier("all_apps_paged_view_frame", "id", "com.htc.launcher"));
+					rl.setBackgroundResource(R.drawable.app_background);
+					Log.i("XSBM:", " hooked relativelayout, trying to set bg");
 				} catch (Throwable t) { XposedBridge.log(t); }
 			}
 		}); 

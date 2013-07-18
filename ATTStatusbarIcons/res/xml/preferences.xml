@@ -57,11 +57,11 @@
             android:summary="Transparent Sense Navbar background"
             android:title="Transparent Sense Navbar" />
               
-       <CheckBoxPreference
+       <!--  <CheckBoxPreference
             android:defaultValue="false"
             android:key="tpapps"
             android:summary="Transparent Sense app drawer background"
-            android:title="Transparent Sense App Drawer" />
+            android:title="Transparent Sense App Drawer" /> -->
               
         <CheckBoxPreference
             android:defaultValue="false"
@@ -244,7 +244,6 @@
             android:key="gps"
             android:summary="Override GPS icons"
             android:title="GPS" />
-        
         
         <CheckBoxPreference
             android:defaultValue="true"
