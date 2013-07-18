@@ -22,7 +22,7 @@ public class TpApps {
 			resParam.res.setReplacement("com.htc.launcher", "drawable", "home_folder_base", modRes.fwd(R.drawable.home_folder_base));
 			resParam.res.setReplacement("com.htc.launcher", "drawable", "home_expanded_panel", modRes.fwd(R.drawable.home_expanded_panel));
 		} catch (Throwable t) { XposedBridge.log(t); }
-		resParam.res.hookLayout("com.htc.launcher", "layout", "all_apps_pagedview", new XC_LayoutInflated() {
+		resParam.res.hookLayout("com.htc.launcher", "layout", "launcher", new XC_LayoutInflated() {
 			@Override
 			public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
 				try {
