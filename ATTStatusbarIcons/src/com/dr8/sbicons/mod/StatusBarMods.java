@@ -67,6 +67,9 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			BatteryRainbow.initHandleLoadPackage(pref, lpparam);
 			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
 		}
+//		if (lpparam.packageName.equals("com.htc.launcher")) {
+//			TpApps.initHandleLoadPackage(pref, lpparam);
+//		}
 	}
 	
 	@Override

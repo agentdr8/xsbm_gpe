@@ -1,14 +1,16 @@
 package com.dr8.sbicons.mod.hax;
 
+import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import android.content.res.XModuleResources;
-import android.graphics.Color;
 import android.view.ViewGroup;
 import com.dr8.sbicons.R;
 
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LayoutInflated;
+import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class TpApps {
 
@@ -26,10 +28,18 @@ public class TpApps {
 			public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
 				try {
 					ViewGroup vg = (ViewGroup) liparam.view.findViewById(liparam.res.getIdentifier("all_apps_paged_view", "id", "com.htc.launcher"));
-					vg.setBackgroundColor(Color.TRANSPARENT);
 					vg.setBackgroundResource(R.drawable.app_background);
 				} catch (Throwable t) { XposedBridge.log(t); }
 			}
 		}); 
+	}
+	
+	public static void initHandleLoadPackage(final XSharedPreferences paramPrefs, XC_LoadPackage.LoadPackageParam lpParam) {
+		findAndHookMethod("com.htc.launcher.Launcher", lpParam.classLoader, "updateWallpaperVisibility", new XC_MethodHook() {
+			@Override
+			protected void afterHookedMethod(MethodHookParam wpbool) throws Throwable {
+				wpbool.setResult(false);
+			}
+		});
 	}
 }

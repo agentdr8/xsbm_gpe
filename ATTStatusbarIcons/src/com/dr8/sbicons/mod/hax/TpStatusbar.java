@@ -23,8 +23,7 @@ public class TpStatusbar {
 							resParam.res.setReplacement(targetpkg, "drawable", "status_bar_background", modRes.fwd(R.drawable.status_bar_background_1px));
 						} catch (Throwable t) { XposedBridge.log(t); }
 					}
-			}
-			if (resParam.packageName.equals("com.htc.launcher") && (paramPrefs.getString("tpsbstyle", "full").equals("full"))) {
+			} else 	if (resParam.packageName.equals("com.htc.launcher") && (paramPrefs.getString("tpsbstyle", "full").equals("full"))) {
 				resParam.res.setReplacement("com.htc.launcher" , "drawable", "automotive_common_app_bkg_top", modRes.fwd(R.drawable.automotive_common_app_bkg_top));
 			}
 		} catch (Throwable t) { XposedBridge.log(t); }
