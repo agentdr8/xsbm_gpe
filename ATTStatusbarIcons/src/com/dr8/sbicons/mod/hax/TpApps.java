@@ -1,7 +1,6 @@
 package com.dr8.sbicons.mod.hax;
 
 import android.content.res.XModuleResources;
-import android.util.Log;
 import android.view.ViewGroup;
 import com.dr8.sbicons.R;
 
@@ -18,7 +17,6 @@ public class TpApps {
 			resParam.res.setReplacement("com.htc.launcher", "color", "all_apps_edit_mode_background_color", 0xC0000000);
 			resParam.res.setReplacement("com.htc.launcher", "color", "feedview_overlay", 0xC0000000);
 			resParam.res.setReplacement("com.htc.launcher", "anim", "all_apps_2d_fade_in", modRes.fwd(R.anim.all_apps_2d_fade_in));
-			resParam.res.setReplacement("com.htc.launcher", "drawable", "all_apps_bkg", modRes.fwd(R.drawable.app_background));
 			resParam.res.setReplacement("com.htc.launcher", "drawable", "home_folder_base", modRes.fwd(R.drawable.home_folder_base));
 			resParam.res.setReplacement("com.htc.launcher", "drawable", "home_expanded_panel", modRes.fwd(R.drawable.home_expanded_panel));
 		} catch (Throwable t) { XposedBridge.log(t); }
@@ -28,7 +26,6 @@ public class TpApps {
 				try {
 					ViewGroup vg = (ViewGroup) liparam.view.findViewById(liparam.res.getIdentifier("all_apps_paged_view", "id", "com.htc.launcher"));
 					vg.setBackgroundResource(R.drawable.app_background);
-					Log.i("XSBM:", " hooked viewgroup, trying to set bg");
 				} catch (Throwable t) { XposedBridge.log(t); }
 			}
 		}); 
