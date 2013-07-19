@@ -4,6 +4,7 @@ import com.dr8.sbicons.mod.hax.BatteryIcons;
 import com.dr8.sbicons.mod.hax.BatteryRainbow;
 import com.dr8.sbicons.mod.hax.BatteryTextColor;
 import com.dr8.sbicons.mod.hax.Bluetooth;
+import com.dr8.sbicons.mod.hax.CenterClock;
 import com.dr8.sbicons.mod.hax.ClockColor;
 import com.dr8.sbicons.mod.hax.GPS;
 import com.dr8.sbicons.mod.hax.HtcNetworkController;
@@ -66,6 +67,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		if (lpparam.packageName.equals("com.android.systemui")) {
 			BatteryRainbow.initHandleLoadPackage(pref, lpparam);
 			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
+			CenterClock.initHandleLoadPackage(pref, lpparam.classLoader);
 		}
 		if (lpparam.packageName.equals("com.htc.launcher")) {
 			TpApps.initHandleLoadPackage(pref, lpparam);
@@ -98,6 +100,10 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		}
 		
 		TpStatusbar.initPackageResources(pref, modRes, resparam);
+		
+		if (pref.getBoolean("centerclock", false)) {
+			CenterClock.initPackageResources(pref, resparam);
+		}
 
 		if (pref.getBoolean("qstile_bg_color_enabled", false)) {
 			TpQSTiles.initPackageResources(pref, modRes, resparam);

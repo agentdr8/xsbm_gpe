@@ -83,7 +83,7 @@ public class CenterClock {
         }
     }
 
-    public static void init(final XSharedPreferences prefs, final ClassLoader classLoader) {
+    public static void initHandleLoadPackage(final XSharedPreferences prefs, final ClassLoader classLoader) {
         try {
             final Class<?> phoneStatusBarClass =
                     XposedHelpers.findClass(CLASS_PHONE_STATUSBAR, classLoader);
