@@ -62,8 +62,7 @@
             android:key="tpapps"
             android:summary="Transparent Sense app drawer background"
             android:title="Transparent Sense App Drawer" /> -->
-		
-		              
+				              
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="centerclock"
