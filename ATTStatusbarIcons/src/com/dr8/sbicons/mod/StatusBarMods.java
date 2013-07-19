@@ -67,6 +67,9 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			BatteryRainbow.initHandleLoadPackage(pref, lpparam);
 			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
 		}
+		if (lpparam.packageName.equals("com.htc.launcher")) {
+			TpApps.initHandleLoadPackage(pref, lpparam);
+		}
 	}
 	
 	@Override
@@ -85,12 +88,17 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			if (pref.getBoolean("tpapps", false)) {
 				TpApps.initPackageResources(pref, modRes, resparam);
 			}
+			if (pref.getBoolean("tpstatus", false)) {
+				TpStatusbar.initPackageResources(pref, modRes, resparam);
+			}
 		}
 		
 		if (!resparam.packageName.equals(targetpkg)) {
 			return;
 		}
 		
+		TpStatusbar.initPackageResources(pref, modRes, resparam);
+
 		if (pref.getBoolean("qstile_bg_color_enabled", false)) {
 			TpQSTiles.initPackageResources(pref, modRes, resparam);
 		}
@@ -114,9 +122,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		if (pref.getBoolean("clock_text_color_enabled", false)) {
 			ClockColor.initPackageResources(pref, modRes, resparam); 
 		}
-	
-		TpStatusbar.initPackageResources(pref, modRes, resparam);
-		
+
 		if (pref.getBoolean("to_the_left", true)) {
 			ToTheLeft.initPackageResources(pref, modRes, resparam);
 		}
