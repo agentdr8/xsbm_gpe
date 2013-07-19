@@ -24,5 +24,7 @@
     android:background="@drawable/delete_x"
     android:layout_width="@dimen/item_height"
     android:layout_height="@dimen/item_height"
-    android:layout_weight="0" />
+    android:layout_weight="0"
+    android:visibility="gone"
+     />
 </com.dr8.sbicons.mod.CheckableLinearLayout>

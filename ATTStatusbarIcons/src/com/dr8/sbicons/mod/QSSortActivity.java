@@ -12,7 +12,7 @@ import com.mobeta.android.dslv.DragSortListView;
 import com.mobeta.android.dslv.DragSortListView.RemoveListener;
 
 
-public class QSSort extends ListActivity
+public class QSSortActivity extends ListActivity
 {
     private ArrayAdapter<String> adapter;
 

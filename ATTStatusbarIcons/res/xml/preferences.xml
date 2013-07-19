@@ -62,7 +62,18 @@
             android:key="tpapps"
             android:summary="Transparent Sense app drawer background"
             android:title="Transparent Sense App Drawer" /> -->
-				             
+			
+			<PreferenceScreen
+	      		android:key="prefs_qs"
+	    		android:title="Reorder Quick Settings">
+        
+		      	<intent 
+	        		android:action="android.intent.action.VIEW"
+	        		android:targetPackage="com.dr8.sbicons"
+	        		android:targetClass="com.dr8.sbicons.mod.QSSortActivity"
+	    		/>
+	  		</PreferenceScreen>
+	  						             
      </PreferenceScreen>
      
      <PreferenceScreen 
@@ -264,15 +275,4 @@
             android:title="Misc Status Icons" />
       </PreferenceScreen>
       
-	  <PreferenceScreen
-	      	android:key="prefs_qs"
-	    	android:title="Reorder Quick Settings">
-        
-	      	<intent 
-        		android:action="android.intent.action.VIEW"
-        		android:targetPackage="com.dr8.sbicons"
-        		android:targetClass="com.dr8.sbicons.mod.QSReorderActivity"
-    		/>
-	  </PreferenceScreen>
-	  
 </PreferenceScreen>
