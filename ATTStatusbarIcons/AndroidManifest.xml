@@ -17,9 +17,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data android:value="true" android:name="xposedmodule"/>
+        <activity android:name=".mod.QSReorderActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+        </activity><meta-data android:value="true" android:name="xposedmodule"/>
         <meta-data android:value="2.0*" android:name="xposedminversion"/>
         <meta-data android:value="Mod to change statusbar icons &amp; bg transparency, clock visibility, %battery, and other items" android:name="xposeddescription"/>
+        
         
 
     </application>

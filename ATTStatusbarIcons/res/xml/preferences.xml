@@ -270,7 +270,7 @@
         
 	      	<intent 
         		android:action="android.intent.action.VIEW"
-        		android:targetPackage="com.dr8.sbicons.mod"
+        		android:targetPackage="com.dr8.sbicons"
         		android:targetClass="com.dr8.sbicons.mod.QSReorderActivity"
     		/>
 	  </PreferenceScreen>

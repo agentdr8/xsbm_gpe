@@ -26,7 +26,8 @@ public class QSReorderActivity extends Activity {
         ArrayList<Map<String, Object>> items = new ArrayList<Map<String, Object>>();
         for (int i = 0; i < qsNames.length; i++) {
         	HashMap<String, Object> item = new HashMap<String, Object>();
-            item.put(qsNames[i], qsCodes[i]);
+            item.put("name", qsNames[i]);
+            item.put("_id", qsCodes[i]);
 			items.add(item);
 		}
 		
