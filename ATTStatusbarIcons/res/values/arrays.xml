@@ -58,4 +58,36 @@
         <item>full</item>
         <item>1px</item>
     </string-array>
+    
+    <string-array name="qs_item_names">
+        <item>User card</item>
+		<item>Brightness</item>
+		<item>Settings</item>
+		<item>Wifi</item>
+		<item>Bluetooth</item>
+		<item>Airplane</item>
+		<item>Power Saver</item>
+		<item>Rotation</item>
+		<item>Mobile Data</item>
+		<item>Sound Profile</item>
+		<item>Wifi Hotspot</item>
+		<item>Screenshot</item>
+		<item>GPS</item>
+    </string-array>
+
+    <integer-array name="qs_item_codes">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </integer-array>
 </resources>

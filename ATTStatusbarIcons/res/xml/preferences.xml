@@ -263,4 +263,16 @@
             android:summary="Override all other icons to the left of GPS (Sync, Headphone, Ringer, e911, etc.)"
             android:title="Misc Status Icons" />
       </PreferenceScreen>
+      
+	  <PreferenceScreen
+	      	android:key="prefs_qs"
+	    	android:title="Reorder Quick Settings">
+        
+	      	<intent 
+        		android:action="android.intent.action.VIEW"
+        		android:targetPackage="com.dr8.sbicons.mod"
+        		android:targetClass="com.dr8.sbicons.mod.QSReorderActivity"
+    		/>
+	  </PreferenceScreen>
+	  
 </PreferenceScreen>
