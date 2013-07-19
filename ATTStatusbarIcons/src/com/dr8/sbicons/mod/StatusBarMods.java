@@ -14,10 +14,8 @@ import com.dr8.sbicons.mod.hax.MobileData;
 import com.dr8.sbicons.mod.hax.SignalBars;
 import com.dr8.sbicons.mod.hax.SystemWide;
 import com.dr8.sbicons.mod.hax.ToTheLeft;
-import com.dr8.sbicons.mod.hax.TpApps;
 import com.dr8.sbicons.mod.hax.TpNav;
 import com.dr8.sbicons.mod.hax.TpNotif;
-import com.dr8.sbicons.mod.hax.TpQSTiles;
 import com.dr8.sbicons.mod.hax.TpStatusbar;
 import com.dr8.sbicons.mod.hax.Wifi;
 
