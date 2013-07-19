@@ -69,9 +69,9 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
 			CenterClock.initHandleLoadPackage(pref, lpparam.classLoader);
 		}
-		if (lpparam.packageName.equals("com.htc.launcher")) {
-			TpApps.initHandleLoadPackage(pref, lpparam);
-		}
+//		if (lpparam.packageName.equals("com.htc.launcher")) {
+//			TpApps.initHandleLoadPackage(pref, lpparam);
+//		}
 	}
 	
 	@Override
@@ -87,9 +87,9 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			if (pref.getBoolean("tpnav", false)) {
 				TpNav.initPackageResources(pref, modRes, resparam);
 			}
-			if (pref.getBoolean("tpapps", false)) {
-				TpApps.initPackageResources(pref, modRes, resparam);
-			}
+//			if (pref.getBoolean("tpapps", false)) {
+//				TpApps.initPackageResources(pref, modRes, resparam);
+//			}
 			if (pref.getBoolean("tpstatus", false)) {
 				TpStatusbar.initPackageResources(pref, modRes, resparam);
 			}
@@ -105,9 +105,9 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			CenterClock.initPackageResources(pref, resparam);
 		}
 
-		if (pref.getBoolean("qstile_bg_color_enabled", false)) {
-			TpQSTiles.initPackageResources(pref, modRes, resparam);
-		}
+//		if (pref.getBoolean("qstile_bg_color_enabled", false)) {
+//			TpQSTiles.initPackageResources(pref, modRes, resparam);
+//		}
 		
 		if (pref.getBoolean("tpnotif", false)) {
 			TpNotif.initPackageResources(pref, modRes, resparam);
