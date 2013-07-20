@@ -5,7 +5,10 @@ import java.util.Arrays;
 
 import android.app.ListActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 
 import com.dr8.sbicons.R;
 import com.mobeta.android.dslv.DragSortListView;
@@ -58,6 +61,27 @@ public class QSSortActivity extends ListActivity
         list.setRemoveListener(onRemove);
    }
 
+    @Override
+    protected void onResume() {
+    	super.onResume();
+    }
+    
+    @Override
+    protected void onStop() {
+    	super.onStop();
+    	DragSortListView list = getListView();
+    	int j = list.getChildCount();
+    	Log.i("XSBM", ": num of child views " + j);
+    	for (int i = 0; i < j; i++) {
+    		View cview = list.getChildAt(i);
+    		CheckedTextView mCheckedTextView = (CheckedTextView) cview.findViewById(R.id.text);
+    		String item = adapter.getItem(i);
+    		if (mCheckedTextView.isChecked()) {
+    			Log.i("XSBM", ": " + "item" + i + " " + item.toString() + " is checked");
+    		}
+    	}
+    }
+    
     @Override
     public DragSortListView getListView() {
         return (DragSortListView) super.getListView();
