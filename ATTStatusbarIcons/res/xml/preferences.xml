@@ -63,7 +63,7 @@
             android:summary="Transparent Sense app drawer background"
             android:title="Transparent Sense App Drawer" /> -->
 			
-			<!--  <PreferenceScreen
+			<!-- <PreferenceScreen
 	      		android:key="prefs_qs"
 	    		android:title="Reorder Quick Settings">
         
@@ -73,7 +73,7 @@
 	        		android:targetClass="com.dr8.sbicons.mod.QSSortActivity"
 	    		/>
 	  		</PreferenceScreen> -->
-	  						             
+	  		  						             
      </PreferenceScreen>
      
      <PreferenceScreen 

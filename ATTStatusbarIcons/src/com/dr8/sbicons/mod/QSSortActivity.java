@@ -6,6 +6,7 @@ import java.util.Arrays;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckedTextView;
@@ -57,6 +58,7 @@ public class QSSortActivity extends ListActivity
         setListAdapter(adapter);
         
         DragSortListView list = getListView();
+        list.setChoiceMode(2);
         list.setDropListener(onDrop);
         list.setRemoveListener(onRemove);
    }
@@ -70,15 +72,14 @@ public class QSSortActivity extends ListActivity
     protected void onStop() {
     	super.onStop();
     	DragSortListView list = getListView();
-    	int j = list.getChildCount();
-    	Log.i("XSBM", ": num of child views " + j);
-    	for (int i = 0; i < j; i++) {
-    		View cview = list.getChildAt(i);
-    		CheckedTextView mCheckedTextView = (CheckedTextView) cview.findViewById(R.id.text);
-    		String item = adapter.getItem(i);
-    		if (mCheckedTextView.isChecked()) {
-    			Log.i("XSBM", ": " + "item" + i + " " + item.toString() + " is checked");
-    		}
+    	SparseBooleanArray checkedItems = list.getCheckedItemPositions();
+    	if (checkedItems != null) {
+    	    for (int i = 0; i < checkedItems.size(); i++) {
+    	        if (checkedItems.valueAt(i)) {
+    	            String item = list.getAdapter().getItem(checkedItems.keyAt(i)).toString();
+    	            Log.i("XSBM", item + " was selected - item" + i);
+    	        }
+    	    }
     	}
     }
     
