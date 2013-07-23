@@ -36,5 +36,4 @@ public class ZipStuff {
 	    }
 	    return result;
 	}
-
 }
