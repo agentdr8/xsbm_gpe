@@ -10,12 +10,6 @@
         android:title="Misc Tweaks">
         
         <CheckBoxPreference
-			android:defaultValue="false"
-			android:key="hideatt"
-			android:summary="Auto-hide the data indicator when on WiFi if using AT&amp;T iconset"
-			android:title="Auto-hide AT&amp;T data" />
-            
-        <CheckBoxPreference
             android:defaultValue="false"
             android:key="tpstatus"
             android:summary="Transparent statusbar background"
@@ -184,49 +178,28 @@
 	    android:key="prefs_icons"
 	    android:title="Icon Settings">
 	    
-   		 <ListPreference 
-            android:entries="@array/pref_cid_names" 
-            android:title="Preferred Icon Set" 
-            android:key="iconset" 
-            android:entryValues="@array/pref_cid_values" 
-            android:summary="Choose between AT&amp;T, T-Mobile, and International icons" 
-            android:defaultValue="att" />
-    
-   		 <ListPreference 
-            android:entries="@array/pref_intl_style_names" 
-            android:title="AT&amp;T &amp; International Data Icon Style" 
-            android:key="intlstyle" 
-            android:entryValues="@array/pref_intl_style_values" 
-            android:summary="If using AT&amp;T or International icons, pick which style data indicators" 
-            android:defaultValue="curved" />
-   		 
+	  <!-- <PreferenceScreen
+	      		android:key="prefs_theme"
+	    		android:title="Select Icon Pack">
+        
+		      	<intent 
+	        		android:action="android.intent.action.VIEW"
+	        		android:targetPackage="com.dr8.sbicons"
+	        		android:targetClass="com.dr8.sbicons.mod.IconPackActivity"
+	    		/>
+		</PreferenceScreen> -->
+	  		
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="battery"
             android:summary="Override battery icons"
             android:title="Battery" />
-        
-        <ListPreference 
-            android:entries="@array/pref_battheme_names" 
-            android:title="Battery Style" 
-            android:key="battstyle" 
-            android:entryValues="@array/pref_battheme_values" 
-            android:summary="Battery icon style if overridden" 
-            android:defaultValue="percent" />
-        
+
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="signal"
             android:summary="Override carrier signal bars"
             android:title="Signal Bar" />
-        
-        <ListPreference 
-            android:entries="@array/pref_signal_names" 
-            android:title="Signal Bar color" 
-            android:key="sigstyle" 
-            android:entryValues="@array/pref_signal_values" 
-            android:summary="Color of cell signal icons if overridden" 
-            android:defaultValue="cyan" />
         
         <CheckBoxPreference
             android:defaultValue="true"
@@ -234,27 +207,11 @@
             android:summary="Override carrier data icons"
             android:title="Mobile Data" />
 
-        <ListPreference 
-            android:entries="@array/pref_carrier_data_color" 
-            android:title="Mobile Data color" 
-            android:key="pref_carrier_color" 
-            android:entryValues="@array/pref_carrier_data_values" 
-            android:summary="Color of mobile data icons if overridden" 
-            android:defaultValue="cyan" />
-        
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="wifi"
             android:summary="Override Wifi signal icons"
             android:title="Wifi" />
-        
-        <ListPreference 
-            android:entries="@array/pref_wifi_color_names" 
-            android:title="Wifi icon color" 
-            android:key="wifistyle" 
-            android:entryValues="@array/pref_wifi_color_values" 
-            android:summary="Color of wifi signal icons if overridden" 
-            android:defaultValue="cyan" />
         
         <CheckBoxPreference
             android:defaultValue="true"

@@ -19,8 +19,8 @@ public class BatteryIcons {
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
-			resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery", modRes.fwd(R.drawable.stat_sys_battery));
-			resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery_charge", modRes.fwd(R.drawable.stat_sys_battery_charge));
+//			resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery", modRes.fwd(R.drawable.stat_sys_battery));
+//			resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery_charge", modRes.fwd(R.drawable.stat_sys_battery_charge));
 		} catch (Throwable t) { XposedBridge.log(t); }
 		try {
 			String path = Environment.getExternalStorageDirectory() + "/xsbm/test.zip";
