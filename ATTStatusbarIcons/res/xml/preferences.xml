@@ -106,25 +106,25 @@
             android:summary="Removes battery icon from statusbar"
             android:title="Remove Battery" />
          
+		<net.margaritov.preference.colorpicker.ColorPickerPreference
+            alphaSlider="true"
+            showCheckbox="true"
+            android:defaultValue="#ff35b5e5"
+            android:key="batt_text_color"
+            android:summary="Fixed color of the text battery and icon battery"
+            android:title="Battery % color" />
+                  
           <CheckBoxPreference
             android:defaultValue="false"
             android:key="batt_icon_rainbow"
-            android:summary="Colorizes battery icons based on current charge level (works best with circle battery icons)"
+            android:summary="Colorizes battery icons based on current charge level (works best with circle battery icons; overrides manual color selection above)"
             android:title="Battery Icon Colorize" />
           
          <CheckBoxPreference
             android:defaultValue="false"
             android:key="batt_text_rainbow"
-            android:summary="Colorizes stock text battery % based on current charge level (overrides manual color selection below)"
+            android:summary="Colorizes stock text battery % based on current charge level (overrides manual color selection above)"
             android:title="Text Battery Colorize" />
-         
-         <net.margaritov.preference.colorpicker.ColorPickerPreference
-            alphaSlider="true"
-            showCheckbox="true"
-            android:defaultValue="#ff35b5e5"
-            android:key="batt_text_color"
-            android:summary="Fixed color of the stock 4.2.2 text battery % if enabled"
-            android:title="Text Battery % color" />
          
          	<PreferenceScreen 
      			android:key="prefs_battery_color_ranges"

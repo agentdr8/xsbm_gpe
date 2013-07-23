@@ -32,7 +32,7 @@ public class ZipStuff {
 	    } catch (FileNotFoundException e) {
 	        XposedBridge.log(TAG + ": Extracting file: Error opening zip file - FileNotFoundException: " + e);
 	    } catch (IOException e) {
-	        XposedBridge.log(TAG + "Extracting file: Error opening zip file - IOException: " + e);
+	        XposedBridge.log(TAG + ": Extracting file: Error opening zip file - IOException: " + e);
 	    }
 	    return result;
 	}
