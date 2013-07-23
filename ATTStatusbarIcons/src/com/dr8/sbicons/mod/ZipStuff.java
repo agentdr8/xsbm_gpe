@@ -6,9 +6,10 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import de.robv.android.xposed.XposedBridge;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 public class ZipStuff {
 
@@ -29,10 +30,9 @@ public class ZipStuff {
 	            }
 	        }
 	    } catch (FileNotFoundException e) {
-	        Log.i(TAG, "Extracting file: Error opening zip file - FileNotFoundException: ", e);
+	        XposedBridge.log(TAG + ": Extracting file: Error opening zip file - FileNotFoundException: " + e);
 	    } catch (IOException e) {
-	        Log.i(TAG, "Extracting file: Error opening zip file - IOException: ", e);
-	        e.printStackTrace();
+	        XposedBridge.log(TAG + "Extracting file: Error opening zip file - IOException: " + e);
 	    }
 	    return result;
 	}
