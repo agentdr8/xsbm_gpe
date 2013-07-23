@@ -20,7 +20,7 @@ public class ToTheLeft {
 			String path = Environment.getExternalStorageDirectory() + "/xsbm/test.zip";
 			
 			String[] phonearray = {
-					"stat_notify_call_mute",
+//					"stat_notify_call_mute",
 					"stat_notify_voicemail",
 					"stat_sys_speakerphone"
 			};
