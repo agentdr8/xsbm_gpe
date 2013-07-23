@@ -93,6 +93,12 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			}
 		}
 		
+		if (resparam.packageName.equals("com.dr8.sbicons")) {
+			if (pref.getBoolean("battery", true)) {
+				BatteryIcons.initPackageResources(pref, modRes, resparam);
+			}
+		}
+		
 		if (!resparam.packageName.equals(targetpkg)) {
 			return;
 		}

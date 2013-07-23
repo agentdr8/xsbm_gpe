@@ -15,7 +15,7 @@ public class ZipStuff {
 	private static String TAG = "XSBM";
 	
 	public static Bitmap getBitmapFromZip(final String zipFilePath, final String imageFileInZip){
-	    Log.i(TAG, "Getting image '" + imageFileInZip + "' from '" + zipFilePath +"'");
+//	    Log.i(TAG, "Getting image '" + imageFileInZip + "' from '" + zipFilePath +"'");
 	    Bitmap result = null;
 	    try {
 	        FileInputStream fis = new FileInputStream(zipFilePath);
@@ -23,7 +23,8 @@ public class ZipStuff {
 	        ZipEntry ze = null;
 	        while ((ze = zis.getNextEntry()) != null) {
 	            if (ze.getName().equals(imageFileInZip)) {
-	                result = BitmapFactory.decodeStream(zis);
+	            	result = BitmapFactory.decodeStream(zis);
+	            	result.setDensity(Bitmap.DENSITY_NONE);
 	                break;
 	            }
 	        }

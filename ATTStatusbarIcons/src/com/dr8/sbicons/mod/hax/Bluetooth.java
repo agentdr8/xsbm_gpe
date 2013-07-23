@@ -7,7 +7,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
-import com.dr8.sbicons.R;
 import com.dr8.sbicons.mod.ZipStuff;
 
 import de.robv.android.xposed.XSharedPreferences;
@@ -20,18 +19,26 @@ public class Bluetooth {
 		try {
 			String targetpkg = "com.android.systemui";
 			String path = Environment.getExternalStorageDirectory() + "/xsbm/test.zip";
-			String iname = "stat_sys_data_bluetooth.png";
-			final Bitmap b = ZipStuff.getBitmapFromZip(path, iname);
+			String bt = "bt/stat_sys_data_bluetooth.png";
+			String btcon = "bt/stat_sys_data_bluetooth_connected.png";
+			final Bitmap b = ZipStuff.getBitmapFromZip(path, bt);
+			final Bitmap c = ZipStuff.getBitmapFromZip(path, btcon);
 			if (b != null) {
 				resParam.res.setReplacement(targetpkg , "drawable", "stat_sys_data_bluetooth", new XResources.DrawableLoader() {
 					@Override
 					public Drawable newDrawable(XResources res, int id) throws Throwable {
-						return new BitmapDrawable(b);
+						return new BitmapDrawable(null, b);
 					}
 				});
 			}
-			resParam.res.setReplacement(targetpkg , "drawable", "stat_sys_data_bluetooth", modRes.fwd(R.drawable.stat_sys_data_bluetooth));
-			resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_data_bluetooth_connected", modRes.fwd(R.drawable.stat_sys_data_bluetooth_connected));
+			if (c != null) {
+				resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_data_bluetooth_connected", new XResources.DrawableLoader() {
+					@Override
+					public Drawable newDrawable(XResources res, int id) throws Throwable {
+						return new BitmapDrawable(null, c);
+					}
+				});
+			}
 		} catch (Throwable t) { XposedBridge.log(t); }
 	}
 }
