@@ -157,7 +157,7 @@ public class BatteryIcons {
 						for (int k = 0; k < j; k++) {
 							@SuppressWarnings("unchecked")
 							ImageView iv = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).get(k);
-							if (plugged && blevel != 100) {
+							if (plugged && blevel < 100) {
 								AnimationDrawable animation = new AnimationDrawable();
 								for (int i = 0; i < charge.length; i++) {
 									String bimg = "battery/charge/" + charge[i];
@@ -166,7 +166,7 @@ public class BatteryIcons {
 									animation.addFrame(d, 1500);
 								}
 								iv.setImageDrawable(animation);
-							} else if (plugged && blevel == 100) {
+							} else if (plugged && blevel >= 100) {
 								String bimg = "battery/" + battarray[100];
 								final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
 								Drawable d = new BitmapDrawable(null, b);
