@@ -7,7 +7,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
 
-import com.dr8.sbicons.R;
 import com.dr8.sbicons.mod.ZipStuff;
 
 import de.robv.android.xposed.XSharedPreferences;
