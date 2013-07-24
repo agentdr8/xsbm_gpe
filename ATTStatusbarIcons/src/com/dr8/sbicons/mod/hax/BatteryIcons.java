@@ -128,8 +128,7 @@ public class BatteryIcons {
 				"stat_sys_battery_97.png",
 				"stat_sys_battery_98.png",
 				"stat_sys_battery_99.png",
-				"stat_sys_battery_100.png",
-				"stat_sys_battery_unknown.png"
+				"stat_sys_battery_100.png"
 		};
 		
 		final String[] charge = {
@@ -158,7 +157,7 @@ public class BatteryIcons {
 						for (int k = 0; k < j; k++) {
 							@SuppressWarnings("unchecked")
 							ImageView iv = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).get(k);
-							if (plugged) {
+							if (plugged && blevel != 100) {
 								AnimationDrawable animation = new AnimationDrawable();
 								for (int i = 0; i < charge.length; i++) {
 									String bimg = "battery/charge/" + charge[i];
@@ -167,7 +166,12 @@ public class BatteryIcons {
 									animation.addFrame(d, 1500);
 								}
 								iv.setImageDrawable(animation);
-							} else {
+							} else if (plugged && blevel == 100) {
+								String bimg = "battery/" + battarray[100];
+								final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
+								Drawable d = new BitmapDrawable(null, b);
+								iv.setImageDrawable(d);
+							} else { 
 								String bimg = "battery/" + battarray[blevel];
 								final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
 								Drawable d = new BitmapDrawable(null, b);
