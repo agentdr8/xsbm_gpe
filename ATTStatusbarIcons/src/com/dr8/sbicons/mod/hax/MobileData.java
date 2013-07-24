@@ -92,7 +92,7 @@ public class MobileData {
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 				try { 
 					nettype = (Integer) param.getResult();
-					XposedBridge.log("XSBM: our nettype is " + nettype);
+//					XposedBridge.log("XSBM: our nettype is " + nettype);
 				} catch (Throwable t) { XposedBridge.log(t); }
 			}
 		});
@@ -102,7 +102,7 @@ public class MobileData {
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 				try { 
 					netstate = (Integer) param.getResult();
-					XposedBridge.log("XSBM: our netstate is " + netstate);
+//					XposedBridge.log("XSBM: our netstate is " + netstate);
 				} catch (Throwable t) { XposedBridge.log(t); }
 			}
 		});

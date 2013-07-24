@@ -117,7 +117,7 @@
           <CheckBoxPreference
             android:defaultValue="false"
             android:key="batt_icon_rainbow"
-            android:summary="Colorizes battery icons based on current charge level (works best with circle battery icons; overrides manual color selection above)"
+            android:summary="Colorizes battery icons based on current charge level (works best with light-colored battery icons; overrides manual color selection above)"
             android:title="Battery Icon Colorize" />
           
          <CheckBoxPreference
@@ -178,7 +178,7 @@
 	    android:key="prefs_icons"
 	    android:title="Icon Settings">
 	    
-	  <!-- <PreferenceScreen
+	  	<PreferenceScreen
 	      		android:key="prefs_theme"
 	    		android:title="Select Icon Pack">
         
@@ -187,7 +187,7 @@
 	        		android:targetPackage="com.dr8.sbicons"
 	        		android:targetClass="com.dr8.sbicons.mod.IconPackActivity"
 	    		/>
-		</PreferenceScreen> -->
+		</PreferenceScreen>
 	  		
 	  	<CheckBoxPreference
             android:defaultValue="true"

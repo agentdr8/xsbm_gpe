@@ -19,9 +19,10 @@
             </intent-filter>
         </activity>
 		<activity android:name=".mod.QSSortActivity"></activity>
-        <meta-data android:value="true" android:name="xposedmodule"/>
+        <activity android:name=".mod.IconPackActivity"></activity><meta-data android:value="true" android:name="xposedmodule"/>
         <meta-data android:value="2.0*" android:name="xposedminversion"/>
         <meta-data android:value="Mod to change statusbar icons &amp; bg transparency, clock visibility, %battery, and other items" android:name="xposeddescription"/>
+        
         
         
         
