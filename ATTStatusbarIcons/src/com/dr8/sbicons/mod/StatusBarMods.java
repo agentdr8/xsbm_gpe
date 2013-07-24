@@ -66,6 +66,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		if (lpparam.packageName.equals("com.android.systemui")) {
 			BatteryRainbow.initHandleLoadPackage(pref, lpparam);
 			BatteryIconColor.initHandleLoadPackage(pref, lpparam);
+			BatteryIcons.initHandleLoadPackage(pref, lpparam);
 			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
 			CenterClock.initHandleLoadPackage(pref, lpparam.classLoader);
 		}
@@ -153,8 +154,8 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			MobileData.initPackageResources(pref, modRes, resparam);
 		}
 
-		if (pref.getBoolean("battery", true)) {
-			BatteryIcons.initPackageResources(pref, modRes, resparam);
-		}
+//		if (pref.getBoolean("battery", true)) {
+//			BatteryIcons.initPackageResources(pref, modRes, resparam);
+//		}
 	}
 }
