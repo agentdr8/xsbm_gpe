@@ -3,18 +3,15 @@ package com.dr8.sbicons.mod.hax;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.getIntField;
 import static de.robv.android.xposed.XposedHelpers.getObjectField;
+import static de.robv.android.xposed.XposedHelpers.getBooleanField;
 
 import java.util.ArrayList;
-
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.XModuleResources;
-import android.content.res.XResources;
 import android.graphics.Bitmap;
-import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LevelListDrawable;
 import android.os.Environment;
 import android.widget.ImageView;
 
@@ -23,8 +20,6 @@ import com.dr8.sbicons.mod.ZipStuff;
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.XC_MethodHook.MethodHookParam;
-import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class BatteryIcons {
@@ -137,95 +132,52 @@ public class BatteryIcons {
 				"stat_sys_battery_unknown.png"
 		};
 		
+		final String[] charge = {
+				"stat_sys_battery_charge_anim0.png",
+				"stat_sys_battery_charge_anim1.png",
+				"stat_sys_battery_charge_anim2.png",
+				"stat_sys_battery_charge_anim3.png",
+				"stat_sys_battery_charge_anim4.png",
+				"stat_sys_battery_charge_anim5.png",
+				"stat_sys_battery_charge_anim6.png",
+				"stat_sys_battery_charge_anim7.png",
+				"stat_sys_battery_charge_anim8.png",
+				"stat_sys_battery_charge_anim9.png",
+				"stat_sys_battery_charge_anim10.png"
+		};
+		
 		if (paramPrefs.getBoolean("battery", true)) {
 			findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", lpParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook() {
 				@Override
 				protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 					try {
+						boolean plugged = getBooleanField(param.thisObject, "plugged");
 						int blevel = getIntField(param.thisObject, "level");
 						@SuppressWarnings("unchecked")
 						int j = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).size();
 						for (int k = 0; k < j; k++) {
 							@SuppressWarnings("unchecked")
 							ImageView iv = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).get(k);
-							String bimg = "battery/" + battarray[blevel];
-							final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
-							Drawable d = new BitmapDrawable(null, b);
-							iv.setImageDrawable(d);
+							if (plugged) {
+								AnimationDrawable animation = new AnimationDrawable();
+								for (int i = 0; i < charge.length; i++) {
+									String bimg = "battery/charge/" + charge[i];
+									final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
+									Drawable d = new BitmapDrawable(null, b);
+									animation.addFrame(d, 1500);
+								}
+								iv.setImageDrawable(animation);
+							} else {
+								String bimg = "battery/" + battarray[blevel];
+								final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
+								Drawable d = new BitmapDrawable(null, b);
+								iv.setImageDrawable(d);
 							}
+						}
 					} catch (Throwable t) { XposedBridge.log(t); }
 				}
 	
 			});	
 		}
 	}
-	
-//	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
-//		
-//		try {
-//			
-//			String targetpkg = "com.android.systemui";
-//			
-//			
-//			LevelListDrawable lld = new LevelListDrawable();
-//			
-//			for (int i = 0; i < battarray.length; i++) {
-//				String bimg = "battery/" + battarray[i];
-//				final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
-//				Drawable d = new BitmapDrawable(null, b);
-//				
-//				if (b != null) {
-//					if (i == 102) {
-//						resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery_unknown", new XResources.DrawableLoader() {
-//							@Override
-//							public Drawable newDrawable(XResources res, int id) throws Throwable {
-//								return new BitmapDrawable(null, b);
-//							}
-//						});
-//					} else {
-//						lld.addLevel(0, i, d);
-//						resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery_" + i, new XResources.DrawableLoader() {
-//							@Override
-//							public Drawable newDrawable(XResources res, int id) throws Throwable {
-//								return new BitmapDrawable(null, b);
-//							}
-//						});
-//					}
-//				}
-//				
-//			}
-//			
-//			String[] charge = {
-//					"stat_sys_battery_charge_anim0.png",
-//					"stat_sys_battery_charge_anim1.png",
-//					"stat_sys_battery_charge_anim2.png",
-//					"stat_sys_battery_charge_anim3.png",
-//					"stat_sys_battery_charge_anim4.png",
-//					"stat_sys_battery_charge_anim5.png",
-//					"stat_sys_battery_charge_anim6.png",
-//					"stat_sys_battery_charge_anim7.png",
-//					"stat_sys_battery_charge_anim8.png",
-//					"stat_sys_battery_charge_anim9.png",
-//					"stat_sys_battery_charge_anim10.png"
-//			};
-//			
-//			for (int i = 0; i < charge.length; i++) {
-//				String bimg = "battery/charge/" + charge[i];
-//				final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
-//				if (b != null) {
-//					resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery_charge_anim" + i, new XResources.DrawableLoader() {
-//						@Override
-//						public Drawable newDrawable(XResources res, int id) throws Throwable {
-//							return new BitmapDrawable(null, b);
-//						}
-//					});
-//				}
-//			}
-//		} catch (Throwable t) { XposedBridge.log(t); }
-//		try {
-//			String targetpkg = "com.android.systemui";
-//			resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery", modRes.fwd(lld));
-////			resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_battery_charge", modRes.fwd(R.drawable.stat_sys_battery_charge));
-//		} catch (Throwable t) { XposedBridge.log(t); }
-//	}
 }
