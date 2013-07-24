@@ -2,8 +2,6 @@ package com.dr8.sbicons.mod.hax;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.getObjectField;
-import static de.robv.android.xposed.XposedHelpers.getIntField;
-
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
@@ -99,11 +97,11 @@ public class MobileData {
 			}
 		});
 		
-		findAndHookMethod("com.android.systemui.statusbar.policy.HtcGenericNetworkController", lpParam.classLoader, "onDataConnectionStateChanged", Integer.class, Integer.class, new XC_MethodHook() {
+		findAndHookMethod("com.android.systemui.statusbar.policy.HtcGenericNetworkController", lpParam.classLoader, "getDataActivity", new XC_MethodHook() {
 			@Override
 			protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 				try { 
-					netstate = (Integer) getIntField(param.thisObject, "mDataState");
+					netstate = (Integer) param.getResult();
 					XposedBridge.log("XSBM: our netstate is " + netstate);
 				} catch (Throwable t) { XposedBridge.log(t); }
 			}
@@ -119,80 +117,253 @@ public class MobileData {
 //						for (int k = 0; k < j; k++) {
 //							@SuppressWarnings("unchecked")
 							ImageView iv = (ImageView) getObjectField(param.thisObject, "mMobile");
-
 							switch (nettype) {
 								case 1:
-									AnimationDrawable animationg = new AnimationDrawable();
-									for (int i = 0; i < gicons.length; i++) {
-										String gimg = "mobile/g/" + gicons[i];
+									if (netstate == 0) {
+										String gimg = "mobile/g/" + gicons[0];
 										final Bitmap gb = ZipStuff.getBitmapFromZip(path, gimg);
 										Drawable gd = new BitmapDrawable(null, gb);
-										animationg.addFrame(gd, 1000);
+										iv.setImageDrawable(gd);
+									} else if (netstate == 1) {
+										AnimationDrawable animationg = new AnimationDrawable();
+										for (int i = 0; i < gicons.length - 3; i++) {
+											String gimg = "mobile/g/" + gicons[i];
+											final Bitmap gb = ZipStuff.getBitmapFromZip(path, gimg);
+											Drawable gd = new BitmapDrawable(null, gb);
+											animationg.addFrame(gd, 1000);
+										}
+										animationg.setOneShot(false);
+										iv.setImageDrawable(animationg);
+										animationg.start();
+									} else if (netstate == 2) {
+										AnimationDrawable animationg = new AnimationDrawable();
+										for (int i = 4; i < gicons.length; i++) {
+											String gimg = "mobile/g/" + gicons[i];
+											final Bitmap gb = ZipStuff.getBitmapFromZip(path, gimg);
+											Drawable gd = new BitmapDrawable(null, gb);
+											animationg.addFrame(gd, 1000);
+										}
+										animationg.setOneShot(false);
+										iv.setImageDrawable(animationg);
+										animationg.start();
+									} else {
+										AnimationDrawable animationg = new AnimationDrawable();
+										for (int i = 0; i < gicons.length; i++) {
+											String gimg = "mobile/g/" + gicons[i];
+											final Bitmap gb = ZipStuff.getBitmapFromZip(path, gimg);
+											Drawable gd = new BitmapDrawable(null, gb);
+											animationg.addFrame(gd, 1000);
+										}
+										animationg.setOneShot(false);
+										iv.setImageDrawable(animationg);
+										animationg.start();
 									}
-									animationg.setOneShot(false);
-									iv.setImageDrawable(animationg);
-									animationg.start();
 									break;
 								case 2:
-									AnimationDrawable animatione = new AnimationDrawable();
-									for (int i = 0; i < eicons.length; i++) {
-										String eimg = "mobile/e/" + eicons[i];
+									if (netstate == 0) {
+										String eimg = "mobile/e/" + eicons[0];
 										final Bitmap eb = ZipStuff.getBitmapFromZip(path, eimg);
 										Drawable ed = new BitmapDrawable(null, eb);
-										animatione.addFrame(ed, 1000);
+										iv.setImageDrawable(ed);
+									} else if (netstate == 1) {
+										AnimationDrawable animatione = new AnimationDrawable();
+										for (int i = 0; i < eicons.length - 3; i++) {
+											String eimg = "mobile/e/" + eicons[i];
+											final Bitmap eb = ZipStuff.getBitmapFromZip(path, eimg);
+											Drawable ed = new BitmapDrawable(null, eb);
+											animatione.addFrame(ed, 1000);
+										}
+										animatione.setOneShot(false);
+										iv.setImageDrawable(animatione);
+										animatione.start();
+									} else if (netstate == 2) {
+										AnimationDrawable animatione = new AnimationDrawable();
+										for (int i = 4; i < eicons.length; i++) {
+											String eimg = "mobile/e/" + eicons[i];
+											final Bitmap eb = ZipStuff.getBitmapFromZip(path, eimg);
+											Drawable ed = new BitmapDrawable(null, eb);
+											animatione.addFrame(ed, 1000);
+										}
+										animatione.setOneShot(false);
+										iv.setImageDrawable(animatione);
+										animatione.start();
+									} else {
+										AnimationDrawable animatione = new AnimationDrawable();
+										for (int i = 0; i < eicons.length; i++) {
+											String eimg = "mobile/e/" + eicons[i];
+											final Bitmap eb = ZipStuff.getBitmapFromZip(path, eimg);
+											Drawable ed = new BitmapDrawable(null, eb);
+											animatione.addFrame(ed, 1000);
+										}
+										animatione.setOneShot(false);
+										iv.setImageDrawable(animatione);
+										animatione.start();
 									}
-									animatione.setOneShot(false);
-									iv.setImageDrawable(animatione);
-									animatione.start();
 									break;
 								case 3:
-									AnimationDrawable animationtg = new AnimationDrawable();
-									for (int i = 0; i < threegicons.length; i++) {
-										String tgimg = "mobile/3g/" + threegicons[i];
+									if (netstate == 0) {
+										String tgimg = "mobile/3g/" + threegicons[0];
 										final Bitmap tgb = ZipStuff.getBitmapFromZip(path, tgimg);
 										Drawable tgd = new BitmapDrawable(null, tgb);
-										animationtg.addFrame(tgd, 1000);
+										iv.setImageDrawable(tgd);
+									} else if (netstate == 1) {
+										AnimationDrawable animationtg = new AnimationDrawable();
+										for (int i = 0; i < threegicons.length - 3; i++) {
+											String tgimg = "mobile/3g/" + threegicons[i];
+											final Bitmap tgb = ZipStuff.getBitmapFromZip(path, tgimg);
+											Drawable tgd = new BitmapDrawable(null, tgb);
+											animationtg.addFrame(tgd, 1000);
+										}
+										animationtg.setOneShot(false);
+										iv.setImageDrawable(animationtg);
+										animationtg.start();
+									} else if (netstate == 2) {
+										AnimationDrawable animationtg = new AnimationDrawable();
+										for (int i = 4; i < threegicons.length; i++) {
+											String tgimg = "mobile/3g/" + threegicons[i];
+											final Bitmap tgb = ZipStuff.getBitmapFromZip(path, tgimg);
+											Drawable tgd = new BitmapDrawable(null, tgb);
+											animationtg.addFrame(tgd, 1000);
+										}
+										animationtg.setOneShot(false);
+										iv.setImageDrawable(animationtg);
+										animationtg.start();
+									} else {
+										AnimationDrawable animationtg = new AnimationDrawable();
+										for (int i = 0; i < threegicons.length; i++) {
+											String tgimg = "mobile/3g/" + threegicons[i];
+											final Bitmap tgb = ZipStuff.getBitmapFromZip(path, tgimg);
+											Drawable tgd = new BitmapDrawable(null, tgb);
+											animationtg.addFrame(tgd, 1000);
+										}
+										animationtg.setOneShot(false);
+										iv.setImageDrawable(animationtg);
+										animationtg.start();
 									}
-									animationtg.setOneShot(false);
-									iv.setImageDrawable(animationtg);
-									animationtg.start();
 									break;
 								case 8:
 								case 10:
-									AnimationDrawable animationfg = new AnimationDrawable();
-									for (int i = 0; i < fourgicons.length; i++) {
-										String fgimg = "mobile/4g/" + fourgicons[i];
+									if (netstate == 0) {
+										String fgimg = "mobile/4g/" + fourgicons[0];
 										final Bitmap fgb = ZipStuff.getBitmapFromZip(path, fgimg);
 										Drawable fgd = new BitmapDrawable(null, fgb);
-										animationfg.addFrame(fgd, 1000);
+										iv.setImageDrawable(fgd);
+									} else if (netstate == 1) {
+										AnimationDrawable animationfg = new AnimationDrawable();
+										for (int i = 0; i < fourgicons.length - 3; i++) {
+											String fgimg = "mobile/4g/" + fourgicons[i];
+											final Bitmap fgb = ZipStuff.getBitmapFromZip(path, fgimg);
+											Drawable fgd = new BitmapDrawable(null, fgb);
+											animationfg.addFrame(fgd, 1000);
+										}
+										animationfg.setOneShot(false);
+										iv.setImageDrawable(animationfg);
+										animationfg.start();
+									} else if (netstate == 2) {
+										AnimationDrawable animationfg = new AnimationDrawable();
+										for (int i = 4; i < fourgicons.length; i++) {
+											String fgimg = "mobile/4g/" + fourgicons[i];
+											final Bitmap fgb = ZipStuff.getBitmapFromZip(path, fgimg);
+											Drawable fgd = new BitmapDrawable(null, fgb);
+											animationfg.addFrame(fgd, 1000);
+										}
+										animationfg.setOneShot(false);
+										iv.setImageDrawable(animationfg);
+										animationfg.start();
+									} else {
+										AnimationDrawable animationfg = new AnimationDrawable();
+										for (int i = 0; i < fourgicons.length; i++) {
+											String fgimg = "mobile/4g/" + fourgicons[i];
+											final Bitmap fgb = ZipStuff.getBitmapFromZip(path, fgimg);
+											Drawable fgd = new BitmapDrawable(null, fgb);
+											animationfg.addFrame(fgd, 1000);
+										}
+										animationfg.setOneShot(false);
+										iv.setImageDrawable(animationfg);
+										animationfg.start();
 									}
-									animationfg.setOneShot(false);
-									iv.setImageDrawable(animationfg);
-									animationfg.start();
 									break;
 								case 13:
-									AnimationDrawable animationl = new AnimationDrawable();
-									for (int i = 0; i < lteicons.length; i++) {
-										String limg = "mobile/lte/" + lteicons[i];
+									if (netstate == 0) { 
+										String limg = "mobile/lte/" + lteicons[0];
 										final Bitmap lb = ZipStuff.getBitmapFromZip(path, limg);
 										Drawable ld = new BitmapDrawable(null, lb);
-										animationl.addFrame(ld, 1000);
+										iv.setImageDrawable(ld);
+									} else if (netstate == 1) {
+										AnimationDrawable animationl = new AnimationDrawable();
+										for (int i = 0; i < lteicons.length - 3; i++) {
+											String limg = "mobile/lte/" + lteicons[i];
+											final Bitmap lb = ZipStuff.getBitmapFromZip(path, limg);
+											Drawable ld = new BitmapDrawable(null, lb);
+											animationl.addFrame(ld, 1000);
+										}
+										animationl.setOneShot(false);
+										iv.setImageDrawable(animationl);
+										animationl.start();
+									} else if (netstate == 2) {
+										AnimationDrawable animationl = new AnimationDrawable();
+										for (int i = 4; i < lteicons.length; i++) {
+											String limg = "mobile/lte/" + lteicons[i];
+											final Bitmap lb = ZipStuff.getBitmapFromZip(path, limg);
+											Drawable ld = new BitmapDrawable(null, lb);
+											animationl.addFrame(ld, 1000);
+										}
+										animationl.setOneShot(false);
+										iv.setImageDrawable(animationl);
+										animationl.start();
+									} else {
+										AnimationDrawable animationl = new AnimationDrawable();
+										for (int i = 0; i < lteicons.length; i++) {
+											String limg = "mobile/lte/" + lteicons[i];
+											final Bitmap lb = ZipStuff.getBitmapFromZip(path, limg);
+											Drawable ld = new BitmapDrawable(null, lb);
+											animationl.addFrame(ld, 1000);
+										}
+										animationl.setOneShot(false);
+										iv.setImageDrawable(animationl);
+										animationl.start();
 									}
-									animationl.setOneShot(false);
-									iv.setImageDrawable(animationl);
-									animationl.start();
 									break;
 								case 15:
-									AnimationDrawable animationh = new AnimationDrawable();
-									for (int i = 0; i < hicons.length; i++) {
-										String himg = "mobile/h/" + hicons[i];
+									if (netstate == 0) { 
+										String himg = "mobile/h/" + hicons[0];
 										final Bitmap hb = ZipStuff.getBitmapFromZip(path, himg);
 										Drawable hd = new BitmapDrawable(null, hb);
-										animationh.addFrame(hd, 1000);
+										iv.setImageDrawable(hd);
+									} else if (netstate == 1) {
+										AnimationDrawable animationh = new AnimationDrawable();
+										for (int i = 0; i < hicons.length - 3; i++) {
+											String himg = "mobile/h/" + hicons[i];
+											final Bitmap hb = ZipStuff.getBitmapFromZip(path, himg);
+											Drawable hd = new BitmapDrawable(null, hb);
+											animationh.addFrame(hd, 1000);
+										}
+										animationh.setOneShot(false);
+										iv.setImageDrawable(animationh);
+										animationh.start();
+									} else if (netstate == 2) {
+										AnimationDrawable animationh = new AnimationDrawable();
+										for (int i = 4; i < hicons.length; i++) {
+											String himg = "mobile/h/" + hicons[i];
+											final Bitmap hb = ZipStuff.getBitmapFromZip(path, himg);
+											Drawable hd = new BitmapDrawable(null, hb);
+											animationh.addFrame(hd, 1000);
+										}
+										animationh.setOneShot(false);
+										iv.setImageDrawable(animationh);
+										animationh.start();
+									} else {
+										AnimationDrawable animationh = new AnimationDrawable();
+										for (int i = 0; i < hicons.length; i++) {
+											String himg = "mobile/h/" + hicons[i];
+											final Bitmap hb = ZipStuff.getBitmapFromZip(path, himg);
+											Drawable hd = new BitmapDrawable(null, hb);
+											animationh.addFrame(hd, 1000);
+										}
+										animationh.setOneShot(false);
+										iv.setImageDrawable(animationh);
+										animationh.start();
 									}
-									animationh.setOneShot(false);
-									iv.setImageDrawable(animationh);
-									animationh.start();
 									break;
 							}
 						
