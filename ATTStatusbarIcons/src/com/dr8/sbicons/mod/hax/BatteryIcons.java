@@ -166,9 +166,9 @@ public class BatteryIcons {
 									
 									String bimg = "battery/" + battarray[blevel];
 									final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
-									Drawable d = new BitmapDrawable(null, b);
+									Drawable bd = new BitmapDrawable(null, b);
 									animation.addFrame(cd, 1500);
-									animation.addFrame(d, 500);
+									animation.addFrame(bd, 500);
 								}
 								animation.setOneShot(false);
 								iv.setImageDrawable(animation);

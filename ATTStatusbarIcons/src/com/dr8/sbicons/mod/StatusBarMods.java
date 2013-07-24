@@ -69,6 +69,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			BatteryIcons.initHandleLoadPackage(pref, lpparam);
 			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
 			CenterClock.initHandleLoadPackage(pref, lpparam.classLoader);
+			MobileData.initHandleLoadPackage(pref, lpparam);
 		}
 //		if (lpparam.packageName.equals("com.htc.launcher")) {
 //			TpApps.initHandleLoadPackage(pref, lpparam);
@@ -150,12 +151,5 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			SignalBars.initPackageResources(pref, modRes, resparam);
 		}
 			
-		if (pref.getBoolean("mobile_data", true)) {
-			MobileData.initPackageResources(pref, modRes, resparam);
-		}
-
-//		if (pref.getBoolean("battery", true)) {
-//			BatteryIcons.initPackageResources(pref, modRes, resparam);
-//		}
 	}
 }
