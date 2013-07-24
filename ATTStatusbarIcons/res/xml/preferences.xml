@@ -189,6 +189,12 @@
 	    		/>
 		</PreferenceScreen> -->
 	  		
+	  	<CheckBoxPreference
+            android:defaultValue="true"
+            android:key="hideatt"
+            android:summary="Hide the mobile data icons when connected to Wifi"
+            android:title="Auto-hide Mobile Data" />
+	  	
         <CheckBoxPreference
             android:defaultValue="true"
             android:key="battery"
