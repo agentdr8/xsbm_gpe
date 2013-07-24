@@ -2,8 +2,7 @@ package com.dr8.sbicons.mod.hax;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.getObjectField;
-
-import java.util.ArrayList;
+import static de.robv.android.xposed.XposedHelpers.getIntField;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
@@ -22,8 +21,12 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class MobileData {
 
 	private static int nettype = 0;
+	private static int netstate = 0;
+	
 	private static String path = Environment.getExternalStorageDirectory() + "/xsbm/test.zip";
+	
 	private static final String[] gicons = {
+			"stat_sys_data_g_connected.png",
 			"stat_sys_data_g_downlink_1.png",
 			"stat_sys_data_g_downlink_2.png",
 			"stat_sys_data_g_downlink_3.png",
@@ -33,6 +36,7 @@ public class MobileData {
 
 		};
 	private static final String[] eicons = {
+			"stat_sys_data_e_connected.png",
 			"stat_sys_data_e_downlink_1.png",
 			"stat_sys_data_e_downlink_2.png",
 			"stat_sys_data_e_downlink_3.png",
@@ -42,6 +46,7 @@ public class MobileData {
 
 		};
 	private static final String[] threegicons = {
+			"stat_sys_data_3g_connected.png",
 			"stat_sys_data_3g_downlink_1.png",
 			"stat_sys_data_3g_downlink_2.png",
 			"stat_sys_data_3g_downlink_3.png",
@@ -51,6 +56,7 @@ public class MobileData {
 
 		};
 	private static final String[] hicons = {
+			"stat_sys_data_h_connected.png",
 			"stat_sys_data_h_downlink_1.png",
 			"stat_sys_data_h_downlink_2.png",
 			"stat_sys_data_h_downlink_3.png",
@@ -60,6 +66,7 @@ public class MobileData {
 
 		};
 	private static final String[] fourgicons = {
+			"stat_sys_data_4g_connected.png",
 			"stat_sys_data_4g_downlink_1.png",
 			"stat_sys_data_4g_downlink_2.png",
 			"stat_sys_data_4g_downlink_3.png",
@@ -69,6 +76,7 @@ public class MobileData {
 
 		};
 	private static final String[] lteicons = {
+			"stat_sys_data_lte_connected.png",
 			"stat_sys_data_lte_downlink_1.png",
 			"stat_sys_data_lte_downlink_2.png",
 			"stat_sys_data_lte_downlink_3.png",
@@ -91,16 +99,26 @@ public class MobileData {
 			}
 		});
 		
+		findAndHookMethod("com.android.systemui.statusbar.policy.HtcGenericNetworkController", lpParam.classLoader, "onDataConnectionStateChanged", Integer.class, Integer.class, new XC_MethodHook() {
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+				try { 
+					netstate = (Integer) getIntField(param.thisObject, "mDataState");
+					XposedBridge.log("XSBM: our netstate is " + netstate);
+				} catch (Throwable t) { XposedBridge.log(t); }
+			}
+		});
+		
 		if (paramPrefs.getBoolean("mobile_data", true)) {
-			findAndHookMethod("com.android.systemui.statusbar.policy.NetworkController", lpParam.classLoader, "refreshViews", new XC_MethodHook() {
+			findAndHookMethod("com.android.systemui.statusbar.HtcGenericSignalClusterView", lpParam.classLoader, "apply", new XC_MethodHook() {
 				@Override
 				protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 					try {
-						@SuppressWarnings("unchecked")
-						int j = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mDataTypeIconViews")).size();
-						for (int k = 0; k < j; k++) {
-							@SuppressWarnings("unchecked")
-							ImageView iv = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mDataTypeIconViews")).get(k);
+//						@SuppressWarnings("unchecked")
+//						int j = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mDataTypeIconViews")).size();
+//						for (int k = 0; k < j; k++) {
+//							@SuppressWarnings("unchecked")
+							ImageView iv = (ImageView) getObjectField(param.thisObject, "mMobile");
 
 							switch (nettype) {
 								case 1:
@@ -139,6 +157,7 @@ public class MobileData {
 									iv.setImageDrawable(animationtg);
 									animationtg.start();
 									break;
+								case 8:
 								case 10:
 									AnimationDrawable animationfg = new AnimationDrawable();
 									for (int i = 0; i < fourgicons.length; i++) {
@@ -176,7 +195,7 @@ public class MobileData {
 									animationh.start();
 									break;
 							}
-						}
+						
 					} catch (Throwable t) { XposedBridge.log(t); }
 				}
 			});	
