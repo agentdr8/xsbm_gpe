@@ -1,5 +1,6 @@
 package com.dr8.sbicons.mod;
 
+import com.dr8.sbicons.mod.hax.BatteryIconColor;
 import com.dr8.sbicons.mod.hax.BatteryIcons;
 import com.dr8.sbicons.mod.hax.BatteryRainbow;
 import com.dr8.sbicons.mod.hax.BatteryTextColor;
@@ -64,6 +65,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		pref.reload();
 		if (lpparam.packageName.equals("com.android.systemui")) {
 			BatteryRainbow.initHandleLoadPackage(pref, lpparam);
+			BatteryIconColor.initHandleLoadPackage(pref, lpparam);
 			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
 			CenterClock.initHandleLoadPackage(pref, lpparam.classLoader);
 		}
