@@ -1,10 +1,8 @@
 package com.dr8.sbicons.mod;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -40,21 +38,16 @@ public class ZipStuff {
 	    return result;
 	}
 	
-	public static String getPackInfo(final String zipFilePath, final String infoFile) {
-		StringBuilder sb = new StringBuilder();
+	public static Integer getPackInfo(final String zipFile, final String path, final String infoFile) {
+		Log.i(TAG, "Getting pack id '" + infoFile + "' from '" + path + zipFile + "'");
+		Integer result = 0;
 		try {
-			FileInputStream fis = new FileInputStream(zipFilePath);
+			FileInputStream fis = new FileInputStream(path + zipFile);
 	        ZipInputStream zis = new ZipInputStream(fis);
 	        ZipEntry ze = null;
 	        while ((ze = zis.getNextEntry()) != null) {
 	            if (ze.getName().equals(infoFile)) {
-	            	BufferedReader reader = new BufferedReader(new InputStreamReader(zis));
-	                String line = null;
-	                while ((line = reader.readLine()) != null) {
-	                  sb.append(line).append("\n");
-	                }
-	                reader.close();
-	                break;
+	            	result = 1;
 	            }
 	        }
 	        zis.close();
@@ -63,6 +56,6 @@ public class ZipStuff {
 	    } catch (IOException e) {
 	        Log.d(TAG, ": Extracting file: Error opening zip file - IOException: " + e);
 	    }
-		return sb.toString();
+		return result;
 	}
 }

@@ -13,7 +13,7 @@ import de.robv.android.xposed.XSharedPreferences;
 
 public class SystemWide {
 	public static void initHandleZygote(StartupParam startupParam, XModuleResources modRes, XSharedPreferences prefs) {
-		String iconpack = prefs.getString("iconset", null);
+		String iconpack = prefs.getString("iconpack", null);
 		String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
 		String gon = "gps/stat_sys_gps_on.png";
 		final Bitmap g = ZipStuff.getBitmapFromZip(path, gon);

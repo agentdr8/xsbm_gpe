@@ -55,9 +55,9 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 	@Override
 	public void initZygote(StartupParam startupParam) throws Throwable {
 		MODULE_PATH = startupParam.modulePath;
+		pref = new XSharedPreferences("com.dr8.sbicons", "com.dr8.sbicons_preferences");
 		XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, null);
 		SystemWide.initHandleZygote(startupParam, modRes, pref);
-		pref = new XSharedPreferences("com.dr8.sbicons", "com.dr8.sbicons_preferences");
 	}
 
 	@Override

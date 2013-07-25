@@ -25,7 +25,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class BatteryIcons {
 
 	public static void initHandleLoadPackage(final XSharedPreferences paramPrefs, XC_LoadPackage.LoadPackageParam lpParam) {
-		final String iconpack = paramPrefs.getString("iconset", null);
+		final String iconpack = paramPrefs.getString("iconpack", null);
 		final String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
 		final String[] battarray = {
 				"stat_sys_battery_0.png",

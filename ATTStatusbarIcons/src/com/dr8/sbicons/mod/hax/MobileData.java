@@ -84,7 +84,7 @@ public class MobileData {
 	
 	public static void initHandleLoadPackage(final XSharedPreferences paramPrefs, XC_LoadPackage.LoadPackageParam lpParam) {
 
-		final String iconpack = paramPrefs.getString("iconset", null);
+		final String iconpack = paramPrefs.getString("iconpack", null);
 		final String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
 		
 		

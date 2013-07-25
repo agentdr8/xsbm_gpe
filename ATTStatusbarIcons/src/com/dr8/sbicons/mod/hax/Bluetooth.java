@@ -18,7 +18,7 @@ public class Bluetooth {
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
-			String iconpack = paramPrefs.getString("iconset", null);
+			String iconpack = paramPrefs.getString("iconpack", null);
 			String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
 			String bt = "bt/stat_sys_data_bluetooth.png";
 			String btcon = "bt/stat_sys_data_bluetooth_connected.png";
