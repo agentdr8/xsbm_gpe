@@ -23,7 +23,7 @@ public class ToTheLeft {
 			String[] phonearray = {
 					"stat_notify_voicemail",
 					"stat_sys_speakerphone",
-//					"stat_notify_call_mute",
+					"stat_notify_call_mute",
 					"stat_sys_phone_call",
 					"stat_notify_missed_call"
 			};
