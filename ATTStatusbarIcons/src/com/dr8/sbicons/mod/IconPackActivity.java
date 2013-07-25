@@ -1,6 +1,9 @@
 package com.dr8.sbicons.mod;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -32,18 +35,36 @@ public class IconPackActivity extends ListActivity
         ArrayList<String> filearray = new ArrayList<String>();
         
 //        Log.d("Files", "Path: " + path);
-        File f = new File(path);        
-        final File file[] = f.listFiles();
-//        Log.d("Files", "Size: "+ file.length);
-        
-       
-        for (int i=0; i < file.length; i++) {
-        	if (file[i].getName().toLowerCase().endsWith(".zip")) {
-        		filearray.add(file[i].getName());
-//        		Log.d("Files", "FileName:" + file[i].getName());
-        	}
+        File f = new File(path);
+        if (f.isDirectory()) {
+	        final File file[] = f.listFiles();
+	//        Log.d("Files", "Size: "+ file.length);
+	        
+	       
+	        for (int i=0; i < file.length; i++) {
+	        	if (file[i].getName().toLowerCase().endsWith(".zip")) {
+	        		filearray.add(file[i].getName());
+	//        		Log.d("Files", "FileName:" + file[i].getName());
+	        	}
+	        }
+        } else {
+        	f.mkdirs();
+        	InputStream in = getResources().openRawResource(R.raw.default_iconpack);
+            FileOutputStream out;
+			try {
+				out = new FileOutputStream(path);
+			    byte[] buff = new byte[1024];
+			    int read = 0;
+                while ((read = in.read(buff)) > 0) {
+                  out.write(buff, 0, read);
+                }
+                in.close();
+                out.close();
+            } catch (IOException e) {
+//				Log.d("Files", "Exceptions during default pack copy: " + e);
+            } 
         }
-       
+        
         String[] array = filearray.toArray(new String[filearray.size()]);
         ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(array));
         Collections.sort(arrayList);
