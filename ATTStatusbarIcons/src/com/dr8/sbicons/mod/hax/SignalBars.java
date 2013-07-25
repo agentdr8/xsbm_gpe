@@ -18,7 +18,8 @@ public class SignalBars {
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
-			String path = Environment.getExternalStorageDirectory() + "/xsbm/test.zip";
+			String iconpack = paramPrefs.getString("iconset", null);
+			String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
 			
 			String[] signalarray = {
 					"stat_sys_5signal_0.png",

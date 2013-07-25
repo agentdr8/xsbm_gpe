@@ -18,7 +18,8 @@ public class GPS {
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
-			String path = Environment.getExternalStorageDirectory() + "/xsbm/test.zip";
+			String iconpack = paramPrefs.getString("iconset", null);
+			String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
 			String gon = "gps/stat_sys_gps_on.png";
 			String gacq = "gps/stat_sys_gps_acquiring.png";
 			final Bitmap g = ZipStuff.getBitmapFromZip(path, gon);

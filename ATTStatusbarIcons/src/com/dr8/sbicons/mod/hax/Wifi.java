@@ -18,7 +18,8 @@ public class Wifi {
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
-			String path = Environment.getExternalStorageDirectory() + "/xsbm/test.zip";
+			String iconpack = paramPrefs.getString("iconset", null);
+			String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
 		
 			String[] wifiarray = {
 					"stat_sys_wifi_signal_0.png",

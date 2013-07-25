@@ -21,8 +21,6 @@ public class MobileData {
 	private static int nettype = 0;
 	private static int netstate = 0;
 	
-	private static String path = Environment.getExternalStorageDirectory() + "/xsbm/test.zip";
-	
 	private static final String[] gicons = {
 			"stat_sys_data_g_connected.png",
 			"stat_sys_data_g_downlink_1.png",
@@ -85,6 +83,9 @@ public class MobileData {
 		};
 	
 	public static void initHandleLoadPackage(final XSharedPreferences paramPrefs, XC_LoadPackage.LoadPackageParam lpParam) {
+
+		final String iconpack = paramPrefs.getString("iconset", null);
+		final String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
 		
 		
 		findAndHookMethod("com.android.systemui.statusbar.policy.HtcGenericNetworkController", lpParam.classLoader, "getNetworkTypeFromTelephonyManager", new XC_MethodHook() {
