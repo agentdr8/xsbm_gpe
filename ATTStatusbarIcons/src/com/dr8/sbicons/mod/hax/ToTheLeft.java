@@ -17,7 +17,7 @@ public class ToTheLeft {
 
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
-			String iconpack = paramPrefs.getString("iconset", null);
+			String iconpack = paramPrefs.getString("iconpack", null);
 			String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
 			
 			String[] phonearray = {
