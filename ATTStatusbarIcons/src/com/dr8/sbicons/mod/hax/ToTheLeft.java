@@ -21,9 +21,11 @@ public class ToTheLeft {
 			String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
 			
 			String[] phonearray = {
-//					"stat_notify_call_mute",
 					"stat_notify_voicemail",
-					"stat_sys_speakerphone"
+					"stat_sys_speakerphone",
+//					"stat_notify_call_mute",
+					"stat_sys_phone_call",
+					"stat_notify_missed_call"
 			};
 			if (resParam.packageName.equals("com.android.phone")) {
 				for (int i = 0; i < phonearray.length; i++) {
@@ -37,8 +39,6 @@ public class ToTheLeft {
 							}
 						});
 					}
-					
-				
 				}
 			}
 			
