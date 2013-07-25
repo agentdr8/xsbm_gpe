@@ -196,43 +196,43 @@
             android:title="Auto-hide Mobile Data" />
 	  	
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="battery"
             android:summary="Override battery icons"
             android:title="Battery" />
 
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="signal"
             android:summary="Override carrier signal bars"
             android:title="Signal Bar" />
         
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="mobile_data"
             android:summary="Override carrier data icons"
             android:title="Mobile Data" />
 
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="wifi"
             android:summary="Override Wifi signal icons"
             android:title="Wifi" />
         
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="bluetooth"
             android:summary="Override Bluetooth icons"
             android:title="Bluetooth" />
         
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="gps"
             android:summary="Override GPS icons"
             android:title="GPS" />
         
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:defaultValue="false"
             android:key="to_the_left"
             android:summary="Override all other icons to the left of GPS (Sync, Headphone, Ringer, e911, etc.)"
             android:title="Misc Status Icons" />

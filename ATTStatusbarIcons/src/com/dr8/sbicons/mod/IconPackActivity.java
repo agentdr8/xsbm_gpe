@@ -40,7 +40,6 @@ public class IconPackActivity extends ListActivity
 	        final File file[] = f.listFiles();
 	//        Log.d("Files", "Size: "+ file.length);
 	        
-	       
 	        for (int i=0; i < file.length; i++) {
 	        	if (file[i].getName().toLowerCase().endsWith(".zip")) {
 	        		filearray.add(file[i].getName());
@@ -52,7 +51,7 @@ public class IconPackActivity extends ListActivity
         	InputStream in = getResources().openRawResource(R.raw.default_iconpack);
             FileOutputStream out;
 			try {
-				out = new FileOutputStream(path);
+				out = new FileOutputStream(path + "/default_iconpack.zip");
 			    byte[] buff = new byte[1024];
 			    int read = 0;
                 while ((read = in.read(buff)) > 0) {
@@ -63,6 +62,14 @@ public class IconPackActivity extends ListActivity
             } catch (IOException e) {
 //				Log.d("Files", "Exceptions during default pack copy: " + e);
             } 
+			final File file[] = f.listFiles();
+			//        Log.d("Files", "Size: "+ file.length);
+	        for (int i=0; i < file.length; i++) {
+	        	if (file[i].getName().toLowerCase().endsWith(".zip")) {
+	        		filearray.add(file[i].getName());
+	//        		Log.d("Files", "FileName:" + file[i].getName());
+	        	}
+	        }
         }
         
         String[] array = filearray.toArray(new String[filearray.size()]);
