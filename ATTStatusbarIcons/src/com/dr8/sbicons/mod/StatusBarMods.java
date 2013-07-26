@@ -22,7 +22,6 @@ import com.dr8.sbicons.mod.hax.TpNotif;
 import com.dr8.sbicons.mod.hax.TpStatusbar;
 import com.dr8.sbicons.mod.hax.Wifi;
 
-import android.content.Context;
 import android.content.res.XModuleResources;
 import android.os.Build;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
@@ -57,16 +56,16 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 	
 	
 //	HashMap<String, String> appsmap = new HashMap<String, String>();
-	Context mCtx;
-	
+		
 	@Override
 	public void initZygote(StartupParam startupParam) throws Throwable {
 		MODULE_PATH = startupParam.modulePath;
 		pref = new XSharedPreferences("com.dr8.sbicons", "com.dr8.sbicons_preferences");
 //		XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, null);
 		pref.reload();
+
 		if (pref.getBoolean("framework", false)) {
-			SystemWide.initHandleZygote(startupParam, mCtx, pref);
+			SystemWide.initHandleZygote(startupParam, pref);
 		}
 	}
 
@@ -107,15 +106,6 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			}
 		}
 
-//		String iconpack = pref.getString("iconpack", null);
-//		String path = Environment.getExternalStorageDirectory() + "/xsbm/";
-//		appsmap = ZipStuff.getAppsList(iconpack, path);
-//		
-//		String value = appsmap.get(resparam.packageName.toString());
-//		if (value != null) {
-//			AppIcons.initPackageResources(pref, value, resparam);
-//		}
-		
 		if (!resparam.packageName.equals(targetpkg)) {
 			return;
 		}

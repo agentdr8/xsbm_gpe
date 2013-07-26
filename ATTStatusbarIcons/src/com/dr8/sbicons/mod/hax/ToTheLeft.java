@@ -86,6 +86,20 @@ public class ToTheLeft {
 				
 				}
 			}
+			
+			if (resParam.packageName.equals("com.android.settings")) {
+				String simg = "settings/stat_sys_data_usb.png";
+				final Bitmap s = ZipStuff.getBitmapFromZip(path, simg);
+				if (s != null) {
+					resParam.res.setReplacement("com.android.settings", "drawable", "stat_sys_data_usb", new XResources.DrawableLoader() {
+						@Override
+						public Drawable newDrawable(XResources res, int id) throws Throwable {
+							return new BitmapDrawable(null, s);
+						}
+					});
+				}
+		
+			}
 		} catch (Throwable t) { XposedBridge.log(t); }
 	}
 }

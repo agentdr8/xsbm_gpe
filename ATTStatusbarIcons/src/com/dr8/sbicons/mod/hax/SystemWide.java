@@ -2,7 +2,7 @@ package com.dr8.sbicons.mod.hax;
 
 import com.dr8.sbicons.mod.ZipStuff;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.res.XResources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,12 +13,12 @@ import de.robv.android.xposed.XposedBridge;
 
 public class SystemWide {
 	
-	public static void initHandleZygote(StartupParam startupParam, Context mCtx, XSharedPreferences prefs) {
-		Context mContext = mCtx;
+	@SuppressLint("SdCardPath")
+	public static void initHandleZygote(StartupParam startupParam, XSharedPreferences prefs) {
 		
 		String iconpack = prefs.getString("frameworkpack", null);
 		
-		String internal = mContext.getApplicationContext().getFilesDir().getParent();
+		String internal = "/data/data/com.dr8.sbicons";
 		
 		String path = internal + "/xsbm/" + iconpack;
 		
@@ -27,7 +27,6 @@ public class SystemWide {
 				"stat_notify_car_mode",
 				"stat_notify_wifi_in_range",
 				"stat_sys_adb",
-				"stat_sys_data_usb",
 				"stat_sys_tether_bluetooth",
 				"stat_sys_tether_usb",
 				"stat_sys_tether_wifi",
