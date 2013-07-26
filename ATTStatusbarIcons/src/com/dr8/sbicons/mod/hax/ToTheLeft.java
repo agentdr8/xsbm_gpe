@@ -70,6 +70,12 @@ public class ToTheLeft {
 					"stat_sys_sync_error"
 			};
 			
+			String[] pwrmgr = {
+					"stat_notify_power_saver",
+					"stat_notify_application_monitor",
+					"stat_notify_power_saver_off"
+			};
+			
 			if (resParam.packageName.equals("com.android.systemui")) {
 				for (int i = 0; i < miscarray.length; i++) {
 					String mimg = "misc/" + miscarray[i] + ".png";
@@ -99,6 +105,23 @@ public class ToTheLeft {
 					});
 				}
 		
+			}
+
+			if (resParam.packageName.equals("com.htc.htcpowermanager")) {
+				for (int i = 0; i < pwrmgr.length; i++) {
+					String mimg = "powermgr/" + pwrmgr[i] + ".png";
+					final Bitmap b = ZipStuff.getBitmapFromZip(path, mimg);
+					if (b != null) {
+						resParam.res.setReplacement("com.htc.htcpowermanager", "drawable", pwrmgr[i], new XResources.DrawableLoader() {
+							@Override
+							public Drawable newDrawable(XResources res, int id) throws Throwable {
+								return new BitmapDrawable(null, b);
+							}
+						});
+					}
+					
+				
+				}
 			}
 		} catch (Throwable t) { XposedBridge.log(t); }
 	}

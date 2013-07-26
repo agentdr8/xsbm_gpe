@@ -25,14 +25,7 @@ public class SystemWide {
 		String[] fwicons = {
 				"stat_sys_gps_on",
 				"stat_notify_car_mode",
-				"stat_notify_wifi_in_range",
 				"stat_sys_adb",
-				"stat_sys_tether_bluetooth",
-				"stat_sys_tether_usb",
-				"stat_sys_tether_wifi",
-				"text_select_handle_left",
-				"text_select_handle_middle",
-				"text_select_handle_right",
 				"stat_sys_upload_anim0",
 				"stat_sys_upload_anim1",
 				"stat_sys_upload_anim2",
@@ -45,6 +38,17 @@ public class SystemWide {
 				"stat_sys_download_anim3",
 				"stat_sys_download_anim4",
 				"stat_sys_download_anim5"
+		};
+		
+		String[] htcfw = {
+				"text_anchor_bar_left",
+				"text_anchor_bar_center",
+				"text_anchor_bar_right",
+				"icon_btn_copy_dark",
+				"icon_btn_cut_dark",
+				"icon_btn_paste_dark",
+				"icon_btn_selected_all_dark",
+				"stat_sys_hdmi_on"
 		};
 		
 		try {
@@ -60,6 +64,19 @@ public class SystemWide {
 					});
 				}
 			}
+			for (int i = 0; i < htcfw.length; i++) {
+				String himg = htcfw[i] + ".png";
+				final Bitmap hb = ZipStuff.getBitmapFromZip(path, himg);
+				if (hb != null) {
+					XResources.setSystemWideReplacement("com.htc.framework", "drawable", htcfw[i], new XResources.DrawableLoader() {
+						@Override
+						public Drawable newDrawable(XResources res, int id) throws Throwable {
+							return new BitmapDrawable(null, hb);
+						}
+					});
+				}
+			}
 		} catch (Throwable t) { XposedBridge.log(t); }
+		
 	}
 }
