@@ -201,6 +201,12 @@
             android:summary="Override framework icons"
             android:title="Framework" />
 	  	
+	  	<CheckBoxPreference
+            android:defaultValue="false"
+            android:key="thirdparty"
+            android:summary="Override 3rd-party app icons"
+            android:title="3rd-Party Apps" />
+	  	
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="battery"

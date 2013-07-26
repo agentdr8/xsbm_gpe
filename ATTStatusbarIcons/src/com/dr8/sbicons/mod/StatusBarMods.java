@@ -1,5 +1,7 @@
 package com.dr8.sbicons.mod;
 
+import java.util.HashMap;
+import com.dr8.sbicons.mod.hax.AppIcons;
 import com.dr8.sbicons.mod.hax.BatteryIconColor;
 import com.dr8.sbicons.mod.hax.BatteryIcons;
 import com.dr8.sbicons.mod.hax.BatteryRainbow;
@@ -22,6 +24,7 @@ import com.dr8.sbicons.mod.hax.Wifi;
 
 import android.content.res.XModuleResources;
 import android.os.Build;
+import android.os.Environment;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
@@ -51,6 +54,9 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		    return Character.toUpperCase(first) + s.substring(1);
 		  }
 	} 
+	
+	
+	HashMap<String, String> appsmap = new HashMap<String, String>();
 	
 	@Override
 	public void initZygote(StartupParam startupParam) throws Throwable {
@@ -84,7 +90,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		pref.reload();
 		XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, resparam.res);
 		
-		if (pref.getBoolean("to_the_left", true)) {
+		if (pref.getBoolean("to_the_left", false)) {
 			ToTheLeft.initPackageResources(pref, modRes, resparam);
 		}
 	
@@ -98,6 +104,15 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			if (pref.getBoolean("tpstatus", false)) {
 				TpStatusbar.initPackageResources(pref, modRes, resparam);
 			}
+		}
+
+		String iconpack = pref.getString("iconpack", null);
+		String path = Environment.getExternalStorageDirectory() + "/xsbm/";
+		appsmap = ZipStuff.getAppsList(iconpack, path);
+		
+		String value = appsmap.get(resparam.packageName.toString());
+		if (value != null) {
+			AppIcons.initPackageResources(pref, value, resparam);
 		}
 		
 		if (!resparam.packageName.equals(targetpkg)) {
@@ -134,23 +149,23 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			ClockColor.initPackageResources(pref, modRes, resparam); 
 		}
 
-		if (pref.getBoolean("to_the_left", true)) {
+		if (pref.getBoolean("to_the_left", false)) {
 			ToTheLeft.initPackageResources(pref, modRes, resparam);
 		}
 			
-		if (pref.getBoolean("bluetooth", true)) {
+		if (pref.getBoolean("bluetooth", false)) {
 			Bluetooth.initPackageResources(pref, modRes, resparam);
 		}
 		
-		if (pref.getBoolean("gps", true)) {
+		if (pref.getBoolean("gps", false)) {
 			GPS.initPackageResources(pref, modRes, resparam);
 		}
 		
-		if (pref.getBoolean("wifi", true)) {
+		if (pref.getBoolean("wifi", false)) {
 			Wifi.initPackageResources(pref, modRes, resparam);
 		}
 
-		if (pref.getBoolean("signal", true)) {
+		if (pref.getBoolean("signal", false)) {
 			SignalBars.initPackageResources(pref, modRes, resparam);
 		}
 			

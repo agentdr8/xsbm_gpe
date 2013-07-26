@@ -7,7 +7,6 @@ import android.content.res.XResources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Environment;
 import de.robv.android.xposed.IXposedHookZygoteInit.StartupParam;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
@@ -16,19 +15,17 @@ public class SystemWide {
 	
 	public static void initHandleZygote(StartupParam startupParam, XModuleResources modRes, XSharedPreferences prefs) {
 		String iconpack = prefs.getString("iconpack", null);
-		String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
+		
+		String internal = "/data/data/com.dr8.sbicons";
+		
+		String path = internal + "/xsbm/" + iconpack;
 		
 		String[] fwicons = {
 				"stat_sys_gps_on",
 				"stat_notify_car_mode",
-				"stat_notify_chat",
-				"stat_notify_email_generic",
-				"stat_notify_gmail",
 				"stat_notify_wifi_in_range",
 				"stat_sys_adb",
 				"stat_sys_data_usb",
-				"stat_sys_phone_call_forward",
-				"stat_sys_phone_call_on_hold",
 				"stat_sys_tether_bluetooth",
 				"stat_sys_tether_usb",
 				"stat_sys_tether_wifi",
