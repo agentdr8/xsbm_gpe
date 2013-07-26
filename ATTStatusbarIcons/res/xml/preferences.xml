@@ -180,12 +180,23 @@
 	    
 	  	<PreferenceScreen
 	      		android:key="prefs_theme"
-	    		android:title="Select Icon Pack">
+	    		android:title="Select Statusbar Icon Pack">
         
 		      	<intent 
 	        		android:action="android.intent.action.VIEW"
 	        		android:targetPackage="com.dr8.sbicons"
 	        		android:targetClass="com.dr8.sbicons.mod.IconPackActivity"
+	    		/>
+		</PreferenceScreen>
+		
+	  		<PreferenceScreen
+	      		android:key="prefs_fw"
+	    		android:title="Select Framework Icon Pack">
+        
+		      	<intent 
+	        		android:action="android.intent.action.VIEW"
+	        		android:targetPackage="com.dr8.sbicons"
+	        		android:targetClass="com.dr8.sbicons.mod.FrameworkPackActivity"
 	    		/>
 		</PreferenceScreen>
 	  		
@@ -201,11 +212,11 @@
             android:summary="Override framework icons"
             android:title="Framework" />
 	  	
-	  	<CheckBoxPreference
+<!-- 	  	<CheckBoxPreference
             android:defaultValue="false"
             android:key="thirdparty"
             android:summary="Override 3rd-party app icons"
-            android:title="3rd-Party Apps" />
+            android:title="3rd-Party Apps" /> -->
 	  	
         <CheckBoxPreference
             android:defaultValue="false"

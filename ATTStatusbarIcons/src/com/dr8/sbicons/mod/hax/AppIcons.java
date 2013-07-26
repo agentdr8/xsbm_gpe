@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
+import android.util.Log;
+
 import com.dr8.sbicons.mod.ZipStuff;
 
 import de.robv.android.xposed.XSharedPreferences;
@@ -20,10 +22,12 @@ public class AppIcons {
 			
 			String iconpack = paramPrefs.getString("iconpack", null);
 			String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
+			Log.d("XSBM", " our target is " + target + " and replacement is " + replacement);
 			
 			final Bitmap a = ZipStuff.getBitmapFromZip(path, rep);	        	
     		if (a != null) {
     			String noext = replacement.substring(0, -4);
+    			Log.d("XSBM", " our rep minus extension " + noext);
     			resParam.res.setReplacement(target, "drawable", noext, new XResources.DrawableLoader() {
 				@Override
 				public Drawable newDrawable(XResources res, int id) throws Throwable {

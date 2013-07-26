@@ -9,8 +9,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
-import de.robv.android.xposed.XposedBridge;
-
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -36,9 +34,9 @@ public class ZipStuff {
 	            }
 	        }
 	    } catch (FileNotFoundException e) {
-	        XposedBridge.log(TAG + ": Extracting file: Error opening zip file - FileNotFoundException: " + e);
+	        Log.d(TAG, ": Extracting file: Error opening zip file - FileNotFoundException: " + e);
 	    } catch (IOException e) {
-	        XposedBridge.log(TAG + ": Extracting file: Error opening zip file - IOException: " + e);
+	        Log.d(TAG, ": Extracting file: Error opening zip file - IOException: " + e);
 	    }
 	    return result;
 	}

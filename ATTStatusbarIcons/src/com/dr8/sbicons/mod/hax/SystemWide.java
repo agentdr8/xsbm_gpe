@@ -2,7 +2,7 @@ package com.dr8.sbicons.mod.hax;
 
 import com.dr8.sbicons.mod.ZipStuff;
 
-import android.content.res.XModuleResources;
+import android.content.Context;
 import android.content.res.XResources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,10 +13,12 @@ import de.robv.android.xposed.XposedBridge;
 
 public class SystemWide {
 	
-	public static void initHandleZygote(StartupParam startupParam, XModuleResources modRes, XSharedPreferences prefs) {
-		String iconpack = prefs.getString("iconpack", null);
+	public static void initHandleZygote(StartupParam startupParam, Context mCtx, XSharedPreferences prefs) {
+		Context mContext = mCtx;
 		
-		String internal = "/data/data/com.dr8.sbicons";
+		String iconpack = prefs.getString("frameworkpack", null);
+		
+		String internal = mContext.getApplicationContext().getFilesDir().getParent();
 		
 		String path = internal + "/xsbm/" + iconpack;
 		
@@ -48,7 +50,7 @@ public class SystemWide {
 		
 		try {
 			for (int i = 0; i < fwicons.length; i++) {
-				String fimg = "framework/" + fwicons[i] + ".png";
+				String fimg = fwicons[i] + ".png";
 				final Bitmap fb = ZipStuff.getBitmapFromZip(path, fimg);
 				if (fb != null) {
 					XResources.setSystemWideReplacement("android", "drawable", fwicons[i], new XResources.DrawableLoader() {
