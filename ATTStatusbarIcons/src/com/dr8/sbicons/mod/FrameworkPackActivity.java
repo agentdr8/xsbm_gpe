@@ -87,7 +87,7 @@ public class FrameworkPackActivity extends ListActivity
     	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
     	SharedPreferences.Editor editor = prefs.edit();
 	    String item = (String) getListAdapter().getItem(position);
-	    if (ZipStuff.getPackInfo(item, path, ".xsbmpack") == 1) {
+	    if (ZipStuff.getPackInfo(item, path, ".xsbmfwpack") == 1) {
 		    Toast.makeText(this, item + " selected", Toast.LENGTH_SHORT).show();
 		    editor.putString("frameworkpack", item).commit();
 		    finish();

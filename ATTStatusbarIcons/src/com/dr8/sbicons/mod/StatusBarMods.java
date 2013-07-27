@@ -1,7 +1,6 @@
 package com.dr8.sbicons.mod;
 
-/*import java.util.HashMap;
-import com.dr8.sbicons.mod.hax.AppIcons;*/
+import com.dr8.sbicons.mod.hax.AppIcons;
 import com.dr8.sbicons.mod.hax.BatteryIconColor;
 import com.dr8.sbicons.mod.hax.BatteryIcons;
 import com.dr8.sbicons.mod.hax.BatteryRainbow;
@@ -55,7 +54,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 	} 
 	
 	
-//	HashMap<String, String> appsmap = new HashMap<String, String>();
+
 		
 	@Override
 	public void initZygote(StartupParam startupParam) throws Throwable {
@@ -94,6 +93,10 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			ToTheLeft.initPackageResources(pref, modRes, resparam);
 		}
 	
+		if (pref.getBoolean("thirdparty", false)) {
+			AppIcons.initPackageResources(pref, resparam);
+		}
+		
 		if (resparam.packageName.equals("com.htc.launcher")) {
 			if (pref.getBoolean("tpnav", false)) {
 				TpNav.initPackageResources(pref, modRes, resparam);

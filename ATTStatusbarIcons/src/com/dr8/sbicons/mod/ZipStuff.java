@@ -1,8 +1,10 @@
 package com.dr8.sbicons.mod;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.zip.ZipEntry;
@@ -18,6 +20,9 @@ import android.util.Log;
 public class ZipStuff {
 
 	private static String TAG = "XSBM";
+	protected static final String APP_LIST = "apps.txt";
+	protected static String apppkg;
+	protected static String repimage;
 	
 	public static Bitmap getBitmapFromZip(final String zipFilePath, final String imageFileInZip) {
 //	    Log.i(TAG, "Getting image '" + imageFileInZip + "' from '" + zipFilePath +"'");
@@ -66,25 +71,34 @@ public class ZipStuff {
 //		Log.i(TAG, "Getting app names from '" + path + zipFile + "'");
 		HashMap<String, String> result = new HashMap<String, String>();
 		ZipFile zf = null;
+		ZipEntry applist = null;
 		try {
 			zf = new ZipFile(path + zipFile);
-			Enumeration<? extends ZipEntry> e = zf.entries();
-			while (e.hasMoreElements()) {
+			for (Enumeration<? extends ZipEntry> e = zf.entries(); e.hasMoreElements();) {
 				ZipEntry ze = e.nextElement();
-				if (!ze.isDirectory()) {
-					if (ze.getName().startsWith("apps")) {
-						String fn = ze.getName().substring(5);
-						Log.d(TAG, ": our element inside is " + fn);
-						String item[] = fn.split("-");
-						result.put(item[0], item[1]);
-					}
+				if (ze.isDirectory()) 
+					continue;
+					
+				String fname = ze.getName();
+				if (fname.equals(APP_LIST)) {
+					applist = ze;
 				}
 			}
-	    } catch (FileNotFoundException e) {
-	        Log.d(TAG, ": Extracting file: Error opening zip file - FileNotFoundException: " + e);
-	    } catch (IOException e) {
-	        Log.d(TAG, ": Extracting file: Error opening zip file - IOException: " + e);
-	    }
+			
+			if (applist != null) {
+				BufferedReader br = new BufferedReader(new InputStreamReader((zf.getInputStream(applist))));
+				String line;
+				while ((line = br.readLine()) != null) {
+					String[] split = line.split("|");
+					apppkg = split[0];
+					repimage = split[1];
+					result.put("apppkg", "repimage");
+				}
+			}
+		} catch (IOException e) {
+			Log.d(TAG, "Error opening zip: " + e);
+		}
 		return result;
 	}
+	
 }
