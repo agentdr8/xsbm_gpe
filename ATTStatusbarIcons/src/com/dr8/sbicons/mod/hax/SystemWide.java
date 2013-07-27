@@ -16,7 +16,7 @@ public class SystemWide {
 	@SuppressLint("SdCardPath")
 	public static void initHandleZygote(StartupParam startupParam, XSharedPreferences prefs) {
 		
-		String iconpack = prefs.getString("frameworkpack", null);
+		String iconpack = "framework.zip";
 		
 		String internal = "/data/data/com.dr8.sbicons";
 		

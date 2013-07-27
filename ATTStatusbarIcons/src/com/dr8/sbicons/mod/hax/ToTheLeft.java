@@ -5,8 +5,6 @@ import android.content.res.XResources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Environment;
-
 import com.dr8.sbicons.mod.ZipStuff;
 
 import de.robv.android.xposed.XSharedPreferences;
@@ -17,8 +15,8 @@ public class ToTheLeft {
 
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
-			String iconpack = paramPrefs.getString("iconpack", null);
-			String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
+			String iconpack = "iconpack.zip";
+			String path = "/data/data/com.dr8.sbicons" + "/xsbm/" + iconpack;
 			
 			String[] phonearray = {
 					"stat_notify_voicemail",

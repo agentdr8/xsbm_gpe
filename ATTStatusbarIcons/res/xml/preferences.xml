@@ -180,7 +180,7 @@
 	    
 	  	<PreferenceScreen
 	      		android:key="prefs_theme"
-	    		android:title="Select Statusbar Icon Pack">
+	    		android:title="Select Statusbar Iconpack to Import">
         
 		      	<intent 
 	        		android:action="android.intent.action.VIEW"
@@ -191,7 +191,7 @@
 		
 	  		<PreferenceScreen
 	      		android:key="prefs_fw"
-	    		android:title="Select Framework Icon Pack">
+	    		android:title="Select Framework Iconpack to Import">
         
 		      	<intent 
 	        		android:action="android.intent.action.VIEW"

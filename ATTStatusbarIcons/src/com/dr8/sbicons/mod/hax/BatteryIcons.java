@@ -12,7 +12,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Environment;
 import android.widget.ImageView;
 
 import com.dr8.sbicons.mod.ZipStuff;
@@ -25,8 +24,8 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class BatteryIcons {
 
 	public static void initHandleLoadPackage(final XSharedPreferences paramPrefs, XC_LoadPackage.LoadPackageParam lpParam) {
-		final String iconpack = paramPrefs.getString("iconpack", null);
-		final String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
+		final String iconpack = "iconpack.zip";
+		final String path = "/data/data/com.dr8.sbicons" + "/xsbm/" + iconpack;
 		final String[] battarray = {
 				"stat_sys_battery_0.png",
 				"stat_sys_battery_1.png",

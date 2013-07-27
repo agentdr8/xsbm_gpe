@@ -1,5 +1,6 @@
 package com.dr8.sbicons.mod;
 
+import java.util.HashMap;
 import com.dr8.sbicons.mod.hax.AppIcons;
 import com.dr8.sbicons.mod.hax.BatteryIconColor;
 import com.dr8.sbicons.mod.hax.BatteryIcons;
@@ -23,6 +24,7 @@ import com.dr8.sbicons.mod.hax.Wifi;
 
 import android.content.res.XModuleResources;
 import android.os.Build;
+import android.os.Environment;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
@@ -53,8 +55,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		  }
 	} 
 	
-	
-
+	HashMap<String, String> appsmap = new HashMap<String, String>();
 		
 	@Override
 	public void initZygote(StartupParam startupParam) throws Throwable {
@@ -93,8 +94,19 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			ToTheLeft.initPackageResources(pref, modRes, resparam);
 		}
 	
-		if (pref.getBoolean("thirdparty", false)) {
-			AppIcons.initPackageResources(pref, resparam);
+		String iconpack = pref.getString("iconpack", null);
+		
+		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+			String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
+			if (pref.getBoolean("thirdparty", false)) {
+				appsmap = ZipStuff.getAppsList(path);
+				String currentpkg = resparam.packageName;
+				if (appsmap != null && appsmap.containsKey(currentpkg)) {
+//					Log.d("XSBM", "launching appicons for: " + resparam.packageName);
+					String value = appsmap.get(resparam.packageName);
+					AppIcons.initPackageResources(pref, resparam, value);
+				}
+			}
 		}
 		
 		if (resparam.packageName.equals("com.htc.launcher")) {
