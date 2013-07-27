@@ -23,17 +23,19 @@ import com.dr8.sbicons.R;
 
 public class FrameworkPackActivity extends ListActivity
 {
+    private String intpath = null;
+    private String extpath = null;
     
 	private ArrayAdapter<String> adapter;
 	SharedPreferences prefs = null;
-	final String intpath = getApplicationContext().getFilesDir().getPath() + "/xsbm/";
-    final String extpath = Environment.getExternalStorageDirectory().toString() + "/xsbm/";
-    
+	
 	@SuppressLint("DefaultLocale")
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        intpath = getApplicationContext().getFilesDir().getPath() + "/xsbm/";
+        extpath = Environment.getExternalStorageDirectory().toString() + "/xsbm/";
+        
         ArrayList<String> filearray = new ArrayList<String>();
         
 //        Log.d("Files", "Path: " + path);

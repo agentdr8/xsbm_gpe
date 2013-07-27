@@ -23,9 +23,9 @@ import com.dr8.sbicons.R;
 
 public class IconPackActivity extends ListActivity
 {
-    final String intpath = getApplicationContext().getFilesDir().getPath() + "/xsbm/";
-    final String extpath = Environment.getExternalStorageDirectory().toString() + "/xsbm/";
-
+    private String intpath = null;
+    private String extpath = null;
+    
 	private ArrayAdapter<String> adapter;
 	SharedPreferences prefs = null;
 	
@@ -33,7 +33,8 @@ public class IconPackActivity extends ListActivity
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       
+        intpath = getApplicationContext().getFilesDir().getPath() + "/xsbm/";
+        extpath = Environment.getExternalStorageDirectory().toString() + "/xsbm/";
         ArrayList<String> filearray = new ArrayList<String>();
         
 //        Log.d("Files", "Path: " + path);
