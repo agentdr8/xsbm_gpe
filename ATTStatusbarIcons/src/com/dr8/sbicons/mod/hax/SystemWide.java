@@ -16,7 +16,7 @@ public class SystemWide {
 	@SuppressLint("SdCardPath")
 	public static void initHandleZygote(StartupParam startupParam, XSharedPreferences prefs) {
 		
-		String iconpack = "framework.zip";
+		String iconpack = "iconpack.zip";
 		
 		String internal = "/data/data/com.dr8.sbicons";
 		
@@ -53,7 +53,7 @@ public class SystemWide {
 		
 		try {
 			for (int i = 0; i < fwicons.length; i++) {
-				String fimg = fwicons[i] + ".png";
+				String fimg = "framework/" + fwicons[i] + ".png";
 				final Bitmap fb = ZipStuff.getBitmapFromZip(path, fimg);
 				if (fb != null) {
 					XResources.setSystemWideReplacement("android", "drawable", fwicons[i], new XResources.DrawableLoader() {
@@ -65,7 +65,7 @@ public class SystemWide {
 				}
 			}
 			for (int i = 0; i < htcfw.length; i++) {
-				String himg = htcfw[i] + ".png";
+				String himg = "framework/" + htcfw[i] + ".png";
 				final Bitmap hb = ZipStuff.getBitmapFromZip(path, himg);
 				if (hb != null) {
 					XResources.setSystemWideReplacement("com.htc.framework", "drawable", htcfw[i], new XResources.DrawableLoader() {

@@ -189,17 +189,7 @@
 	    		/>
 		</PreferenceScreen>
 		
-	  		<PreferenceScreen
-	      		android:key="prefs_fw"
-	    		android:title="Select Framework Iconpack to Import">
-        
-		      	<intent 
-	        		android:action="android.intent.action.VIEW"
-	        		android:targetPackage="com.dr8.sbicons"
-	        		android:targetClass="com.dr8.sbicons.mod.FrameworkPackActivity"
-	    		/>
-		</PreferenceScreen>
-	  		
+ 		
 	  	<CheckBoxPreference
             android:defaultValue="true"
             android:key="hideatt"

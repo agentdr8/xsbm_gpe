@@ -21,7 +21,6 @@
             </intent-filter>
         </activity>
 		<activity android:name=".mod.QSSortActivity"></activity>
-        <activity android:name=".mod.FrameworkPackActivity"></activity>
         <activity android:name=".mod.IconPackActivity"></activity>
         <meta-data android:value="true" android:name="xposedmodule"/>
         <meta-data android:value="2.0*" android:name="xposedminversion"/>
