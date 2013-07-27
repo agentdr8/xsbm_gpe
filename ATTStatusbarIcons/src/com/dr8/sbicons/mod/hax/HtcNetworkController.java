@@ -16,5 +16,11 @@ public class HtcNetworkController {
 				}
 			});
 		} 
+		findAndHookMethod("com.android.systemui.statusbar.policy.HtcGenericNetworkController", lpParam.classLoader, "isTmoUS", new XC_MethodHook() {
+			@Override
+			protected void afterHookedMethod(MethodHookParam tmobool) throws Throwable {
+				tmobool.setResult(false);
+			}
+		});
 	}
 }
