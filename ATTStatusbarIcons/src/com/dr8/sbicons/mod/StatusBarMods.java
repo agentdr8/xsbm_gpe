@@ -24,7 +24,6 @@ import com.dr8.sbicons.mod.hax.Wifi;
 
 import android.content.res.XModuleResources;
 import android.os.Build;
-import android.os.Environment;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
@@ -94,21 +93,19 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			ToTheLeft.initPackageResources(pref, modRes, resparam);
 		}
 	
-		String iconpack = pref.getString("iconpack", null);
-		
-		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-			String path = Environment.getExternalStorageDirectory() + "/xsbm/" + iconpack;
-			if (pref.getBoolean("thirdparty", false)) {
-				appsmap = ZipStuff.getAppsList(path);
-				String currentpkg = resparam.packageName;
-				if (appsmap != null && appsmap.containsKey(currentpkg)) {
+		String iconpack = "iconpack.zip";
+				
+		String intpath = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
+		if (pref.getBoolean("thirdparty", false)) {
+			appsmap = ZipStuff.getAppsList(intpath);
+			String currentpkg = resparam.packageName;
+			if (appsmap != null && appsmap.containsKey(currentpkg)) {
 //					Log.d("XSBM", "launching appicons for: " + resparam.packageName);
-					String value = appsmap.get(resparam.packageName);
-					AppIcons.initPackageResources(pref, resparam, value);
-				}
+				String value = appsmap.get(resparam.packageName);
+				AppIcons.initPackageResources(pref, resparam, value);
 			}
 		}
-		
+	
 		if (resparam.packageName.equals("com.htc.launcher")) {
 			if (pref.getBoolean("tpnav", false)) {
 				TpNav.initPackageResources(pref, modRes, resparam);

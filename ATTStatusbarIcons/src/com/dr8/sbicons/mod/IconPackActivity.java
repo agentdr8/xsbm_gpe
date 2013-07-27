@@ -33,7 +33,7 @@ public class IconPackActivity extends ListActivity
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        intpath = getApplicationContext().getFilesDir().getPath() + "/xsbm/";
+        intpath = getApplicationContext().getFilesDir().getParent() + "/xsbm/";
         extpath = Environment.getExternalStorageDirectory().toString() + "/xsbm/";
         ArrayList<String> filearray = new ArrayList<String>();
         
@@ -53,23 +53,37 @@ public class IconPackActivity extends ListActivity
         	f.mkdirs();
         	InputStream in = getResources().openRawResource(R.raw.default_iconpack);
             FileOutputStream out;
+            File f2 = new File(intpath);
+            if (!f2.isDirectory()) {
+            	f2.mkdirs();
+            	f2.setExecutable(true, false);
+            	f2.setReadable(true, false);
+            	f2.setWritable(true, true);
+            }
             FileOutputStream out2;
 			try {
-				out = new FileOutputStream(extpath + "/default_iconpack.zip");
+				out = new FileOutputStream(extpath + "default_iconpack.zip");
 			    byte[] buff = new byte[1024];
 			    int read = 0;
                 while ((read = in.read(buff)) > 0) {
                   out.write(buff, 0, read);
                 }
-                out2 = new FileOutputStream(intpath + "/iconpack.zip");
-			    byte[] buff2 = new byte[1024];
-			    int read2 = 0;
-                while ((read2 = in.read(buff2)) > 0) {
-                  out2.write(buff2, 0, read2);
-                }
                 in.close();
                 out.close();
+                
+                InputStream in2 = getResources().openRawResource(R.raw.default_iconpack);
+                out2 = new FileOutputStream(intpath + "iconpack.zip");
+			    byte[] buff2 = new byte[1024];
+			    int read2 = 0;
+                while ((read2 = in2.read(buff2)) > 0) {
+                  out2.write(buff2, 0, read2);
+                }
+                in2.close();
                 out2.close();
+              
+                File f3 = new File(intpath + "iconpack.zip");
+                f3.setReadable(true, false);
+                
             } catch (IOException e) {
 //				Log.d("Files", "Exceptions during default pack copy: " + e);
             } 
@@ -108,6 +122,9 @@ public class IconPackActivity extends ListActivity
                 }
                 inf.close();
                 outf.close();
+                File f = new File(intpath + "iconpack.zip");
+                f.setReadable(true, false);
+                
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

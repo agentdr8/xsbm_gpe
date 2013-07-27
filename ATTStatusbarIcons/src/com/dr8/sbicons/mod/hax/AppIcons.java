@@ -18,7 +18,7 @@ public class AppIcons {
 		try {
 			String target = resParam.packageName;
 			String iconpack = "iconpack.zip";
-			String path = "/data/data/com.dr8.sbicons" + "/xsbm/" + iconpack;
+			String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
 			
 	    	String repl = "apps/" + target + "-" + rep;
 //	    	Log.d("XSBM", "getting image from zip: " + repl);

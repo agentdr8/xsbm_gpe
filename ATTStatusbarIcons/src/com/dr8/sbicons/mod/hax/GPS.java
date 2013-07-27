@@ -17,7 +17,7 @@ public class GPS {
 		try {
 			String targetpkg = "com.android.systemui";
 			String iconpack = "iconpack.zip";
-			String path = "/data/data/com.dr8.sbicons" + "/xsbm/" + iconpack;
+			String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
 			String gon = "gps/stat_sys_gps_on.png";
 			String gacq = "gps/stat_sys_gps_acquiring.png";
 			final Bitmap g = ZipStuff.getBitmapFromZip(path, gon);

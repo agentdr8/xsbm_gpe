@@ -84,7 +84,7 @@ public class MobileData {
 	public static void initHandleLoadPackage(final XSharedPreferences paramPrefs, XC_LoadPackage.LoadPackageParam lpParam) {
 
 		final String iconpack = "iconpack.zip";
-		final String path = "/data/data/com.dr8.sbicons" + "/xsbm/" + iconpack;
+		final String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
 		
 		
 		findAndHookMethod("com.android.systemui.statusbar.policy.HtcGenericNetworkController", lpParam.classLoader, "getNetworkTypeFromTelephonyManager", new XC_MethodHook() {

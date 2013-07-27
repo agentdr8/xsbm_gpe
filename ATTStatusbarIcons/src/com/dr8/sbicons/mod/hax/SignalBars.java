@@ -17,7 +17,7 @@ public class SignalBars {
 		try {
 			String targetpkg = "com.android.systemui";
 			String iconpack = "iconpack.zip";
-			String path = "/data/data/com.dr8.sbicons" + "/xsbm/" + iconpack;
+			String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
 			
 			String[] signalarray = {
 					"stat_sys_5signal_0.png",

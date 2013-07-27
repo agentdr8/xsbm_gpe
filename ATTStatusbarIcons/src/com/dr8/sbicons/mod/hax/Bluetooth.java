@@ -17,7 +17,7 @@ public class Bluetooth {
 		try {
 			String targetpkg = "com.android.systemui";
 			String iconpack = "iconpack.zip";
-			String path = "/data/data/com.dr8.sbicons" + "/xsbm/" + iconpack;
+			String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
 			String bt = "bt/stat_sys_data_bluetooth.png";
 			String btcon = "bt/stat_sys_data_bluetooth_connected.png";
 			final Bitmap b = ZipStuff.getBitmapFromZip(path, bt);

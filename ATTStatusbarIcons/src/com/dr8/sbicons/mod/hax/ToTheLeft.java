@@ -16,7 +16,7 @@ public class ToTheLeft {
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String iconpack = "iconpack.zip";
-			String path = "/data/data/com.dr8.sbicons" + "/xsbm/" + iconpack;
+			String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
 			
 			String[] phonearray = {
 					"stat_notify_voicemail",

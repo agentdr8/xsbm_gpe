@@ -18,9 +18,7 @@ public class SystemWide {
 		
 		String iconpack = "iconpack.zip";
 		
-		String internal = "/data/data/com.dr8.sbicons";
-		
-		String path = internal + "/xsbm/" + iconpack;
+		String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
 		
 		String[] fwicons = {
 				"stat_sys_gps_on",
