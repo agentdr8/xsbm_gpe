@@ -1,15 +1,17 @@
 package com.dr8.sbicons.mod;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
+
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
@@ -48,7 +50,8 @@ public class ZipStuff {
 	    return result;
 	}
 	
-	public static Integer getPackInfo(final String zipFile, final String path, final String infoFile) {
+	// expect zip filename, extsd path, intsd path, and .xsbmpack
+	public static Integer getPackInfo(final String zipFile, final String path, final String intpath, final String infoFile) {
 //		Log.i(TAG, "Getting pack id '" + infoFile + "' from '" + path + zipFile + "'");
 		Integer result = 0;
 		try {
@@ -57,9 +60,18 @@ public class ZipStuff {
 	        ZipEntry ze = null;
 	        while ((ze = zis.getNextEntry()) != null) {
 	            if (ze.getName().equals(infoFile)) {
-	            	zis.close();
-	            	fis.close();
 	            	result = 1;
+	            }
+	            if (ze.getName().equals("apps.txt")) {
+	            	FileOutputStream fout = new FileOutputStream(intpath + "/apps.txt");
+	            	byte[] buf = new byte[1024];
+	            	int n = 0;
+	            	while ((n = zis.read(buf, 0, 1024)) > -1)
+	                    fout.write(buf, 0, n);
+
+	                fout.close();
+	                File f = new File(intpath + "/apps.txt");
+	                f.setReadable(true, false);
 	            }
 	        }
 	        zis.close();
@@ -72,40 +84,20 @@ public class ZipStuff {
 		return result;
 	}
 	
-	public static HashMap<String, String> getAppsList(final String zipFile) {
+	public static Multimap<String, String> getAppsList(final String File) {
 //		Log.i(TAG, "Getting app names from '" + path + zipFile + "'");
-		HashMap<String, String> result = new HashMap<String, String>();
-		ZipFile zf = null;
-		ZipEntry applist = null;
+		Multimap<String, String> result = HashMultimap.create();
 		try {
-			zf = new ZipFile(zipFile);
-			for (Enumeration<? extends ZipEntry> e = zf.entries(); e.hasMoreElements();) {
-				ZipEntry ze = e.nextElement();
-				if (ze.isDirectory()) 
-					continue;
-					
-				String fname = ze.getName();
-				if (fname.equals(APP_LIST)) {
-//					Log.d(TAG, "filename is: " + fname);
-					applist = ze;
-					break;
-				}
+			FileInputStream fis = new FileInputStream(File);
+			BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+			String line;
+			while ((line = br.readLine()) != null) {
+//						Log.d(TAG, "our line is: " + line);
+				String[] split = line.split("-");
+//						Log.d(TAG, "our split0: " + split[0] + " and split1: " + split[1]);
+				result.put(split[0], split[1]);
 			}
-			
-			if (applist != null) {
-				BufferedReader br = new BufferedReader(new InputStreamReader((zf.getInputStream(applist))));
-				String line;
-				while ((line = br.readLine()) != null) {
-//					Log.d(TAG, "our line is: " + line);
-					String[] split = line.split(",");
-//					Log.d(TAG, "our split0: " + split[0] + " and split1: " + split[1]);
-					result.put(split[0], split[1]);
-				}
-				zf.close();
-			} else {
-				result = null;
-				zf.close();
-			}
+			fis.close();
 		} catch (IOException e) {
 			Log.d(TAG, "Error getting applist: " + e);
 		}

@@ -24,6 +24,7 @@ import com.dr8.sbicons.R;
 public class IconPackActivity extends ListActivity
 {
     private String intpath = null;
+    private String privfiles = null;
     private String extpath = null;
     
 	private ArrayAdapter<String> adapter;
@@ -34,6 +35,8 @@ public class IconPackActivity extends ListActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         intpath = getApplicationContext().getFilesDir().getParent() + "/xsbm/";
+        privfiles = getApplicationContext().getFilesDir().getPath();
+
         extpath = Environment.getExternalStorageDirectory().toString() + "/xsbm/";
         ArrayList<String> filearray = new ArrayList<String>();
         
@@ -110,7 +113,7 @@ public class IconPackActivity extends ListActivity
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
 	    String item = (String) getListAdapter().getItem(position);
-	    if (ZipStuff.getPackInfo(item, extpath, ".xsbmpack") == 1) {
+	    if (ZipStuff.getPackInfo(item, extpath, privfiles, ".xsbmpack") == 1) {
 		    Toast.makeText(this, item + " selected", Toast.LENGTH_SHORT).show();
 		    try {
 				InputStream inf = new FileInputStream(extpath + item);

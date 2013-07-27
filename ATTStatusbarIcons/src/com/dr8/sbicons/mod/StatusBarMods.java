@@ -1,6 +1,9 @@
 package com.dr8.sbicons.mod;
 
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
+
 import com.dr8.sbicons.mod.hax.AppIcons;
 import com.dr8.sbicons.mod.hax.BatteryIconColor;
 import com.dr8.sbicons.mod.hax.BatteryIcons;
@@ -21,6 +24,8 @@ import com.dr8.sbicons.mod.hax.TpNav;
 import com.dr8.sbicons.mod.hax.TpNotif;
 import com.dr8.sbicons.mod.hax.TpStatusbar;
 import com.dr8.sbicons.mod.hax.Wifi;
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 
 import android.content.res.XModuleResources;
 import android.os.Build;
@@ -54,7 +59,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		  }
 	} 
 	
-	HashMap<String, String> appsmap = new HashMap<String, String>();
+	Multimap<String, String> appsmap = HashMultimap.create();
 		
 	@Override
 	public void initZygote(StartupParam startupParam) throws Throwable {
@@ -92,17 +97,25 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		if (pref.getBoolean("to_the_left", false)) {
 			ToTheLeft.initPackageResources(pref, modRes, resparam);
 		}
-	
-		String iconpack = "iconpack.zip";
 				
-		String intpath = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
+		String intpath = "/data/data/com.dr8.sbicons/files/apps.txt";
 		if (pref.getBoolean("thirdparty", false)) {
 			appsmap = ZipStuff.getAppsList(intpath);
 			String currentpkg = resparam.packageName;
 			if (appsmap != null && appsmap.containsKey(currentpkg)) {
-//					Log.d("XSBM", "launching appicons for: " + resparam.packageName);
-				String value = appsmap.get(resparam.packageName);
-				AppIcons.initPackageResources(pref, resparam, value);
+				Set<String> keySet = appsmap.keySet();
+			    Iterator<String> keyIterator = keySet.iterator();
+			    while (keyIterator.hasNext() ) {
+			        String key = (String) keyIterator.next();
+			        if (key.equals(currentpkg)) {
+			        	Collection<String> values = appsmap.get(key);
+//				    	Log.d("XSBM", "inside values: " + values);
+		    			for (String item : values) {
+//		    				Log.d("XSBM", "launching appicons for: " + resparam.packageName);
+		    				AppIcons.initPackageResources(pref, resparam, item);
+		    			}
+			        }
+			    }
 			}
 		}
 	
