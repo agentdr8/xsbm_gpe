@@ -9,19 +9,25 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.dr8.sbicons.R;
 
-public class IconPackActivity extends ListActivity
+public class IconPackActivity extends ListActivity implements OnItemLongClickListener
 {
     private String intpath = null;
     private String privfiles = null;
@@ -140,7 +146,7 @@ public class IconPackActivity extends ListActivity
 	    	Toast.makeText(this, item + " is not a valid iconpack", Toast.LENGTH_SHORT).show();
 	    }
     }
-    
+        
     @Override
     protected void onResume() {
     	super.onResume();
@@ -151,4 +157,27 @@ public class IconPackActivity extends ListActivity
     	super.onStop();
     	
     }
+
+	@Override
+	public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long arg3) {
+		String item = (String) getListAdapter().getItem(position);
+		HashMap<String, String> hash = new HashMap<String, String>();
+	    hash = ZipStuff.getPackDetail(item, extpath, ".xsbmpack");
+	    if (hash != null) {
+	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	        builder.setTitle("Pack details")
+	        .setIcon(R.drawable.about)
+	        .setMessage("Author: " + hash.get("author") + "\n" + "Description: " + hash.get("desc"))
+	        .setCancelable(false)
+	        .setNegativeButton("Close",new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface dialog, int id) {
+	                dialog.cancel();
+	            }
+	        });
+	        
+	        AlertDialog alert = builder.create();
+	        alert.show();
+	    }
+		return false;
+	}
 }

@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -76,6 +77,30 @@ public class ZipStuff {
 	        }
 	        zis.close();
 	        fis.close();
+	    } catch (FileNotFoundException e) {
+	        Log.d(TAG, ": Extracting file: Error opening zip file - FileNotFoundException: " + e);
+	    } catch (IOException e) {
+	        Log.d(TAG, ": Extracting file: Error opening zip file - IOException: " + e);
+	    }
+		return result;
+	}
+	
+	public static HashMap<String, String> getPackDetail(final String zipFile, final String path, final String infoFile) {
+//		Log.i(TAG, "Getting pack id '" + infoFile + "' from '" + path + zipFile + "'");
+		HashMap<String, String> result = new HashMap<String, String>();
+		try {
+			FileInputStream fis = new FileInputStream(path + infoFile);
+			BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+			String line;
+			while ((line = br.readLine()) != null) {
+				if (line.startsWith("author")) {
+					result.put("author", line.substring(7));
+				}
+				if (line.startsWith("desc")) {
+					result.put("desc", line.substring(5));
+				}
+			}
+			fis.close();
 	    } catch (FileNotFoundException e) {
 	        Log.d(TAG, ": Extracting file: Error opening zip file - FileNotFoundException: " + e);
 	    } catch (IOException e) {
