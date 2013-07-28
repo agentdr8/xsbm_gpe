@@ -84,6 +84,9 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
 			CenterClock.initHandleLoadPackage(pref, lpparam.classLoader);
 			MobileData.initHandleLoadPackage(pref, lpparam);
+			if (pref.getBoolean("hideampm", false) && !pref.getBoolean("invisclock", false)) {
+				ClockAMPM.initHandleLoadPackage(pref, lpparam);
+			}
 		}
 //		if (lpparam.packageName.equals("com.htc.launcher")) {
 //			TpApps.initHandleLoadPackage(pref, lpparam);
@@ -158,9 +161,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			InvisClock.initPackageResources(pref, modRes, resparam);
 		}
 		
-		if (pref.getBoolean("hideampm", false)) {
-			ClockAMPM.initPackageResources(pref, modRes, resparam);
-		}
+		
 		
 		if (pref.getBoolean("batt_text_color_enabled", false) && (!pref.getBoolean("batt_text_rainbow", false))) {
 			BatteryTextColor.initPackageResources(pref, modRes, resparam);
