@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.dr8.sbicons"
     android:versionCode="2"
-    android:versionName="2.0.0" >
+    android:versionName="@string/version" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -22,9 +22,11 @@
         </activity>
 		<activity android:name=".mod.QSSortActivity"></activity>
         <activity android:name=".mod.IconPackActivity"></activity>
+        <activity android:name=".mod.AboutActivity"></activity>
         <meta-data android:value="true" android:name="xposedmodule"/>
         <meta-data android:value="2.0*" android:name="xposedminversion"/>
         <meta-data android:value="Mod to change statusbar icons &amp; bg transparency, clock visibility, %battery, and other items" android:name="xposeddescription"/>
+        
 
     </application>
 

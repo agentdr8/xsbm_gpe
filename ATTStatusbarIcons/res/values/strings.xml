@@ -1,6 +1,15 @@
 <resources>
-    <string name="app_name">Xposed Statusbar Mods</string>
-    <string name="launcher_name">Xposed Statusbar Settings</string>
+    <string name="app_name">Xposed StatusBar Mods</string>
+    <string name="launcher_name">Xposed StatusBar Settings</string>
 	<string name="settings_header">Choose your options below and reboot to apply</string>
 	<string name="item_detail">Long-press item for more details</string>
+	<string name="version">2.0.0</string>
+	<string name="author">agentdr8</string>
+	<string name="credits">CREDITS\n\n
+	    Thanks to rovo89 for making the Xposed Framework!\n\n
+	    Thanks to wangtang2k for making the AT&amp;T iconset, which inspired me to make this mod!\n\n
+	    Thanks to C3C076 for the center clock mod!\n\n
+	    Thanks to snachez for making the default white iconpack!\n\n
+	    Thanks to all of the XDA users that find this mod useful! And a special thanks for those that have donated!\n\n
+	    </string>
 </resources>

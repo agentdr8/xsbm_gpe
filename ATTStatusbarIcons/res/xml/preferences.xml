@@ -85,6 +85,12 @@
             android:key="invisclock"
             android:summary="Removes clock from statusbar"
             android:title="Remove Clock" />
+        
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="hideampm"
+            android:summary="Removes AM/PM from clock"
+            android:title="Hide AM/PM" />
             
          <net.margaritov.preference.colorpicker.ColorPickerPreference
             alphaSlider="true"
@@ -250,5 +256,16 @@
             android:summary="Override all other icons to the left of GPS (Sync, Headphone, Ringer, e911, etc.)"
             android:title="Misc Status Icons" />
       </PreferenceScreen>
+      
+	<PreferenceScreen
+	      		android:key="prefs_about"
+	    		android:title="About">
+        
+		      	<intent 
+	        		android:action="android.intent.action.VIEW"
+	        		android:targetPackage="com.dr8.sbicons"
+	        		android:targetClass="com.dr8.sbicons.mod.AboutActivity"
+	    		/>
+	</PreferenceScreen>
       
 </PreferenceScreen>

@@ -11,6 +11,7 @@ import com.dr8.sbicons.mod.hax.BatteryRainbow;
 import com.dr8.sbicons.mod.hax.BatteryTextColor;
 import com.dr8.sbicons.mod.hax.Bluetooth;
 import com.dr8.sbicons.mod.hax.CenterClock;
+import com.dr8.sbicons.mod.hax.ClockAMPM;
 import com.dr8.sbicons.mod.hax.ClockColor;
 import com.dr8.sbicons.mod.hax.GPS;
 import com.dr8.sbicons.mod.hax.HtcNetworkController;
@@ -155,6 +156,10 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		
 		if (pref.getBoolean("invisclock", false)) {
 			InvisClock.initPackageResources(pref, modRes, resparam);
+		}
+		
+		if (pref.getBoolean("hideampm", false)) {
+			ClockAMPM.initPackageResources(pref, modRes, resparam);
 		}
 		
 		if (pref.getBoolean("batt_text_color_enabled", false) && (!pref.getBoolean("batt_text_rainbow", false))) {
