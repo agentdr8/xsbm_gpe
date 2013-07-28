@@ -3,6 +3,7 @@
     <string name="launcher_name">Xposed StatusBar Settings</string>
 	<string name="settings_header">Choose your options below and reboot to apply</string>
 	<string name="item_detail">Long-press item for more details</string>
+	<string name="app_shortname">XSBM</string>	
 	<string name="version">2.0.0</string>
 	<string name="author">agentdr8</string>
 	<string name="credits">CREDITS\n\n

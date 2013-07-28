@@ -15,8 +15,8 @@ public class AboutActivity extends Activity
         super.onCreate(savedInstanceState);
         
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getResources().getString(R.string.app_name) + "\nVersion " + 
-        		getResources().getString(R.string.version) + " - by " + getResources().getString(R.string.author))
+        builder.setTitle(getResources().getString(R.string.app_shortname) + " - " + 
+        		getResources().getString(R.string.version) + "\n - by " + getResources().getString(R.string.author))
         .setIcon(R.drawable.about)
         .setMessage(getResources().getString(R.string.credits))
         .setCancelable(false)
