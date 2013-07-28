@@ -11,14 +11,12 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class InvisSignal {
 
 	public static void initHandleLoadPackage(final XSharedPreferences paramPrefs, XC_LoadPackage.LoadPackageParam lpParam) {
-		if (paramPrefs.getBoolean("hideatt", false)) {
-			findAndHookMethod("com.android.systemui.statusbar.HtcGenericSignalClusterView", lpParam.classLoader, "apply", new XC_MethodHook() {
-				@Override
-				protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-					ImageView iv = (ImageView) getObjectField(param.thisObject, "mPhoneSignal");
-					iv.setImageDrawable(null);
-				}
-			});
-		}
+		findAndHookMethod("com.android.systemui.statusbar.HtcGenericSignalClusterView", lpParam.classLoader, "apply", new XC_MethodHook() {
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+				ImageView iv = (ImageView) getObjectField(param.thisObject, "mPhoneSignal");
+				iv.setImageResource(0);
+			}
+		});
 	}
 }

@@ -235,13 +235,13 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="signal"
-            android:summary="Override carrier signal bars"
+            android:summary="Override cellular signal bars"
             android:title="Signal Bar" />
         
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="mobile_data"
-            android:summary="Override carrier data icons"
+            android:summary="Override mobile data icons"
             android:title="Mobile Data" />
 
         <CheckBoxPreference
