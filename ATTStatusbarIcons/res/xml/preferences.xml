@@ -204,6 +204,18 @@
 	  	
 	  	<CheckBoxPreference
             android:defaultValue="false"
+            android:key="hidesim"
+            android:summary="Hide the missing SIM card icon"
+            android:title="Remove no-SIM Icon" />
+	  	
+	  	<CheckBoxPreference
+            android:defaultValue="false"
+            android:key="hidesignal"
+            android:summary="Hide the cellular signal bars"
+            android:title="Remove Signal Icons" />
+	  	
+	  	<CheckBoxPreference
+            android:defaultValue="false"
             android:key="framework"
             android:summary="Override framework icons"
             android:title="Framework" />

@@ -17,6 +17,8 @@ import com.dr8.sbicons.mod.hax.GPS;
 import com.dr8.sbicons.mod.hax.HtcNetworkController;
 import com.dr8.sbicons.mod.hax.InvisBattery;
 import com.dr8.sbicons.mod.hax.InvisClock;
+import com.dr8.sbicons.mod.hax.InvisSignal;
+import com.dr8.sbicons.mod.hax.InvisSimCard;
 import com.dr8.sbicons.mod.hax.MobileData;
 import com.dr8.sbicons.mod.hax.SignalBars;
 import com.dr8.sbicons.mod.hax.SystemWide;
@@ -84,8 +86,17 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
 			CenterClock.initHandleLoadPackage(pref, lpparam.classLoader);
 			MobileData.initHandleLoadPackage(pref, lpparam);
+			
 			if (pref.getBoolean("hideampm", false) && !pref.getBoolean("invisclock", false)) {
 				ClockAMPM.initHandleLoadPackage(pref, lpparam);
+			}
+			
+			if (pref.getBoolean("hidesignal", false)) {
+				InvisSignal.initHandleLoadPackage(pref, lpparam);
+			}
+			
+			if (pref.getBoolean("hidesim", false)) {
+				InvisSimCard.initHandleLoadPackage(pref, lpparam);
 			}
 		}
 //		if (lpparam.packageName.equals("com.htc.launcher")) {
@@ -116,7 +127,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 //				    	Log.d("XSBM", "inside values: " + values);
 		    			for (String item : values) {
 //		    				Log.d("XSBM", "launching appicons for: " + resparam.packageName);
-		    				AppIcons.initPackageResources(pref, resparam, item);
+		    				AppIcons.initPackageResources(pref, resparam, item, modRes);
 		    			}
 			        }
 			    }
@@ -161,8 +172,6 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			InvisClock.initPackageResources(pref, modRes, resparam);
 		}
 		
-		
-		
 		if (pref.getBoolean("batt_text_color_enabled", false) && (!pref.getBoolean("batt_text_rainbow", false))) {
 			BatteryTextColor.initPackageResources(pref, modRes, resparam);
 		}
@@ -187,7 +196,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			Wifi.initPackageResources(pref, modRes, resparam);
 		}
 
-		if (pref.getBoolean("signal", false)) {
+		if (pref.getBoolean("signal", false) && !pref.getBoolean("hidesignal", false)) {
 			SignalBars.initPackageResources(pref, modRes, resparam);
 		}
 			
