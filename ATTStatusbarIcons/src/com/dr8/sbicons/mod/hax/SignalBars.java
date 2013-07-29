@@ -16,8 +16,7 @@ public class SignalBars {
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
-			String iconpack = "iconpack.zip";
-			String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
+			String path = "/data/data/com.dr8.sbicons/xsbm/";
 			
 			String[] signalarray = {
 					"stat_sys_5signal_0.png",
@@ -32,7 +31,7 @@ public class SignalBars {
 			
 			for (int i = 0; i < signalarray.length; i++) {
 				String simg = "signal/" + signalarray[i];
-				final Bitmap s = ZipStuff.getBitmapFromZip(path, simg);
+				final Bitmap s = ZipStuff.getBitmap(path, simg);
 				if (s != null) {
 					if (i == 6) {
 						resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_5signal_null", new XResources.DrawableLoader() {

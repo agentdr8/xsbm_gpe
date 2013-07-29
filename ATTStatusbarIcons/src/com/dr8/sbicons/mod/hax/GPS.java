@@ -16,12 +16,11 @@ public class GPS {
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
-			String iconpack = "iconpack.zip";
-			String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
+			String path = "/data/data/com.dr8.sbicons/xsbm/";
 			String gon = "gps/stat_sys_gps_on.png";
 			String gacq = "gps/stat_sys_gps_acquiring.png";
-			final Bitmap g = ZipStuff.getBitmapFromZip(path, gon);
-			final Bitmap h = ZipStuff.getBitmapFromZip(path, gacq);
+			final Bitmap g = ZipStuff.getBitmap(path, gon);
+			final Bitmap h = ZipStuff.getBitmap(path, gacq);
 			if (g != null) {
 				resParam.res.setReplacement(targetpkg , "drawable", "stat_sys_gps_on", new XResources.DrawableLoader() {
 					@Override

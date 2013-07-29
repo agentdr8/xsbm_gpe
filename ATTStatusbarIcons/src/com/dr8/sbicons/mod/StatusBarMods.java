@@ -113,7 +113,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			ToTheLeft.initPackageResources(pref, modRes, resparam);
 		}
 				
-		String intpath = "/data/data/com.dr8.sbicons/files/apps.txt";
+		String intpath = "/data/data/com.dr8.sbicons/xsbm/apps.txt";
 		if (pref.getBoolean("thirdparty", false)) {
 			appsmap = ZipStuff.getAppsList(intpath);
 			String currentpkg = resparam.packageName;

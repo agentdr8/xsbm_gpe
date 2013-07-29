@@ -15,8 +15,8 @@ public class ToTheLeft {
 
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
-			String iconpack = "iconpack.zip";
-			String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
+			
+			String path = "/data/data/com.dr8.sbicons/xsbm/";
 			
 			String[] phonearray = {
 					"stat_notify_voicemail",
@@ -28,7 +28,7 @@ public class ToTheLeft {
 			if (resParam.packageName.equals("com.android.phone")) {
 				for (int i = 0; i < phonearray.length; i++) {
 					String pimg = "phone/" + phonearray[i] + ".png";
-					final Bitmap b = ZipStuff.getBitmapFromZip(path, pimg);
+					final Bitmap b = ZipStuff.getBitmap(path, pimg);
 					if (b != null) {
 						resParam.res.setReplacement("com.android.phone", "drawable", phonearray[i], new XResources.DrawableLoader() {
 							@Override
@@ -77,7 +77,7 @@ public class ToTheLeft {
 			if (resParam.packageName.equals("com.android.systemui")) {
 				for (int i = 0; i < miscarray.length; i++) {
 					String mimg = "misc/" + miscarray[i] + ".png";
-					final Bitmap b = ZipStuff.getBitmapFromZip(path, mimg);
+					final Bitmap b = ZipStuff.getBitmap(path, mimg);
 					if (b != null) {
 						resParam.res.setReplacement("com.android.systemui", "drawable", miscarray[i], new XResources.DrawableLoader() {
 							@Override
@@ -93,7 +93,7 @@ public class ToTheLeft {
 			
 			if (resParam.packageName.equals("com.android.settings")) {
 				String simg = "settings/stat_sys_data_usb.png";
-				final Bitmap s = ZipStuff.getBitmapFromZip(path, simg);
+				final Bitmap s = ZipStuff.getBitmap(path, simg);
 				if (s != null) {
 					resParam.res.setReplacement("com.android.settings", "drawable", "stat_sys_data_usb", new XResources.DrawableLoader() {
 						@Override
@@ -108,7 +108,7 @@ public class ToTheLeft {
 			if (resParam.packageName.equals("com.htc.htcpowermanager")) {
 				for (int i = 0; i < pwrmgr.length; i++) {
 					String mimg = "powermgr/" + pwrmgr[i] + ".png";
-					final Bitmap b = ZipStuff.getBitmapFromZip(path, mimg);
+					final Bitmap b = ZipStuff.getBitmap(path, mimg);
 					if (b != null) {
 						resParam.res.setReplacement("com.htc.htcpowermanager", "drawable", pwrmgr[i], new XResources.DrawableLoader() {
 							@Override

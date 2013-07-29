@@ -16,8 +16,7 @@ public class Wifi {
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
-			String iconpack = "iconpack.zip";
-			String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
+			String path = "/data/data/com.dr8.sbicons/xsbm/";
 		
 			String[] wifiarray = {
 					"stat_sys_wifi_signal_0.png",
@@ -28,7 +27,7 @@ public class Wifi {
 			
 			for (int i = 0; i < wifiarray.length; i++) {
 				String wimg = "wifi/" + wifiarray[i];
-				final Bitmap w = ZipStuff.getBitmapFromZip(path, wimg);
+				final Bitmap w = ZipStuff.getBitmap(path, wimg);
 				if (w != null) {
 					resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_wifi_signal_" + i, new XResources.DrawableLoader() {
 						@Override

@@ -16,12 +16,11 @@ public class Bluetooth {
 	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
-			String iconpack = "iconpack.zip";
-			String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
+			String path = "/data/data/com.dr8.sbicons/xsbm/";
 			String bt = "bt/stat_sys_data_bluetooth.png";
 			String btcon = "bt/stat_sys_data_bluetooth_connected.png";
-			final Bitmap b = ZipStuff.getBitmapFromZip(path, bt);
-			final Bitmap c = ZipStuff.getBitmapFromZip(path, btcon);
+			final Bitmap b = ZipStuff.getBitmap(path, bt);
+			final Bitmap c = ZipStuff.getBitmap(path, btcon);
 			if (b != null) {
 				resParam.res.setReplacement(targetpkg , "drawable", "stat_sys_data_bluetooth", new XResources.DrawableLoader() {
 					@Override

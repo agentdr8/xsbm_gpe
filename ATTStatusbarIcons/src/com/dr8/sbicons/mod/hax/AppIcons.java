@@ -18,12 +18,11 @@ public class AppIcons {
 	public static void initPackageResources(XSharedPreferences paramPrefs, XC_InitPackageResources.InitPackageResourcesParam resParam, String rep, XModuleResources modres) {
 		try {
 			String target = resParam.packageName;
-			String iconpack = "iconpack.zip";
-			String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
+			String path = "/data/data/com.dr8.sbicons/xsbm/";
 			
 	    	String repl = "apps/" + target + "-" + rep;
 //	    	Log.d("XSBM", "getting image from zip: " + repl);
-			final Bitmap a = ZipStuff.getBitmapFromZip(path, repl);	        	
+			final Bitmap a = ZipStuff.getBitmap(path, repl);	        	
     		if (a != null) {
     			String noext = rep.substring(0, rep.length() - 4);
 //    			Log.d("XSBM", " our rep minus extension " + noext);

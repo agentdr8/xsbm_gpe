@@ -1,8 +1,6 @@
 package com.dr8.sbicons.mod;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,7 +30,6 @@ import com.dr8.sbicons.R;
 public class IconPackActivity extends ListActivity implements OnItemLongClickListener
 {
     private String intpath = null;
-    private String privfiles = null;
     private String extpath = null;
     
 	private ArrayAdapter<String> adapter;
@@ -43,8 +40,6 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         intpath = getApplicationContext().getFilesDir().getParent() + "/xsbm/";
-        privfiles = getApplicationContext().getFilesDir().getPath();
-
         extpath = Environment.getExternalStorageDirectory().toString() + "/xsbm/";
         ArrayList<String> filearray = new ArrayList<String>();
         
@@ -148,35 +143,40 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-	    String item = (String) getListAdapter().getItem(position);
-	    if (ZipStuff.getPackInfo(item, extpath, privfiles, ".xsbmpack") == 1) {
+	    String item = (String) getListView().getItemAtPosition(position);
+	    if (ZipStuff.getPackInfo(item, extpath, ".xsbmpack") == 1) {
 		    Toast.makeText(this, item + " selected", Toast.LENGTH_SHORT).show();
-		    try {
-				InputStream inf = new FileInputStream(extpath + item);
-				FileOutputStream outf = new FileOutputStream(intpath + "iconpack.zip");
-				byte[] buff = new byte[1024];
-			    int read = 0;
-                while ((read = inf.read(buff)) > 0) {
-                  outf.write(buff, 0, read);
-                }
-                inf.close();
-                outf.close();
-                File f = new File(intpath + "iconpack.zip");
-                f.setReadable(true, false);
-                
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		    File df = new File(intpath);
+		    DeleteRecursive(df);
+		    df.mkdir();
+		    ZipStuff.unpackZip(intpath, extpath + item);
+		    ChmodRecursive(df);
 		    finish();
 	    } else {
 	    	Toast.makeText(this, item + " is not a valid iconpack", Toast.LENGTH_SHORT).show();
 	    }
     }
 
+    void DeleteRecursive(File fileOrDirectory) {
+    	if (fileOrDirectory.isDirectory()) {
+    		for (File child : fileOrDirectory.listFiles()) {
+    			DeleteRecursive(child);
+    		}
+    	}
+    	fileOrDirectory.delete();
+    }
+    
+    void ChmodRecursive(File fileOrDirectory) {
+    	if (fileOrDirectory.isDirectory()) {
+    		for (File child : fileOrDirectory.listFiles()) {
+    			ChmodRecursive(child);
+    		}
+    	}
+    	fileOrDirectory.setExecutable(true, false);
+    	fileOrDirectory.setReadable(true, false);
+    	fileOrDirectory.setWritable(true, true);
+    }
+    
 	@Override
     protected void onResume() {
     	super.onResume();
@@ -185,12 +185,10 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
     @Override
     protected void onStop() {
     	super.onStop();
-    	
     }
 
 	@Override
 	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-		
 		return true;
 	}
 }

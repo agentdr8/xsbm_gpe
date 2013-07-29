@@ -24,8 +24,8 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class BatteryIcons {
 
 	public static void initHandleLoadPackage(final XSharedPreferences paramPrefs, XC_LoadPackage.LoadPackageParam lpParam) {
-		final String iconpack = "iconpack.zip";
-		final String path = "/data/data/com.dr8.sbicons/xsbm/" + iconpack;
+		
+		final String path = "/data/data/com.dr8.sbicons/xsbm/";
 		final String[] battarray = {
 				"stat_sys_battery_0.png",
 				"stat_sys_battery_1.png",
@@ -160,11 +160,11 @@ public class BatteryIcons {
 								AnimationDrawable animation = new AnimationDrawable();
 								for (int i = 0; i < charge.length; i++) {
 									String cbimg = "battery/charge/" + charge[i];
-									final Bitmap cb = ZipStuff.getBitmapFromZip(path, cbimg);
+									final Bitmap cb = ZipStuff.getBitmap(path, cbimg);
 									Drawable cd = new BitmapDrawable(null, cb);
 									
 									String bimg = "battery/" + battarray[blevel];
-									final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
+									final Bitmap b = ZipStuff.getBitmap(path, bimg);
 									Drawable bd = new BitmapDrawable(null, b);
 									animation.addFrame(cd, 1500);
 									animation.addFrame(bd, 500);
@@ -174,12 +174,12 @@ public class BatteryIcons {
 								animation.start();
 							} else if (plugged && blevel >= 100) {
 								String bimg = "battery/" + battarray[100];
-								final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
+								final Bitmap b = ZipStuff.getBitmap(path, bimg);
 								Drawable d = new BitmapDrawable(null, b);
 								iv.setImageDrawable(d);
 							} else { 
 								String bimg = "battery/" + battarray[blevel];
-								final Bitmap b = ZipStuff.getBitmapFromZip(path, bimg);
+								final Bitmap b = ZipStuff.getBitmap(path, bimg);
 								Drawable d = new BitmapDrawable(null, b);
 								iv.setImageDrawable(d);
 							}

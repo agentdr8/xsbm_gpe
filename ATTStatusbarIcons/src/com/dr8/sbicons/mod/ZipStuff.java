@@ -1,11 +1,13 @@
 package com.dr8.sbicons.mod;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.zip.ZipEntry;
@@ -25,34 +27,56 @@ public class ZipStuff {
 	private static String TAG = "XSBM";
 	protected static final String APP_LIST = "apps.txt";
 
-	public static Bitmap getBitmapFromZip(final String zipFilePath, final String imageFileInZip) {
+	public static boolean unpackZip(String outpath, String zipname) {       
+	     InputStream is;
+	     ZipInputStream zis;
+	     try {
+	         String filename;
+	         is = new FileInputStream(zipname);
+	         zis = new ZipInputStream(new BufferedInputStream(is));          
+	         ZipEntry ze;
+	         byte[] buffer = new byte[1024];
+	         int count;
+	         while ((ze = zis.getNextEntry()) != null) {
+	             filename = ze.getName();
+	             if (ze.isDirectory()) {
+	                File fmd = new File(outpath + filename);
+	                fmd.mkdirs();
+	                fmd.setWritable(true, true);
+	                fmd.setExecutable(true, false);
+	                fmd.setReadable(true, false);
+	                continue;
+	             }
+	             FileOutputStream fout = new FileOutputStream(outpath + filename);
+	             while ((count = zis.read(buffer)) != -1) {
+	                 fout.write(buffer, 0, count);             
+	             }
+	             fout.close();               
+	             zis.closeEntry();
+	         }
+	         zis.close();
+	     } catch(IOException e) {
+	         e.printStackTrace();
+	         return false;
+	     }
+	    return true;
+	}
+	
+	public static Bitmap getBitmap(final String FilePath, final String imageFile) {
 //	    Log.i(TAG, "Getting image '" + imageFileInZip + "' from '" + zipFilePath +"'");
 	    Bitmap result = null;
 	    try {
-	        FileInputStream fis = new FileInputStream(zipFilePath);
-	        ZipInputStream zis = new ZipInputStream(fis);
-	        ZipEntry ze = null;
-	        while ((ze = zis.getNextEntry()) != null) {
-	            if (ze.getName().equals(imageFileInZip)) {
-	            	result = BitmapFactory.decodeStream(zis);
-	            	result.setDensity(Bitmap.DENSITY_NONE);
-	            	zis.close();
-	            	fis.close();
-	                break;
-	            }
-	        }
-	        zis.close();
-        	fis.close();
+	        FileInputStream fis = new FileInputStream(FilePath + imageFile);
+        	result = BitmapFactory.decodeStream(fis);
+        	result.setDensity(Bitmap.DENSITY_NONE);
 	    } catch (FileNotFoundException e) {
-	        Log.d(TAG, ": Extracting file: Error opening zip file - FileNotFoundException: " + e);
-	    } catch (IOException e) {
-	        Log.d(TAG, ": Extracting file: Error opening zip file - IOException: " + e);
-	    }
+	        Log.d(TAG, ": Error opening image file - FileNotFoundException: " + e);
+	    } 
 	    return result;
 	}
 	
-	// expect zip filename, extsd path, intsd path, and .xsbmpack
-	public static Integer getPackInfo(final String zipFile, final String path, final String intpath, final String infoFile) {
+	// expect zip filename, extsd path and .xsbmpack
+	public static Integer getPackInfo(final String zipFile, final String path, final String infoFile) {
 //		Log.i(TAG, "Getting pack id '" + infoFile + "' from '" + path + zipFile + "'");
 		Integer result = 0;
 		try {
@@ -62,17 +86,6 @@ public class ZipStuff {
 	        while ((ze = zis.getNextEntry()) != null) {
 	            if (ze.getName().equals(infoFile)) {
 	            	result = 1;
-	            }
-	            if (ze.getName().equals("apps.txt")) {
-	            	FileOutputStream fout = new FileOutputStream(intpath + "/apps.txt");
-	            	byte[] buf = new byte[1024];
-	            	int n = 0;
-	            	while ((n = zis.read(buf, 0, 1024)) > -1)
-	                    fout.write(buf, 0, n);
-
-	                fout.close();
-	                File f = new File(intpath + "/apps.txt");
-	                f.setReadable(true, false);
 	            }
 	        }
 	        zis.close();
