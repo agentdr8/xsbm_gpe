@@ -18,7 +18,9 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
@@ -106,6 +108,11 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
 	        }
         }
         
+        ListView lv = getListView();
+        LayoutInflater inflater = getLayoutInflater();
+        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.list_header, lv, false);
+        lv.addHeaderView(header, null, false);
+        
         String[] array = filearray.toArray(new String[filearray.size()]);
         ArrayList<String> arrayList = new ArrayList<String>(Arrays.asList(array));
         Collections.sort(arrayList);
@@ -113,7 +120,30 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
         adapter = new ArrayAdapter<String>(this, R.layout.iconpacks, R.id.zipitem, arrayList);
         
         setListAdapter(adapter);
-        
+        this.getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+            	String item = (String) getListView().getItemAtPosition(position);
+        		HashMap<String, String> hash = new HashMap<String, String>();
+        	    hash = ZipStuff.getPackDetail(item, extpath, ".xsbmpack");
+        	    if (hash != null) {
+        	    	AlertDialog.Builder builder = new AlertDialog.Builder(IconPackActivity.this);
+        	        builder.setTitle("Pack details")
+        	        .setIcon(R.drawable.about)
+        	        .setMessage("Author: " + hash.get("author") + "\n" + "Notes: " + hash.get("note"))
+        	        .setCancelable(false)
+        	        .setNegativeButton("Close",new DialogInterface.OnClickListener() {
+        	            public void onClick(DialogInterface dialog, int id) {
+        	                dialog.cancel();
+        	            }
+        	        });
+        	        
+        	        AlertDialog alert = builder.create();
+        	        alert.show();
+        	    }
+        		return true;
+            }
+        });
     }
     
     @Override
@@ -146,12 +176,12 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
 	    	Toast.makeText(this, item + " is not a valid iconpack", Toast.LENGTH_SHORT).show();
 	    }
     }
-        
-    @Override
+
+	@Override
     protected void onResume() {
     	super.onResume();
-    }
-    
+	}
+	    
     @Override
     protected void onStop() {
     	super.onStop();
@@ -159,25 +189,8 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
     }
 
 	@Override
-	public boolean onItemLongClick(AdapterView<?> arg0, View v, int position, long arg3) {
-		String item = (String) getListAdapter().getItem(position);
-		HashMap<String, String> hash = new HashMap<String, String>();
-	    hash = ZipStuff.getPackDetail(item, extpath, ".xsbmpack");
-	    if (hash != null) {
-	    	AlertDialog.Builder builder = new AlertDialog.Builder(this);
-	        builder.setTitle("Pack details")
-	        .setIcon(R.drawable.about)
-	        .setMessage("Author: " + hash.get("author") + "\n" + "Description: " + hash.get("desc"))
-	        .setCancelable(false)
-	        .setNegativeButton("Close",new DialogInterface.OnClickListener() {
-	            public void onClick(DialogInterface dialog, int id) {
-	                dialog.cancel();
-	            }
-	        });
-	        
-	        AlertDialog alert = builder.create();
-	        alert.show();
-	    }
-		return false;
+	public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+		
+		return true;
 	}
 }

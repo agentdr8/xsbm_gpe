@@ -89,17 +89,30 @@ public class ZipStuff {
 //		Log.i(TAG, "Getting pack id '" + infoFile + "' from '" + path + zipFile + "'");
 		HashMap<String, String> result = new HashMap<String, String>();
 		try {
-			FileInputStream fis = new FileInputStream(path + infoFile);
-			BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-			String line;
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith("author")) {
-					result.put("author", line.substring(7));
-				}
-				if (line.startsWith("desc")) {
-					result.put("desc", line.substring(5));
-				}
-			}
+			FileInputStream fis = new FileInputStream(path + zipFile);
+			ZipInputStream zis = new ZipInputStream(fis);
+			ZipEntry ze = null;
+	        while ((ze = zis.getNextEntry()) != null) {
+	            if (ze.getName().equals(infoFile)) {
+	            	if (ze.getSize() == 0) {
+	            		result.put("author", "N/A");
+						result.put("note", "N/A");
+						break;
+	            	} else { 
+	            		BufferedReader br = new BufferedReader(new InputStreamReader(zis));
+	            		String line;
+						while ((line = br.readLine()) != null) {
+							if (line.startsWith("author")) {
+								result.put("author", line.substring(7));
+							} else if (line.startsWith("note")) {
+								result.put("note", line.substring(5));
+							} 
+						}
+						br.close();
+	            	}
+	            }
+	        }
+	        zis.close();
 			fis.close();
 	    } catch (FileNotFoundException e) {
 	        Log.d(TAG, ": Extracting file: Error opening zip file - FileNotFoundException: " + e);
