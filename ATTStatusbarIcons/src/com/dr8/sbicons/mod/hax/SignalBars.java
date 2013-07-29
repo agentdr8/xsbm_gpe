@@ -26,7 +26,7 @@ public class SignalBars {
 					"stat_sys_5signal_4.png",
 					"stat_sys_5signal_5.png",
 					"stat_sys_5signal_null.png",
-					"stat_sys_signal_flightmode"
+					"stat_sys_signal_flightmode.png"
 					};
 			
 			for (int i = 0; i < signalarray.length; i++) {
