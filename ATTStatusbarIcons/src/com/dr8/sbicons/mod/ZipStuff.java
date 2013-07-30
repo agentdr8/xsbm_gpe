@@ -69,6 +69,7 @@ public class ZipStuff {
 	        FileInputStream fis = new FileInputStream(FilePath + imageFile);
         	result = BitmapFactory.decodeStream(fis);
         	result.setDensity(Bitmap.DENSITY_NONE);
+//        	result.setDensity(320);
 	    } catch (FileNotFoundException e) {
 	        Log.d(TAG, ": Error opening image file - FileNotFoundException: " + e);
 	    } 
