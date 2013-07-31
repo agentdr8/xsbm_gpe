@@ -29,6 +29,15 @@ public class SignalBars {
 					"stat_sys_signal_flightmode.png"
 					};
 			
+			String[] roamarray = {
+					"stat_sys_r_5signal_0.png",
+					"stat_sys_r_5signal_1.png",
+					"stat_sys_r_5signal_2.png",
+					"stat_sys_r_5signal_3.png",
+					"stat_sys_r_5signal_4.png",
+					"stat_sys_r_5signal_5.png"
+					};
+			
 			for (int i = 0; i < signalarray.length; i++) {
 				String simg = "signal/" + signalarray[i];
 				final Bitmap s = ZipStuff.getBitmap(path, simg);
@@ -55,6 +64,19 @@ public class SignalBars {
 							}
 						});
 					}
+				}
+			}
+			
+			for (int i = 0; i < roamarray.length; i++) {
+				String rimg = "signal/roam/" + roamarray[i];
+				final Bitmap r = ZipStuff.getBitmap(path, rimg);
+				if (r != null) {
+						resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_r_5signal_" + i, new XResources.DrawableLoader() {
+						@Override
+						public Drawable newDrawable(XResources res, int id) throws Throwable {
+							return new BitmapDrawable(null, r);
+						}
+					});
 				}
 			}
 		} catch (Throwable t) { XposedBridge.log(t); }

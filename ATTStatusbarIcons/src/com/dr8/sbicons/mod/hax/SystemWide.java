@@ -44,6 +44,7 @@ public class SystemWide {
 				"icon_btn_copy_dark",
 				"icon_btn_cut_dark",
 				"icon_btn_paste_dark",
+				"icon_btn_search_web_dark",
 				"icon_btn_selected_all_dark",
 				"stat_sys_hdmi_on"
 		};
