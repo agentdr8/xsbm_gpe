@@ -1,7 +1,6 @@
 package com.dr8.sbicons.mod;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,7 +43,6 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
         extpath = Environment.getExternalStorageDirectory().toString() + "/xsbm/";
         ArrayList<String> filearray = new ArrayList<String>();
         
-//        Log.d("Files", "Path: " + path);
         File f = new File(extpath);
         if (f.isDirectory()) {
         	try {
@@ -59,15 +57,11 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
                 in.close();
                 out.close();
             } catch (IOException e) {
-//				Log.d("Files", "Exceptions during default pack copy: " + e);
             }
 	        final File file[] = f.listFiles();
-	//        Log.d("Files", "Size: "+ file.length);
-	        
 	        for (int i=0; i < file.length; i++) {
 	        	if (file[i].getName().toLowerCase().endsWith(".zip")) {
 	        		filearray.add(file[i].getName());
-	//        		Log.d("Files", "FileName:" + file[i].getName());
 	        	}
 	        }
         } else {
@@ -81,7 +75,6 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
             	f2.setReadable(true, false);
             	f2.setWritable(true, true);
             }
-//            FileOutputStream out2;
 			try {
 				out = new FileOutputStream(extpath + "default_iconpack.zip");
 			    byte[] buff = new byte[1024];
@@ -91,29 +84,12 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
                 }
                 in.close();
                 out.close();
-                
-//                InputStream in2 = getResources().openRawResource(R.raw.default_iconpack);
-//                out2 = new FileOutputStream(intpath + "iconpack.zip");
-//			    byte[] buff2 = new byte[1024];
-//			    int read2 = 0;
-//                while ((read2 = in2.read(buff2)) > 0) {
-//                  out2.write(buff2, 0, read2);
-//                }
-//                in2.close();
-//                out2.close();
-//              
-//                File f3 = new File(intpath + "iconpack.zip");
-//                f3.setReadable(true, false);
-                
             } catch (IOException e) {
-//				Log.d("Files", "Exceptions during default pack copy: " + e);
             } 
 			final File file[] = f.listFiles();
-			//        Log.d("Files", "Size: "+ file.length);
 	        for (int i=0; i < file.length; i++) {
 	        	if (file[i].getName().toLowerCase().endsWith(".zip")) {
 	        		filearray.add(file[i].getName());
-	//        		Log.d("Files", "FileName:" + file[i].getName());
 	        	}
 	        }
         }
@@ -166,7 +142,7 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
 		    df.mkdir();
 		    ZipStuff.unpackZip(intpath, extpath + item);
 		    ChmodRecursive(df);
-		    finish();
+		    IconPackActivity.this.finish();
 	    } else {
 	    	Toast.makeText(this, item + " is not a valid iconpack", Toast.LENGTH_SHORT).show();
 	    }
@@ -200,6 +176,7 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
     @Override
     protected void onStop() {
     	super.onStop();
+	    IconPackActivity.this.finish();
     }
 
 	@Override

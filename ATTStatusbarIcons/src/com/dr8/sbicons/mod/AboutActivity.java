@@ -23,7 +23,7 @@ public class AboutActivity extends Activity
         .setNegativeButton("Close",new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
-                finish();            
+                AboutActivity.this.finish();
             }
         });
         
@@ -40,6 +40,6 @@ public class AboutActivity extends Activity
     @Override
     protected void onStop() {
     	super.onStop();
-    	
+        AboutActivity.this.finish();
     }
 }

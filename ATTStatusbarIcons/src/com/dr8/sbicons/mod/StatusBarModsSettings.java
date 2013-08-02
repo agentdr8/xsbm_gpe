@@ -1,7 +1,6 @@
 package com.dr8.sbicons.mod;
 
 import com.dr8.sbicons.R;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
@@ -30,5 +29,10 @@ public class StatusBarModsSettings extends Activity {
 			getPreferenceManager().setSharedPreferencesMode(MODE_WORLD_READABLE);
 			addPreferencesFromResource(R.xml.preferences);
 		}
+	}
+	
+	@Override
+	public void onStop() {
+		super.onStop();
 	}
 }
