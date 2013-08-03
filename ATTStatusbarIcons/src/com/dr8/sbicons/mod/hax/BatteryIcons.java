@@ -3,8 +3,6 @@ package com.dr8.sbicons.mod.hax;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.getIntField;
 import static de.robv.android.xposed.XposedHelpers.getObjectField;
-import static de.robv.android.xposed.XposedHelpers.getBooleanField;
-
 import java.util.ArrayList;
 import android.content.Context;
 import android.content.Intent;
@@ -149,14 +147,15 @@ public class BatteryIcons {
 				@Override
 				protected void afterHookedMethod(MethodHookParam param) throws Throwable {
 					try {
-						boolean plugged = getBooleanField(param.thisObject, "plugged");
+//						boolean plugged = getBooleanField(param.thisObject, "plugged");
+						int status = getIntField(param.thisObject, "status");
 						int blevel = getIntField(param.thisObject, "level");
 						@SuppressWarnings("unchecked")
 						int j = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).size();
 						for (int k = 0; k < j; k++) {
 							@SuppressWarnings("unchecked")
 							ImageView iv = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).get(k);
-							if (plugged && blevel < 100) {
+							if (status == 2 && blevel < 100) {
 								AnimationDrawable animation = new AnimationDrawable();
 								for (int i = 0; i < charge.length; i++) {
 									String cbimg = "battery/charge/" + charge[i];
@@ -172,7 +171,7 @@ public class BatteryIcons {
 								animation.setOneShot(false);
 								iv.setImageDrawable(animation);
 								animation.start();
-							} else if (plugged && blevel >= 100) {
+							} else if (status == 2 && blevel >= 100) {
 								String bimg = "battery/" + battarray[100];
 								final Bitmap b = ZipStuff.getBitmap(path, bimg);
 								Drawable d = new BitmapDrawable(null, b);
