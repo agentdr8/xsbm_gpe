@@ -14,6 +14,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.LayoutInflater;
@@ -41,6 +42,26 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
         super.onCreate(savedInstanceState);
         intpath = getApplicationContext().getFilesDir().getParent() + "/xsbm/";
         extpath = Environment.getExternalStorageDirectory().toString() + "/xsbm/";
+        
+		Uri uri = getIntent().getData();
+		final File intentfile = (uri != null) ? new File(uri.getPath()) : null;
+		if (intentfile != null) {
+			String item = intentfile.getName();
+			String path = intentfile.getPath();
+			if (ZipStuff.getPackInfo(item, path, ".xsbmpack") == 1) {
+			    Toast.makeText(this, item + " selected", Toast.LENGTH_SHORT).show();
+			    File df = new File(intpath);
+			    DeleteRecursive(df);
+			    df.mkdir();
+			    ZipStuff.unpackZip(intpath, path + item);
+			    ChmodRecursive(df);
+			    IconPackActivity.this.finish();
+		    } else {
+		    	Toast.makeText(this, item + " is not a valid iconpack", Toast.LENGTH_SHORT).show();
+		    	IconPackActivity.this.finish();
+		    }
+		}
+		
         ArrayList<String> filearray = new ArrayList<String>();
         
         File f = new File(extpath);

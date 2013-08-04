@@ -22,9 +22,20 @@
             </intent-filter>
         </activity>
 		<activity android:name=".mod.QSSortActivity"></activity>
-        <activity android:name=".mod.IconPackActivity"></activity>
+        <activity android:name=".mod.IconPackActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="file" />                  
+                <data android:host="*" />
+                <data android:mimeType="application/zip" />
+                <data android:pathPattern=".*\\.xsbm\\.zip" />
+            </intent-filter>
+        </activity>
         <activity android:name=".mod.AboutActivity"></activity>
-        <activity android:name=".mod.RestartActivity"></activity><meta-data android:value="true" android:name="xposedmodule"/>
+        <activity android:name=".mod.RestartActivity"></activity>
+        <meta-data android:value="true" android:name="xposedmodule"/>
         <meta-data android:value="2.0*" android:name="xposedminversion"/>
         <meta-data android:value="Mod to change statusbar icons &amp; bg transparency, clock visibility, %battery, and other items" android:name="xposeddescription"/>
         

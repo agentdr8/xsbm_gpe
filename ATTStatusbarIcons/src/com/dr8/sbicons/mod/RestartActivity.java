@@ -22,7 +22,7 @@ public class RestartActivity extends Activity
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Restart Status Bar?")
         .setIcon(R.drawable.question)
-        .setCancelable(true)
+        .setCancelable(false)
         .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
@@ -50,7 +50,6 @@ public class RestartActivity extends Activity
         AlertDialog alert = builder.create();
         alert.show();
     }
-        
     
     @Override
     protected void onResume() {

@@ -55,6 +55,8 @@ public class ZipStuff {
 	             zis.closeEntry();
 	         }
 	         zis.close();
+	         File nomedia = new File(outpath + ".nomedia");
+	         nomedia.createNewFile();
 	     } catch(IOException e) {
 	         e.printStackTrace();
 	         return false;
