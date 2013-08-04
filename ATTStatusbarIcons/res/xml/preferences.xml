@@ -112,6 +112,12 @@
             android:summary="Removes battery icon from statusbar"
             android:title="Remove Battery" />
          
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="altcharge"
+            android:summary="Show battery percent during charging animation"
+            android:title="Show battery % charging" />
+          
 		<net.margaritov.preference.colorpicker.ColorPickerPreference
             alphaSlider="true"
             showCheckbox="true"

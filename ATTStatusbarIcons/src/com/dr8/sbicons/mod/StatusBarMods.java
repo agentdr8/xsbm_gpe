@@ -50,6 +50,11 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		  return capitalize(manufacturer);
 	}
 
+	public String getDeviceModel() {
+		  String model = Build.MODEL;
+		  return capitalize(model);
+	}
+	
 	private String capitalize(String s) {
 		  if (s == null || s.length() == 0) {
 		    return "";
