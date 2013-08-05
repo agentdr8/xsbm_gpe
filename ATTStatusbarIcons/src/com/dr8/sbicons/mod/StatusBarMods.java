@@ -20,6 +20,7 @@ import com.dr8.sbicons.mod.hax.InvisClock;
 import com.dr8.sbicons.mod.hax.InvisSignal;
 import com.dr8.sbicons.mod.hax.InvisSimCard;
 import com.dr8.sbicons.mod.hax.MobileData;
+import com.dr8.sbicons.mod.hax.MobileDataNonOne;
 import com.dr8.sbicons.mod.hax.SignalBars;
 import com.dr8.sbicons.mod.hax.SystemWide;
 import com.dr8.sbicons.mod.hax.ToTheLeft;
@@ -32,6 +33,7 @@ import com.google.common.collect.Multimap;
 
 import android.content.res.XModuleResources;
 import android.os.Build;
+import android.util.Log;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
@@ -40,7 +42,7 @@ import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResou
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPackageResources, IXposedHookLoadPackage {
-//	private static final String TAG = "XSBM";
+	private static final String TAG = "XSBM";
 	private static String MODULE_PATH = null;
 	private static XSharedPreferences pref;
 	private static String targetpkg = "com.android.systemui";
@@ -90,7 +92,12 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			BatteryIcons.initHandleLoadPackage(pref, lpparam);
 			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
 			CenterClock.initHandleLoadPackage(pref, lpparam.classLoader);
-			MobileData.initHandleLoadPackage(pref, lpparam);
+			Log.i(TAG, ": my model is " + getDeviceModel().toString());
+			if (pref.getBoolean("mobile_data", false) && !pref.getBoolean("altsysui", false)) {
+				MobileData.initHandleLoadPackage(pref, lpparam);
+			} else if (pref.getBoolean("mobile_data", false) && pref.getBoolean("altsysui", false)) {
+				MobileDataNonOne.initHandleLoadPackage(pref, lpparam);
+			}
 			
 			if (pref.getBoolean("hideampm", false) && !pref.getBoolean("invisclock", false)) {
 				ClockAMPM.initHandleLoadPackage(pref, lpparam);

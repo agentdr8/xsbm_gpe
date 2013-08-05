@@ -206,7 +206,13 @@
             android:defaultValue="true"
             android:key="hideatt"
             android:summary="Hide the mobile data icons when connected to Wifi"
-            android:title="Auto-hide Mobile Data" />
+            android:title="Auto-hide Mobile Data" />	  	
+	  	
+	  	<CheckBoxPreference
+            android:defaultValue="false"
+            android:key="altsysui"
+            android:summary="Check this if mobile data icons don't override when that option is enabled"
+            android:title="Alternate SystemUI support" />
 	  	
 	  	<CheckBoxPreference
             android:defaultValue="false"
