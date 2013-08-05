@@ -1,5 +1,6 @@
 package com.dr8.sbicons.mod;
 
+import com.appaholics.updatechecker.UpdateChecker;
 import com.dr8.sbicons.R;
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,6 +17,12 @@ public class StatusBarModsSettings extends Activity {
         if (savedInstanceState == null)
 			getFragmentManager().beginTransaction().replace(android.R.id.content,
 	                new PrefsFragment()).commit();
+        
+        UpdateChecker checker = new UpdateChecker(this, true);
+        checker.checkForUpdateByVersionCode("https://www.lemures.net/xsbm/version");
+        if (checker.isUpdateAvailable()) {
+        	checker.downloadAndInstall("https://www.lemures.net/xsbm/StatusbarIcons_v2.0.7.apk");
+        }
     	
 	}
 	

@@ -20,7 +20,6 @@ public class SystemWide {
 		String path = "/data/data/com.dr8.sbicons/xsbm/";
 		
 		String[] fwicons = {
-				"stat_sys_gps_on",
 				"stat_notify_car_mode",
 				"stat_sys_adb",
 				"stat_sys_upload_anim0",
@@ -49,6 +48,8 @@ public class SystemWide {
 				"stat_sys_hdmi_on"
 		};
 		
+		String gpson = "stat_sys_gps_on";
+		
 		try {
 			for (int i = 0; i < fwicons.length; i++) {
 				String fimg = "framework/" + fwicons[i] + ".png";
@@ -73,6 +74,16 @@ public class SystemWide {
 						}
 					});
 				}
+			}
+			String fimg = "gps/" + gpson + ".png";
+			final Bitmap fb = ZipStuff.getBitmap(path, fimg);
+			if (fb != null) {
+				XResources.setSystemWideReplacement("android", "drawable", "stat_sys_gps_on", new XResources.DrawableLoader() {
+					@Override
+					public Drawable newDrawable(XResources res, int id) throws Throwable {
+						return new BitmapDrawable(null, fb);
+					}
+				});
 			}
 		} catch (Throwable t) { XposedBridge.log(t); }
 		

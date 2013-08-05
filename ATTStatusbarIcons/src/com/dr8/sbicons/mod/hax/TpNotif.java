@@ -10,16 +10,22 @@ import de.robv.android.xposed.callbacks.XC_LayoutInflated;
 
 public class TpNotif {
 
+	private static View pv;
+	
 	public static void initPackageResources(final XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		resParam.res.hookLayout("com.android.systemui", "layout", "super_status_bar", new XC_LayoutInflated() {
 			@Override
-			public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
+			public void handleLayoutInflated(LayoutInflatedParam liparam) throws NullPointerException {
 				try {
-					View pv = (View) liparam.view.findViewById(liparam.res.getIdentifier("notification_panel", "id", "com.android.systemui"));
-					if (pv != null) {
+					pv = (View) liparam.view.findViewById(liparam.res.getIdentifier("notification_panel", "id", "com.android.systemui"));
+					if (pv == null) {
+						return;
+					} else {
 						pv.setBackgroundColor(paramPrefs.getInt("notif_bg_color", 0xff000000));
 					}
-				} catch (Throwable t) { XposedBridge.log(t); }
+				} catch (NullPointerException t) { 
+					XposedBridge.log(t); 
+				} 
 			}
 		});
 	}
