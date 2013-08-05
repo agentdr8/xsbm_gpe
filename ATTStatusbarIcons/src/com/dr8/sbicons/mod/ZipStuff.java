@@ -83,7 +83,7 @@ public class ZipStuff {
 //		Log.i(TAG, "Getting pack id '" + infoFile + "' from '" + path + zipFile + "'");
 		Integer result = 0;
 		try {
-			FileInputStream fis = new FileInputStream(path + zipFile);
+			FileInputStream fis = new FileInputStream(path + "/" + zipFile);
 	        ZipInputStream zis = new ZipInputStream(fis);
 	        ZipEntry ze = null;
 	        while ((ze = zis.getNextEntry()) != null) {

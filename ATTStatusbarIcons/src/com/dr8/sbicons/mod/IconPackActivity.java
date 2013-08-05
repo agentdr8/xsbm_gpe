@@ -47,13 +47,14 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
 		final File intentfile = (uri != null) ? new File(uri.getPath()) : null;
 		if (intentfile != null) {
 			String item = intentfile.getName();
-			String path = intentfile.getPath();
+			String path = intentfile.getParent();
+//			Log.i("XSBM", ": filename is " + item + " and path is " + path);
 			if (ZipStuff.getPackInfo(item, path, ".xsbmpack") == 1) {
 			    Toast.makeText(this, item + " selected", Toast.LENGTH_SHORT).show();
 			    File df = new File(intpath);
 			    DeleteRecursive(df);
 			    df.mkdir();
-			    ZipStuff.unpackZip(intpath, path + item);
+			    ZipStuff.unpackZip(intpath, path + "/" + item);
 			    ChmodRecursive(df);
 			    IconPackActivity.this.finish();
 		    } else {
@@ -69,7 +70,7 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
         	try {
         		InputStream in = getResources().openRawResource(R.raw.default_iconpack);
                 FileOutputStream out;
-				out = new FileOutputStream(extpath + "default_iconpack.zip");
+				out = new FileOutputStream(extpath + "default_iconpack.xsbm.zip");
 			    byte[] buff = new byte[1024];
 			    int read = 0;
                 while ((read = in.read(buff)) > 0) {
@@ -97,7 +98,7 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
             	f2.setWritable(true, true);
             }
 			try {
-				out = new FileOutputStream(extpath + "default_iconpack.zip");
+				out = new FileOutputStream(extpath + "default_iconpack.xsbm.zip");
 			    byte[] buff = new byte[1024];
 			    int read = 0;
                 while ((read = in.read(buff)) > 0) {
