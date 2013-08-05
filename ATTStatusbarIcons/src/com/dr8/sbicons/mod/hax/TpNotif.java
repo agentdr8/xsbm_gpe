@@ -16,7 +16,9 @@ public class TpNotif {
 			public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
 				try {
 					View pv = (View) liparam.view.findViewById(liparam.res.getIdentifier("notification_panel", "id", "com.android.systemui"));
-					pv.setBackgroundColor(paramPrefs.getInt("notif_bg_color", 0xff000000));
+					if (pv != null) {
+						pv.setBackgroundColor(paramPrefs.getInt("notif_bg_color", 0xff000000));
+					}
 				} catch (Throwable t) { XposedBridge.log(t); }
 			}
 		});

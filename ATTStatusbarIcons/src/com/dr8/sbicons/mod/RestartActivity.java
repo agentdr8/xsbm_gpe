@@ -7,9 +7,7 @@ import com.dr8.sbicons.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 import com.stericson.RootTools.*;
@@ -21,9 +19,6 @@ public class RestartActivity extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        final SharedPreferences.Editor editor = prefs.edit();
-        
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Restart Status Bar?")
         .setIcon(R.drawable.question)
@@ -33,21 +28,10 @@ public class RestartActivity extends Activity
 			public void onClick(DialogInterface dialog, int which) {
 				if (RootTools.isBusyboxAvailable()) {
 					if (RootTools.isRootAvailable()) {
-						if (prefs.getBoolean("tpnotif", false)) {
-							editor.putBoolean("tpnotif", false);
-							editor.commit();
-							Toast.makeText(RestartActivity.this, "Restarting SystemUI...", Toast.LENGTH_SHORT).show();
-							killPackage("com.android.systemui");
-							editor.putBoolean("tpnotif", true);
-							editor.commit();
-							dialog.dismiss();
-							RestartActivity.this.finish();
-						} else {
-							Toast.makeText(RestartActivity.this, "Restarting SystemUI...", Toast.LENGTH_SHORT).show();
-							killPackage("com.android.systemui");
-							dialog.dismiss();
-							RestartActivity.this.finish();
-						}
+						Toast.makeText(RestartActivity.this, "Restarting SystemUI...", Toast.LENGTH_SHORT).show();
+						killPackage("com.android.systemui");
+						dialog.dismiss();
+						RestartActivity.this.finish();
 					} else {
 						Toast.makeText(RestartActivity.this, "Your phone is not rooted", Toast.LENGTH_SHORT).show();
 					}

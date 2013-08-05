@@ -33,7 +33,6 @@ import com.google.common.collect.Multimap;
 
 import android.content.res.XModuleResources;
 import android.os.Build;
-import android.util.Log;
 import de.robv.android.xposed.IXposedHookInitPackageResources;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.IXposedHookZygoteInit;
@@ -42,7 +41,7 @@ import de.robv.android.xposed.callbacks.XC_InitPackageResources.InitPackageResou
 import de.robv.android.xposed.callbacks.XC_LoadPackage.LoadPackageParam;
 
 public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPackageResources, IXposedHookLoadPackage {
-	private static final String TAG = "XSBM";
+//	private static final String TAG = "XSBM";
 	private static String MODULE_PATH = null;
 	private static XSharedPreferences pref;
 	private static String targetpkg = "com.android.systemui";
