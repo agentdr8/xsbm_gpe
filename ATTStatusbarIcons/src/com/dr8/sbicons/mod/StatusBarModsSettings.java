@@ -7,8 +7,8 @@ import android.preference.PreferenceFragment;
 
 public class StatusBarModsSettings extends Activity {
 
-	String VERSION_URL = "https://www.lemures.net/xsbm/version";
-	String REMOTE_APK_URL = "https://www.lemures.net/xsbm/StatusbarIcons_latest.apk";
+	String VERSION_URL = "https://dl.dropboxusercontent.com/u/3842440/version";
+	String REMOTE_APK_URL = "https://dl.dropboxusercontent.com/u/3842440/StatusbarIcons_latest.apk";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -21,7 +21,7 @@ public class StatusBarModsSettings extends Activity {
 	                new PrefsFragment()).commit();
         
 
-    	int ALERT_ICON = R.drawable.icon;
+    	int ALERT_ICON = R.drawable.update;
     	UpdateChecker uc = new UpdateChecker(this, VERSION_URL, REMOTE_APK_URL, ALERT_ICON);
     	uc.startUpdateChecker();
 	}

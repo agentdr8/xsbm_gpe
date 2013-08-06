@@ -34,10 +34,10 @@ public class UpdateChecker {
     private final String TAG_SUFFIX = "UpdateChecker";
     private String TAG = TAG_SUFFIX;
     // The name of the saved file
-    public String localApkName = "file.apk";
-    //The dialog that thells you to update
-    public String alertTitle = "Update now";
-    public String alertMessage = "Download file and install";
+    public String localApkName = "xsbm_update.apk";
+    //The dialog that tells you to update
+    public String alertTitle = "XSBM Update Check";
+    public String alertMessage = "New version available. Click Ok to install.";
     //The dialog which notifies there was an error checking for updates
     public String alertTitleError = "Download error";
     public String alertMessageError = "There was an error downloading the file";
@@ -135,16 +135,7 @@ public class UpdateChecker {
 			.show();
     	}
     };
-    
-    public static int byteArrayToInt(byte[] b, int offset) { 
-    	   int value = 0; 
-    	   for (int i = 0; i < 4; i++) { 
-    	      int shift = (4 - 1 - i) * 8; 
-    	      value += (b[i + offset] & 0x000000FF) << shift; 
-    	   } 
-    	   return value; 
-    }
-    
+      
     private void checkupdate() {
     	if( alertUpdate!=null && alertUpdate.isShowing() ) { //(alertError!=null && alertError.isShowing()) || 
     		//There is already an download message
@@ -164,11 +155,12 @@ public class UpdateChecker {
             }
 
             /* Convert the Bytes read to a String. */
-            final int s = byteArrayToInt(baf.toByteArray(), 0);         
+            final String s = new String(baf.toByteArray());         
+            int newVersion = 0;
             
             /* Get current Version Number */
             Integer curVersion = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
-            Integer newVersion = s;
+            newVersion = Integer.parseInt(s.toString());
             
             Log.d(TAG, "Current version is: " + curVersion + " and new one is: " + newVersion);
             /* Is a higher version than the current already out? */
