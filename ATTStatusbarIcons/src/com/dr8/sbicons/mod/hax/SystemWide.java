@@ -53,6 +53,7 @@ public class SystemWide {
 		try {
 			for (int i = 0; i < fwicons.length; i++) {
 				String fimg = "framework/" + fwicons[i] + ".png";
+				XposedBridge.log("XSBM: Trying to get fw image: " + fimg);
 				final Bitmap fb = ZipStuff.getBitmap(path, fimg);
 				if (fb != null) {
 					XResources.setSystemWideReplacement("android", "drawable", fwicons[i], new XResources.DrawableLoader() {
@@ -65,6 +66,7 @@ public class SystemWide {
 			}
 			for (int i = 0; i < htcfw.length; i++) {
 				String himg = "framework/" + htcfw[i] + ".png";
+				XposedBridge.log("XSBM: Trying to get htcfw image: " + himg);
 				final Bitmap hb = ZipStuff.getBitmap(path, himg);
 				if (hb != null) {
 					XResources.setSystemWideReplacement("com.htc.framework", "drawable", htcfw[i], new XResources.DrawableLoader() {
@@ -76,6 +78,7 @@ public class SystemWide {
 				}
 			}
 			String fimg = "gps/" + gpson + ".png";
+			XposedBridge.log("XSBM: Trying to load gps fw image: " + fimg);
 			final Bitmap fb = ZipStuff.getBitmap(path, fimg);
 			if (fb != null) {
 				XResources.setSystemWideReplacement("android", "drawable", "stat_sys_gps_on", new XResources.DrawableLoader() {

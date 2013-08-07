@@ -1,9 +1,17 @@
 package com.dr8.sbicons.mod;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import com.dr8.sbicons.R;
+import com.stericson.RootTools.RootTools;
+
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+import android.widget.Toast;
 
 public class StatusBarModsSettings extends Activity {
 
@@ -42,4 +50,72 @@ public class StatusBarModsSettings extends Activity {
 	public void onStop() {
 		super.onStop();
 	}
+	
+	@Override
+	public void onBackPressed() {
+	    doExit();
+	}
+	
+	private void doExit() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Restart Status Bar?")
+        .setIcon(R.drawable.question)
+        .setCancelable(false)
+        .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				if (RootTools.isBusyboxAvailable()) {
+					if (RootTools.isRootAvailable()) {
+						Toast.makeText(StatusBarModsSettings.this, "Restarting SystemUI...", Toast.LENGTH_SHORT).show();
+						killPackage("com.android.systemui");
+						StatusBarModsSettings.this.finish();
+					} else {
+						Toast.makeText(StatusBarModsSettings.this, "Your phone is not rooted", Toast.LENGTH_SHORT).show();
+						StatusBarModsSettings.this.finish();
+					}
+				} else {
+					RootTools.offerBusyBox(StatusBarModsSettings.this);
+				}				
+			}
+		})
+        .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+                StatusBarModsSettings.this.finish();            
+            }
+        });
+        
+        AlertDialog alert = builder.create();
+        alert.show();
+	}
+	
+	 
+    // killPackage code by serajr @XDA 
+    // http://forum.xda-developers.com/showthread.php?p=44176299#post44176299
+    private void killPackage(String packageToKill) { 
+        Process su = null; 
+        // get superuser 
+        try { 
+            su = Runtime.getRuntime().exec("su"); 
+        } catch (IOException e) { 
+            e.printStackTrace(); 
+        } 
+         
+        // kill given package 
+        if (su != null ){ 
+            try { 
+                DataOutputStream os = new DataOutputStream(su.getOutputStream());  
+                os.writeBytes("pkill -f " + packageToKill + "\n"); 
+                os.flush(); 
+                os.writeBytes("exit\n"); 
+                os.flush(); 
+                su.waitFor(); 
+            } catch (IOException e) { 
+                e.printStackTrace(); 
+            } catch (InterruptedException e) { 
+                e.printStackTrace(); 
+            } 
+        } 
+    }
+	
 }

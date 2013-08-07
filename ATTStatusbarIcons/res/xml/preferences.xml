@@ -280,18 +280,7 @@
             android:summary="Override all other icons to the left of GPS (Sync, Headphone, Ringer, e911, etc.)"
             android:title="Misc Status Icons" />
       </PreferenceScreen>
-    
-	<PreferenceScreen
-	      		android:key="prefs_restart"
-	    		android:title="Apply changes">
-        
-		      	<intent 
-	        		android:action="android.intent.action.VIEW"
-	        		android:targetPackage="com.dr8.sbicons"
-	        		android:targetClass="com.dr8.sbicons.mod.RestartActivity"
-	    		/>
-	</PreferenceScreen>
-	
+    	
 	<PreferenceScreen
 	      		android:key="prefs_about"
 	    		android:title="About">
