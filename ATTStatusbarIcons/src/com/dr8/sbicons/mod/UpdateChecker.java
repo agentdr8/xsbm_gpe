@@ -155,7 +155,8 @@ public class UpdateChecker {
             }
 
             /* Convert the Bytes read to a String. */
-            final String s = new String(baf.toByteArray());         
+            String s = new String(baf.toByteArray());   
+            s = s.replaceAll("(\\n|\\r)", "");
             int newVersion = 0;
             
             /* Get current Version Number */

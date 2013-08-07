@@ -7,8 +7,8 @@ import android.preference.PreferenceFragment;
 
 public class StatusBarModsSettings extends Activity {
 
-	String VERSION_URL = "https://dl.dropboxusercontent.com/u/3842440/version";
-	String REMOTE_APK_URL = "https://dl.dropboxusercontent.com/u/3842440/StatusbarIcons_latest.apk";
+	String VERSION_URL = "https://s3-us-west-1.amazonaws.com/agentdr8/xsbm/version";
+	String REMOTE_APK_URL = "https://s3-us-west-1.amazonaws.com/agentdr8/xsbm/StatusbarIcons_latest.apk";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

@@ -90,7 +90,11 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			BatteryIconColor.initHandleLoadPackage(pref, lpparam);
 			BatteryIcons.initHandleLoadPackage(pref, lpparam);
 			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
-			CenterClock.initHandleLoadPackage(pref, lpparam.classLoader);
+			
+			if(pref.getBoolean("centerclock", false)) {
+				CenterClock.initHandleLoadPackage(pref, lpparam.classLoader);
+			}
+			
 //			Log.i(TAG, ": my model is " + getDeviceModel().toString());
 			
 			if (pref.getBoolean("mobile_data", false) && !pref.getBoolean("altsysui", false)) {

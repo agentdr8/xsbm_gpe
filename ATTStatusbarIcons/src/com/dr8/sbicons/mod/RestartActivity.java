@@ -18,7 +18,7 @@ public class RestartActivity extends Activity
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Restart Status Bar?")
         .setIcon(R.drawable.question)
@@ -30,7 +30,6 @@ public class RestartActivity extends Activity
 					if (RootTools.isRootAvailable()) {
 						Toast.makeText(RestartActivity.this, "Restarting SystemUI...", Toast.LENGTH_SHORT).show();
 						killPackage("com.android.systemui");
-						dialog.dismiss();
 						RestartActivity.this.finish();
 					} else {
 						Toast.makeText(RestartActivity.this, "Your phone is not rooted", Toast.LENGTH_SHORT).show();
@@ -59,7 +58,7 @@ public class RestartActivity extends Activity
     @Override
     protected void onStop() {
     	super.onStop();
-    	
+        RestartActivity.this.finish();            
     }
     
     // killPackage code by serajr @XDA 
@@ -77,7 +76,7 @@ public class RestartActivity extends Activity
         if (su != null ){ 
             try { 
                 DataOutputStream os = new DataOutputStream(su.getOutputStream());  
-                os.writeBytes("pkill " + packageToKill + "\n"); 
+                os.writeBytes("pkill -f " + packageToKill + "\n"); 
                 os.flush(); 
                 os.writeBytes("exit\n"); 
                 os.flush(); 

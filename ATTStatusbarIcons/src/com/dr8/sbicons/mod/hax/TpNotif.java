@@ -15,18 +15,29 @@ public class TpNotif {
 	public static void initPackageResources(final XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		resParam.res.hookLayout("com.android.systemui", "layout", "super_status_bar", new XC_LayoutInflated() {
 			@Override
-			public void handleLayoutInflated(LayoutInflatedParam liparam) throws NullPointerException {
+			public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
 				try {
-					pv = (View) liparam.view.findViewById(liparam.res.getIdentifier("notification_panel", "id", "com.android.systemui"));
-					if (pv == null) {
+					if (liparam.view == null) {
 						return;
-					} else {
-						pv.setBackgroundColor(paramPrefs.getInt("notif_bg_color", 0xff000000));
 					}
-				} catch (NullPointerException t) { 
+					int vid = liparam.res.getIdentifier("notification_panel", "id", "com.android.systemui");
+					if (vid != 0) {
+						pv = (View) liparam.view.findViewById(vid);
+						if (pv == null) {
+							return;
+						} else {
+	//						String bgcolor = Integer.toString(paramPrefs.getInt("notif_bg_color", 0xff000000));
+	//						pv.getBackground().setColorFilter(Color.parseColor(bgcolor), PorterDuff.Mode.MULTIPLY); 
+							pv.setBackgroundColor(paramPrefs.getInt("notif_bg_color", 0xff000000));
+						}
+					} else {
+						return;
+					}
+				} catch (Throwable t) { 
 					XposedBridge.log(t); 
 				} 
 			}
 		});
 	}
+	
 }
