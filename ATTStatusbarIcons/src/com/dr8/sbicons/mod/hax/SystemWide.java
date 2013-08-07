@@ -12,13 +12,13 @@ import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 
 public class SystemWide {
-	
+
 	@SuppressLint("SdCardPath")
 	public static void initHandleZygote(StartupParam startupParam, XSharedPreferences prefs) {
-		
-	
+
+
 		String path = "/data/data/com.dr8.sbicons/xsbm/";
-		
+
 		String[] fwicons = {
 				"stat_notify_car_mode",
 				"stat_sys_adb",
@@ -35,7 +35,7 @@ public class SystemWide {
 				"stat_sys_download_anim4",
 				"stat_sys_download_anim5"
 		};
-		
+
 		String[] htcfw = {
 				"text_anchor_bar_left",
 				"text_anchor_bar_center",
@@ -47,9 +47,9 @@ public class SystemWide {
 				"icon_btn_selected_all_dark",
 				"stat_sys_hdmi_on"
 		};
-		
+
 		String gpson = "stat_sys_gps_on";
-		
+
 		try {
 			for (int i = 0; i < fwicons.length; i++) {
 				String fimg = "framework/" + fwicons[i] + ".png";
@@ -89,6 +89,6 @@ public class SystemWide {
 				});
 			}
 		} catch (Throwable t) { XposedBridge.log(t); }
-		
+
 	}
 }
