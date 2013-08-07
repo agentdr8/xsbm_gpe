@@ -58,10 +58,10 @@ public class StatusBarModsSettings extends Activity {
 	
 	private void doExit() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Restart Status Bar?")
+        builder.setTitle("Apply changes?")
         .setIcon(R.drawable.question)
         .setCancelable(false)
-        .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+        .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				if (RootTools.isBusyboxAvailable()) {
@@ -78,7 +78,7 @@ public class StatusBarModsSettings extends Activity {
 				}				
 			}
 		})
-        .setNegativeButton("Cancel",new DialogInterface.OnClickListener() {
+        .setNegativeButton("Exit",new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 dialog.cancel();
                 StatusBarModsSettings.this.finish();            

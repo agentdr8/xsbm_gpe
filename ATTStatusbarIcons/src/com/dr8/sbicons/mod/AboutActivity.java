@@ -19,6 +19,7 @@ public class AboutActivity extends Activity
         super.onCreate(savedInstanceState);
         
 		try {
+			mCtx = this.getApplicationContext();
 			curVersion = mCtx.getPackageManager().getPackageInfo(mCtx.getPackageName(), 0).versionName;
 		} catch (NameNotFoundException e) {
 			// TODO Auto-generated catch block
