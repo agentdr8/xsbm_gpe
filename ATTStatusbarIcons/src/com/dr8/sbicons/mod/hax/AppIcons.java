@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
@@ -15,7 +16,7 @@ import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 @SuppressLint("SdCardPath")
 public class AppIcons {
 
-	public static void initPackageResources(XSharedPreferences paramPrefs, XC_InitPackageResources.InitPackageResourcesParam resParam, String rep, XModuleResources modres) {
+	public static void initPackageResources(final XSharedPreferences paramPrefs, XC_InitPackageResources.InitPackageResourcesParam resParam, String rep, XModuleResources modres) {
 		try {
 			String target = resParam.packageName;
 			String path = "/data/data/com.dr8.sbicons/xsbm/";
@@ -29,8 +30,14 @@ public class AppIcons {
     			resParam.res.setReplacement(target, "drawable", noext, new XResources.DrawableLoader() {
 				@Override
 				public Drawable newDrawable(XResources res, int id) throws Throwable {
-					return new BitmapDrawable(null, a);
+					if (paramPrefs.getBoolean("appscolor_enabled", false)) {
+						BitmapDrawable bd = new BitmapDrawable(null, a);
+						bd.setColorFilter(paramPrefs.getInt("appscolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+						return bd;
+					} else {
+						return new BitmapDrawable(null, a);
 					}
+				}
     			});
         	}
 	    } catch (Throwable t) { XposedBridge.log(t); }

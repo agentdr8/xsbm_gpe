@@ -3,6 +3,7 @@ package com.dr8.sbicons.mod.hax;
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.getObjectField;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -120,6 +121,9 @@ public class MobileData {
 									final Bitmap gb = ZipStuff.getBitmap(path, gimg);
 									if (gb != null) {
 										Drawable gd = new BitmapDrawable(null, gb);
+										if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+											gd.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+										}	
 										iv.setImageDrawable(gd);
 									}
 								} else if (netstate == 1) {
@@ -129,6 +133,9 @@ public class MobileData {
 										final Bitmap gb = ZipStuff.getBitmap(path, gimg);
 										if (gb != null) {
 											Drawable gd = new BitmapDrawable(null, gb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationg.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationg.addFrame(gd, 750);
 										}
 									}
@@ -142,6 +149,9 @@ public class MobileData {
 										final Bitmap gb = ZipStuff.getBitmap(path, gimg);
 										if (gb != null) {
 											Drawable gd = new BitmapDrawable(null, gb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationg.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationg.addFrame(gd, 750);
 										}
 									}
@@ -155,6 +165,9 @@ public class MobileData {
 										final Bitmap gb = ZipStuff.getBitmap(path, gimg);
 										if (gb != null) {
 											Drawable gd = new BitmapDrawable(null, gb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationg.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationg.addFrame(gd, 750);
 										}
 									}
@@ -169,6 +182,9 @@ public class MobileData {
 									final Bitmap eb = ZipStuff.getBitmap(path, eimg);
 									if (eb != null) {
 										Drawable ed = new BitmapDrawable(null, eb);
+										if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+											ed.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+										}
 										iv.setImageDrawable(ed);
 									}
 								} else if (netstate == 1) {
@@ -178,6 +194,9 @@ public class MobileData {
 										final Bitmap eb = ZipStuff.getBitmap(path, eimg);
 										if (eb != null) {
 											Drawable ed = new BitmapDrawable(null, eb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animatione.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animatione.addFrame(ed, 750);
 										}
 									}
@@ -191,6 +210,9 @@ public class MobileData {
 										final Bitmap eb = ZipStuff.getBitmap(path, eimg);
 										if (eb != null) {
 											Drawable ed = new BitmapDrawable(null, eb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animatione.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animatione.addFrame(ed, 750);
 										}
 									}
@@ -204,6 +226,9 @@ public class MobileData {
 										final Bitmap eb = ZipStuff.getBitmap(path, eimg);
 										if (eb != null) {
 											Drawable ed = new BitmapDrawable(null, eb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animatione.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animatione.addFrame(ed, 750);
 										}
 									}
@@ -218,6 +243,9 @@ public class MobileData {
 									final Bitmap tgb = ZipStuff.getBitmap(path, tgimg);
 									if (tgb != null) {
 										Drawable tgd = new BitmapDrawable(null, tgb);
+										if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+											tgd.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+										}
 										iv.setImageDrawable(tgd);
 									}
 								} else if (netstate == 1) {
@@ -227,6 +255,9 @@ public class MobileData {
 										final Bitmap tgb = ZipStuff.getBitmap(path, tgimg);
 										if (tgb != null) {
 											Drawable tgd = new BitmapDrawable(null, tgb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationtg.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationtg.addFrame(tgd, 750);
 										}
 									}
@@ -240,6 +271,9 @@ public class MobileData {
 										final Bitmap tgb = ZipStuff.getBitmap(path, tgimg);
 										if (tgb != null) {
 											Drawable tgd = new BitmapDrawable(null, tgb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationtg.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationtg.addFrame(tgd, 750);
 										}
 									}
@@ -253,6 +287,9 @@ public class MobileData {
 										final Bitmap tgb = ZipStuff.getBitmap(path, tgimg);
 										if (tgb != null) {
 											Drawable tgd = new BitmapDrawable(null, tgb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationtg.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationtg.addFrame(tgd, 750);
 										}
 									}
@@ -268,6 +305,9 @@ public class MobileData {
 									final Bitmap fgb = ZipStuff.getBitmap(path, fgimg);
 									if (fgb != null) {
 										Drawable fgd = new BitmapDrawable(null, fgb);
+										if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+											fgd.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+										}
 										iv.setImageDrawable(fgd);
 									}
 								} else if (netstate == 1) {
@@ -277,6 +317,9 @@ public class MobileData {
 										final Bitmap fgb = ZipStuff.getBitmap(path, fgimg);
 										if (fgb != null) {
 											Drawable fgd = new BitmapDrawable(null, fgb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationfg.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationfg.addFrame(fgd, 750);
 										}
 									}
@@ -290,6 +333,9 @@ public class MobileData {
 										final Bitmap fgb = ZipStuff.getBitmap(path, fgimg);
 										if (fgb != null) {
 											Drawable fgd = new BitmapDrawable(null, fgb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationfg.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationfg.addFrame(fgd, 750);
 										}
 									}
@@ -302,7 +348,10 @@ public class MobileData {
 										String fgimg = "mobile/4g/" + fourgicons[i];
 										final Bitmap fgb = ZipStuff.getBitmap(path, fgimg);
 										if (fgb != null) {
-											Drawable fgd = new BitmapDrawable(null, fgb);											
+											Drawable fgd = new BitmapDrawable(null, fgb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationfg.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationfg.addFrame(fgd, 750);
 										}
 									}
@@ -317,6 +366,9 @@ public class MobileData {
 									final Bitmap lb = ZipStuff.getBitmap(path, limg);
 									if (lb != null) {
 										Drawable ld = new BitmapDrawable(null, lb);
+										if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+											ld.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+										}
 										iv.setImageDrawable(ld);
 									}
 								} else if (netstate == 1) {
@@ -326,6 +378,9 @@ public class MobileData {
 										final Bitmap lb = ZipStuff.getBitmap(path, limg);
 										if (lb != null) {
 											Drawable ld = new BitmapDrawable(null, lb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationl.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationl.addFrame(ld, 750);
 										}
 									}
@@ -339,6 +394,9 @@ public class MobileData {
 										final Bitmap lb = ZipStuff.getBitmap(path, limg);
 										if (lb != null) {
 											Drawable ld = new BitmapDrawable(null, lb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationl.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationl.addFrame(ld, 750);
 										}
 									}
@@ -352,6 +410,9 @@ public class MobileData {
 										final Bitmap lb = ZipStuff.getBitmap(path, limg);
 										if (lb != null) {
 											Drawable ld = new BitmapDrawable(null, lb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationl.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationl.addFrame(ld, 750);
 										}
 									}
@@ -366,6 +427,9 @@ public class MobileData {
 									final Bitmap hb = ZipStuff.getBitmap(path, himg);
 									if (hb != null) {
 										Drawable hd = new BitmapDrawable(null, hb);
+										if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+											hd.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+										}
 										iv.setImageDrawable(hd);
 									}
 								} else if (netstate == 1) {
@@ -375,6 +439,9 @@ public class MobileData {
 										final Bitmap hb = ZipStuff.getBitmap(path, himg);
 										if (hb != null) {
 											Drawable hd = new BitmapDrawable(null, hb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationh.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationh.addFrame(hd, 750);
 										}
 									}
@@ -388,6 +455,9 @@ public class MobileData {
 										final Bitmap hb = ZipStuff.getBitmap(path, himg);
 										if (hb != null) {
 											Drawable hd = new BitmapDrawable(null, hb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationh.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationh.addFrame(hd, 750);
 										}
 									}
@@ -401,6 +471,9 @@ public class MobileData {
 										final Bitmap hb = ZipStuff.getBitmap(path, himg);
 										if (hb != null) {
 											Drawable hd = new BitmapDrawable(null, hb);
+											if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
+												animationh.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+											}
 											animationh.addFrame(hd, 750);
 										}
 									}

@@ -3,6 +3,7 @@ package com.dr8.sbicons.mod.hax;
 import android.content.res.XModuleResources;
 import android.content.res.XResources;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import com.dr8.sbicons.mod.ZipStuff;
@@ -13,7 +14,7 @@ import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 
 public class ToTheLeft {
 
-	public static void initPackageResources(XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
+	public static void initPackageResources(final XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			
 			String path = "/data/data/com.dr8.sbicons/xsbm/";
@@ -33,7 +34,13 @@ public class ToTheLeft {
 						resParam.res.setReplacement("com.android.phone", "drawable", phonearray[i], new XResources.DrawableLoader() {
 							@Override
 							public Drawable newDrawable(XResources res, int id) throws Throwable {
-								return new BitmapDrawable(null, b);
+								if (paramPrefs.getBoolean("misccolor_enabled", false)) {
+									BitmapDrawable bd = new BitmapDrawable(null, b);
+									bd.setColorFilter(paramPrefs.getInt("misccolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+									return bd;
+								} else {
+									return new BitmapDrawable(null, b);
+								}
 							}
 						});
 					}
@@ -82,7 +89,13 @@ public class ToTheLeft {
 						resParam.res.setReplacement("com.android.systemui", "drawable", miscarray[i], new XResources.DrawableLoader() {
 							@Override
 							public Drawable newDrawable(XResources res, int id) throws Throwable {
-								return new BitmapDrawable(null, b);
+								if (paramPrefs.getBoolean("misccolor_enabled", false)) {
+									BitmapDrawable bd = new BitmapDrawable(null, b);
+									bd.setColorFilter(paramPrefs.getInt("misccolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+									return bd;
+								} else {
+									return new BitmapDrawable(null, b);
+								}
 							}
 						});
 					}
@@ -98,7 +111,13 @@ public class ToTheLeft {
 					resParam.res.setReplacement("com.android.settings", "drawable", "stat_sys_data_usb", new XResources.DrawableLoader() {
 						@Override
 						public Drawable newDrawable(XResources res, int id) throws Throwable {
-							return new BitmapDrawable(null, s);
+							if (paramPrefs.getBoolean("misccolor_enabled", false)) {
+								BitmapDrawable sd = new BitmapDrawable(null, s);
+								sd.setColorFilter(paramPrefs.getInt("misccolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+								return sd;
+							} else {
+								return new BitmapDrawable(null, s);
+							}
 						}
 					});
 				}
@@ -113,7 +132,13 @@ public class ToTheLeft {
 						resParam.res.setReplacement("com.htc.htcpowermanager", "drawable", pwrmgr[i], new XResources.DrawableLoader() {
 							@Override
 							public Drawable newDrawable(XResources res, int id) throws Throwable {
-								return new BitmapDrawable(null, b);
+								if (paramPrefs.getBoolean("misccolor_enabled", false)) {
+									BitmapDrawable bd = new BitmapDrawable(null, b);
+									bd.setColorFilter(paramPrefs.getInt("misccolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+									return bd;
+								} else {
+									return new BitmapDrawable(null, b);
+								}
 							}
 						});
 					}

@@ -5,6 +5,7 @@ import com.dr8.sbicons.mod.ZipStuff;
 import android.annotation.SuppressLint;
 import android.content.res.XResources;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import de.robv.android.xposed.IXposedHookZygoteInit.StartupParam;
@@ -14,7 +15,7 @@ import de.robv.android.xposed.XposedBridge;
 public class SystemWide {
 
 	@SuppressLint("SdCardPath")
-	public static void initHandleZygote(StartupParam startupParam, XSharedPreferences prefs) {
+	public static void initHandleZygote(StartupParam startupParam, final XSharedPreferences paramPrefs) {
 
 
 		String path = "/data/data/com.dr8.sbicons/xsbm/";
@@ -59,7 +60,13 @@ public class SystemWide {
 					XResources.setSystemWideReplacement("android", "drawable", fwicons[i], new XResources.DrawableLoader() {
 						@Override
 						public Drawable newDrawable(XResources res, int id) throws Throwable {
-							return new BitmapDrawable(null, fb);
+							if (paramPrefs.getBoolean("fwcolor_enabled", false)) {
+								BitmapDrawable fd = new BitmapDrawable(null, fb);
+								fd.setColorFilter(paramPrefs.getInt("fwcolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+								return fd;
+							} else {
+								return new BitmapDrawable(null, fb);
+							}
 						}
 					});
 				}
@@ -72,7 +79,13 @@ public class SystemWide {
 					XResources.setSystemWideReplacement("com.htc.framework", "drawable", htcfw[i], new XResources.DrawableLoader() {
 						@Override
 						public Drawable newDrawable(XResources res, int id) throws Throwable {
-							return new BitmapDrawable(null, hb);
+							if (paramPrefs.getBoolean("fwcolor_enabled", false)) {
+								BitmapDrawable hd = new BitmapDrawable(null, hb);
+								hd.setColorFilter(paramPrefs.getInt("fwcolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+								return hd;
+							} else {
+								return new BitmapDrawable(null, hb);
+							}
 						}
 					});
 				}
@@ -84,7 +97,13 @@ public class SystemWide {
 				XResources.setSystemWideReplacement("android", "drawable", "stat_sys_gps_on", new XResources.DrawableLoader() {
 					@Override
 					public Drawable newDrawable(XResources res, int id) throws Throwable {
-						return new BitmapDrawable(null, fb);
+						if (paramPrefs.getBoolean("gpscolor_enabled", false)) {
+							BitmapDrawable fd = new BitmapDrawable(null, fb);
+							fd.setColorFilter(paramPrefs.getInt("gpscolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+							return fd;
+						} else {
+							return new BitmapDrawable(null, fb);
+						}
 					}
 				});
 			}
