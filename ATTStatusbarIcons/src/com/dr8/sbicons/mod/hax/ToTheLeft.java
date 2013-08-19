@@ -41,12 +41,12 @@ public class ToTheLeft {
 				for (int i = 0; i < miscarray.length; i++) {
 					String mimg = "misc/" + miscarray[i] + ".png";
 					final Bitmap b = ZipStuff.getBitmap(path, mimg);
+					final BitmapDrawable bd = new BitmapDrawable(null, b);
 					if (b != null) {
 						resParam.res.setReplacement("com.android.systemui", "drawable", miscarray[i], new XResources.DrawableLoader() {
 							@Override
 							public Drawable newDrawable(XResources res, int id) throws Throwable {
 								if (paramPrefs.getBoolean("misccolor_enabled", false)) {
-									BitmapDrawable bd = new BitmapDrawable(null, b);
 									bd.setColorFilter(paramPrefs.getInt("misccolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 									return bd;
 								} else {
@@ -64,12 +64,12 @@ public class ToTheLeft {
 				for (int i = 0; i < phicons.length; i++) {
 					String pimg = "phone/" + phicons[i] + ".png";
 					final Bitmap b = ZipStuff.getBitmap(path, pimg);
+					final BitmapDrawable bd = new BitmapDrawable(null, b);
 					if (b != null) {
 						resParam.res.setReplacement("com.android.phone", "drawable", phicons[i], new XResources.DrawableLoader() {
 							@Override
 							public Drawable newDrawable(XResources res, int id) throws Throwable {
 								if (paramPrefs.getBoolean("misccolor_enabled", false)) {
-									BitmapDrawable bd = new BitmapDrawable(null, b);
 									bd.setColorFilter(paramPrefs.getInt("misccolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 									return bd;
 								} else {

@@ -57,12 +57,12 @@ public class SystemWide {
 					String fimg = "framework/" + fwicons[i] + ".png";
 					//				XposedBridge.log("XSBM: Trying to get fw image: " + fimg);
 					final Bitmap fb = ZipStuff.getBitmap(path, fimg);
+					final BitmapDrawable fd = new BitmapDrawable(null, fb);
 					if (fb != null) {
 						XResources.setSystemWideReplacement("android", "drawable", fwicons[i], new XResources.DrawableLoader() {
 							@Override
 							public Drawable newDrawable(XResources res, int id) throws Throwable {
 								if (paramPrefs.getBoolean("fwcolor_enabled", false)) {
-									BitmapDrawable fd = new BitmapDrawable(null, fb);
 									fd.setColorFilter(paramPrefs.getInt("fwcolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 									return fd;
 								} else {
@@ -76,12 +76,12 @@ public class SystemWide {
 				for (int i = 0; i < phicons.length; i++) {
 					String pimg = "phone/" + phicons[i] + ".png";
 					final Bitmap b = ZipStuff.getBitmap(path, pimg);
+					final BitmapDrawable bd = new BitmapDrawable(null, b);
 					if (b != null) {
 						XResources.setSystemWideReplacement("android", "drawable", phicons[i], new XResources.DrawableLoader() {
 							@Override
 							public Drawable newDrawable(XResources res, int id) throws Throwable {
 								if (paramPrefs.getBoolean("misccolor_enabled", false)) {
-									BitmapDrawable bd = new BitmapDrawable(null, b);
 									bd.setColorFilter(paramPrefs.getInt("misccolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 									return bd;
 								} else {
@@ -97,12 +97,12 @@ public class SystemWide {
 				String fimg = "gps/" + gpson + ".png";
 				//			XposedBridge.log("XSBM: Trying to load gps fw image: " + fimg);
 				final Bitmap fb = ZipStuff.getBitmap(path, fimg);
+				final BitmapDrawable fd = new BitmapDrawable(null, fb);
 				if (fb != null) {
 					XResources.setSystemWideReplacement("android", "drawable", "stat_sys_gps_on", new XResources.DrawableLoader() {
 						@Override
 						public Drawable newDrawable(XResources res, int id) throws Throwable {
 							if (paramPrefs.getBoolean("gpscolor_enabled", false)) {
-								BitmapDrawable fd = new BitmapDrawable(null, fb);
 								fd.setColorFilter(paramPrefs.getInt("gpscolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 								return fd;
 							} else {

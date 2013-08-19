@@ -20,13 +20,14 @@ public class GPS {
 			String path = "/data/data/com.dr8.sbicons/xsbm/";
 			String gacq = "gps/stat_sys_gps_acquiring.png";
 			final Bitmap h = ZipStuff.getBitmap(path, gacq);
+			final BitmapDrawable hd = new BitmapDrawable(null, h);
+			
 			if (h != null) {
 //				XposedBridge.log("XSBM: replacing gps_acq in sysui");
 				resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_gps_acquiring", new XResources.DrawableLoader() {
 					@Override
 					public Drawable newDrawable(XResources res, int id) throws Throwable {
 						if (paramPrefs.getBoolean("gpscolor_enabled", false)) {
-							BitmapDrawable hd = new BitmapDrawable(null, h);
 							hd.setColorFilter(paramPrefs.getInt("gpscolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 							return hd;
 						} else {

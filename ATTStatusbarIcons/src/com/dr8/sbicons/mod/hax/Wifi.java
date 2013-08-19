@@ -37,12 +37,12 @@ public class Wifi {
 			for (int i = 0; i < wifiarray.length; i++) {
 				String wimg = "wifi/" + wifiarray[i] + ".png";
 				final Bitmap w = ZipStuff.getBitmap(path, wimg);
+				final BitmapDrawable wd = new BitmapDrawable(null, w);
 				if (w != null) {
 					resParam.res.setReplacement(targetpkg, "drawable", wifiarray[i], new XResources.DrawableLoader() {
 						@Override
 						public Drawable newDrawable(XResources res, int id) throws Throwable {
 							if (paramPrefs.getBoolean("wificolor_enabled", false)) {
-								BitmapDrawable wd = new BitmapDrawable(null, w);
 								wd.setColorFilter(paramPrefs.getInt("wificolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 								return wd;
 							} else {

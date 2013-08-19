@@ -32,12 +32,13 @@ public class MobileDataGE {
 			for (int i = 0; i < mobicons.length; i++) {
 				String simg = "mobile/" + mobicons[i] + ".png";
 				final Bitmap s = ZipStuff.getBitmap(path, simg);
+				final BitmapDrawable sd = new BitmapDrawable(null, s);
+
 				if (s != null) {
 					resParam.res.setReplacement(targetpkg, "drawable", mobicons[i], new XResources.DrawableLoader() {
 						@Override
 						public Drawable newDrawable(XResources res, int id) throws Throwable {
 							if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
-								BitmapDrawable sd = new BitmapDrawable(null, s);
 								sd.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 								return sd;
 							} else {

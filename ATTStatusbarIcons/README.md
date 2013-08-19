@@ -1,3 +1,3 @@
-Xposed module for HTC One
+﻿Xposed module for HTC One
 
-Running Sense-based ROMs
+Running Google Play Edition ROMs

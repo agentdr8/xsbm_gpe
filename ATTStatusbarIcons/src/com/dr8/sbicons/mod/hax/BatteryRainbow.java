@@ -48,40 +48,8 @@ public class BatteryRainbow {
 						}
 					} catch (Throwable t) { XposedBridge.log(t); }
 				}
-	
+
 			});
 		}
-//		if (paramPrefs.getBoolean("batt_text_rainbow", false)) {
-//			findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", lpParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook() {
-//				@Override
-//				protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-//					try {
-//						int blevel = getIntField(param.thisObject, "level");
-//						@SuppressWarnings("unchecked")
-//						int m = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).size();
-//						for (int n = 0; n < m; n++) {
-//							@SuppressWarnings("unchecked")
-//							TextView tv = ((ArrayList<TextView>) getObjectField(param.thisObject, "mLabelViews")).get(n);
-//							if (blevel <= 20) {
-//								final int btcolor = paramPrefs.getInt("batt_color_0-20", 0xffff0000);
-//								tv.setTextColor(btcolor);
-//							} else if (blevel >= 21 && blevel <= 40) {
-//								final int btcolor = paramPrefs.getInt("batt_color_21-40", 0xffffff00);
-//								tv.setTextColor(btcolor);
-//							} else if (blevel >= 41 && blevel <= 60) {
-//								final int btcolor = paramPrefs.getInt("batt_color_41-60", 0xffffff00);
-//								tv.setTextColor(btcolor);
-//							} else if (blevel >= 61 && blevel <= 80) {
-//								final int btcolor = paramPrefs.getInt("batt_color_61-80", 0xff00ff00);
-//								tv.setTextColor(btcolor);
-//							} else if (blevel >= 81 && blevel <= 100) {
-//								final int btcolor = paramPrefs.getInt("batt_color_81-100", 0xff35b5e5);
-//								tv.setTextColor(btcolor);
-//							}
-//						}
-//					} catch (Throwable t) { XposedBridge.log(t); }
-//				}
-//			});
-//		}
 	}
 }

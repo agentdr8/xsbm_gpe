@@ -40,12 +40,12 @@ public class SignalBars {
 			for (int i = 0; i < signalarray.length; i++) {
 				String simg = "signal/" + signalarray[i] + ".png";
 				final Bitmap s = ZipStuff.getBitmap(path, simg);
+				final BitmapDrawable sd = new BitmapDrawable(null, s);
 				if (s != null) {
 					resParam.res.setReplacement(targetpkg, "drawable", signalarray[i], new XResources.DrawableLoader() {
 						@Override
 						public Drawable newDrawable(XResources res, int id) throws Throwable {
 							if (paramPrefs.getBoolean("signalcolor_enabled", false)) {
-								BitmapDrawable sd = new BitmapDrawable(null, s);
 								sd.setColorFilter(paramPrefs.getInt("signalcolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 								return sd;
 							} else {

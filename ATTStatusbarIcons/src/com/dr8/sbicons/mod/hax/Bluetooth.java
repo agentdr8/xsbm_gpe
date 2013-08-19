@@ -22,12 +22,14 @@ public class Bluetooth {
 			String btcon = "bt/stat_sys_data_bluetooth_connected.png";
 			final Bitmap b = ZipStuff.getBitmap(path, bt);
 			final Bitmap c = ZipStuff.getBitmap(path, btcon);
+			final BitmapDrawable bd = new BitmapDrawable(null, b);
+			final BitmapDrawable bc = new BitmapDrawable(null, c);
+
 			if (b != null) {
 				resParam.res.setReplacement(targetpkg , "drawable", "stat_sys_data_bluetooth", new XResources.DrawableLoader() {
 					@Override
 					public Drawable newDrawable(XResources res, int id) throws Throwable {
 						if (paramPrefs.getBoolean("misccolor_enabled", false)) {
-							BitmapDrawable bd = new BitmapDrawable(null, b);
 							bd.setColorFilter(paramPrefs.getInt("misccolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 							return bd;
 						} else {
@@ -41,7 +43,6 @@ public class Bluetooth {
 					@Override
 					public Drawable newDrawable(XResources res, int id) throws Throwable {
 						if (paramPrefs.getBoolean("misccolor_enabled", false)) {
-							BitmapDrawable bc = new BitmapDrawable(null, c);
 							bc.setColorFilter(paramPrefs.getInt("misccolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 							return bc;
 						} else {
