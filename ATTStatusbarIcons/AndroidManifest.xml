@@ -41,7 +41,7 @@
         <meta-data android:value="Mod to change statusbar icons &amp; bg transparency, clock visibility, %battery, and other items" android:name="xposeddescription"/>
         <receiver android:name=".mod.UpdateReceiver">
             <intent-filter>
-            	<action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            	<action android:name="android.intent.action.PACKAGE_REPLACED" />
     			<data android:scheme="package" />
     		</intent-filter>
         </receiver>

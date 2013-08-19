@@ -23,11 +23,11 @@ public class AppIcons {
 			
 	    	String repl = "apps/" + target + "-" + rep;
 //	    	Log.d("XSBM", "getting image from zip: " + repl);
-			final Bitmap a = ZipStuff.getBitmap(path, repl);	        	
+			final Bitmap a = ZipStuff.getBitmap(path, repl);
+			final BitmapDrawable bd = new BitmapDrawable(null, a);
     		if (a != null) {
     			String noext = rep.substring(0, rep.length() - 4);
 //    			Log.d("XSBM", " our rep minus extension " + noext);
-				final BitmapDrawable bd = new BitmapDrawable(null, a);
     			resParam.res.setReplacement(target, "drawable", noext, new XResources.DrawableLoader() {
 				@Override
 				public Drawable newDrawable(XResources res, int id) throws Throwable {
