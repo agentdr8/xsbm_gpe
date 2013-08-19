@@ -8,65 +8,22 @@
     <PreferenceScreen 
         android:key="prefs_tweaks"
         android:title="Misc Tweaks">
-        
-        <CheckBoxPreference
-            android:defaultValue="false"
+       
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            alphaSlider="true"
+            showCheckbox="true"
+            android:defaultValue="#7f000000"
             android:key="tpstatus"
-            android:summary="Transparent statusbar background"
-            android:title="Transparent Statusbar" />
-           
-        <ListPreference 
-            android:entries="@array/pref_tpsb_names" 
-            android:title="Transparent Statusbar Style" 
-            android:key="tpsbstyle" 
-            android:entryValues="@array/pref_tpsb_values" 
-            android:summary="Choose between fully transparent and 1px gray divider" 
-            android:defaultValue="full" />
-       
-       <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="tpnotif"
-            android:summary="Override notification background"
-            android:title="Notification Background" />
-       
+            android:summary="Transparent statusbar background color (if enabled)"
+            android:title="Transparent statusbar bg color" />
+ 
        <net.margaritov.preference.colorpicker.ColorPickerPreference
             alphaSlider="true"
             showCheckbox="true"
-            android:defaultValue="#ff000000"
-            android:key="notif_bg_color"
-            android:summary="Color of the notification pulldown bg"
+            android:defaultValue="#7f000000"
+            android:key="tpnotif"
+            android:summary="Color of the notification background (if enabled)"
             android:title="Notification bg color" />
-       
-       <!-- <net.margaritov.preference.colorpicker.ColorPickerPreference
-            alphaSlider="true"
-            showCheckbox="true"
-            android:defaultValue="#C0000000"
-            android:key="qstile_bg_color"
-            android:summary="Color of the QS tiles bg"
-            android:title="Quick Settings Tile bg" /> -->
-       
-       <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="tpnav"
-            android:summary="Transparent Sense Navbar background"
-            android:title="Transparent Sense Navbar" />
-              
-       <!--  <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="tpapps"
-            android:summary="Transparent Sense app drawer background"
-            android:title="Transparent Sense App Drawer" /> -->
-			
-			<!-- <PreferenceScreen
-	      		android:key="prefs_qs"
-	    		android:title="Reorder Quick Settings">
-        
-		      	<intent 
-	        		android:action="android.intent.action.VIEW"
-	        		android:targetPackage="com.dr8.sbicons"
-	        		android:targetClass="com.dr8.sbicons.mod.QSSortActivity"
-	    		/>
-	  		</PreferenceScreen> -->
 	  		  						             
      </PreferenceScreen>
      
@@ -88,9 +45,9 @@
         
         <CheckBoxPreference
             android:defaultValue="false"
-            android:key="hideampm"
-            android:summary="Removes AM/PM from clock"
-            android:title="Hide AM/PM" />
+            android:key="addampm"
+            android:summary="Adds AM/PM to clock"
+            android:title="Add AM/PM" />
             
          <net.margaritov.preference.colorpicker.ColorPickerPreference
             alphaSlider="true"
@@ -123,7 +80,7 @@
             showCheckbox="true"
             android:defaultValue="#ff35b5e5"
             android:key="batt_text_color"
-            android:summary="Fixed color of the text battery and icon battery"
+            android:summary="Fixed color of the icon battery"
             android:title="Battery % color" />
                   
           <CheckBoxPreference
@@ -131,17 +88,11 @@
             android:key="batt_icon_rainbow"
             android:summary="Colorizes battery icons based on current charge level (works best with light-colored battery icons; overrides manual color selection above)"
             android:title="Battery Icon Colorize" />
-          
-         <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="batt_text_rainbow"
-            android:summary="Colorizes stock text battery % based on current charge level (overrides manual color selection above)"
-            android:title="Text Battery Colorize" />
-         
+                  
          	<PreferenceScreen 
      			android:key="prefs_battery_color_ranges"
         		android:title="Battery Range Colors"
-        		android:summary="Applies to colorized text and icon batteries">
+        		android:summary="Applies to colorized icon batteries">
         	
          	    <net.margaritov.preference.colorpicker.ColorPickerPreference
 		           alphaSlider="true"
@@ -263,30 +214,6 @@
 	  	    
 	  	</PreferenceScreen>
  		
-	  	<CheckBoxPreference
-            android:defaultValue="true"
-            android:key="hideatt"
-            android:summary="Hide the mobile data icons when connected to Wifi"
-            android:title="Auto-hide Mobile Data" />	  	
-	  	
-	  	<CheckBoxPreference
-            android:defaultValue="false"
-            android:key="altsysui"
-            android:summary="Check this if mobile data icons don't override when that option is enabled"
-            android:title="Alternate SystemUI support" />
-	  	
-	  	<CheckBoxPreference
-            android:defaultValue="false"
-            android:key="hidesim"
-            android:summary="Hide the missing SIM card icon"
-            android:title="Remove no-SIM Icon" />
-	  	
-	  	<CheckBoxPreference
-            android:defaultValue="false"
-            android:key="hidesignal"
-            android:summary="Hide the cellular signal bars"
-            android:title="Remove Signal Icons" />
-	  	
 	  	<CheckBoxPreference
             android:defaultValue="false"
             android:key="framework"

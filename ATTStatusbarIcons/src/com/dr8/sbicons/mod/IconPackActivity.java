@@ -68,9 +68,9 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
         File f = new File(extpath);
         if (f.isDirectory()) {
         	try {
-        		InputStream in = getResources().openRawResource(R.raw.default_iconpack);
+        		InputStream in = getResources().openRawResource(R.raw.default_iconpack_ge);
                 FileOutputStream out;
-				out = new FileOutputStream(extpath + "default_iconpack.xsbm.zip");
+				out = new FileOutputStream(extpath + "default_iconpack_ge.xsbm.zip");
 			    byte[] buff = new byte[1024];
 			    int read = 0;
                 while ((read = in.read(buff)) > 0) {
@@ -88,7 +88,7 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
 	        }
         } else {
         	f.mkdirs();
-        	InputStream in = getResources().openRawResource(R.raw.default_iconpack);
+        	InputStream in = getResources().openRawResource(R.raw.default_iconpack_ge);
             FileOutputStream out;
             File f2 = new File(intpath);
             if (!f2.isDirectory()) {
@@ -98,7 +98,7 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
             	f2.setWritable(true, true);
             }
 			try {
-				out = new FileOutputStream(extpath + "default_iconpack.xsbm.zip");
+				out = new FileOutputStream(extpath + "default_iconpack_ge.xsbm.zip");
 			    byte[] buff = new byte[1024];
 			    int read = 0;
                 while ((read = in.read(buff)) > 0) {

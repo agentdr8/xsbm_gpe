@@ -18,25 +18,10 @@ public class GPS {
 		try {
 			String targetpkg = "com.android.systemui";
 			String path = "/data/data/com.dr8.sbicons/xsbm/";
-			String gon = "gps/stat_sys_gps_on.png";
 			String gacq = "gps/stat_sys_gps_acquiring.png";
-			final Bitmap g = ZipStuff.getBitmap(path, gon);
 			final Bitmap h = ZipStuff.getBitmap(path, gacq);
-			if (g != null) {
-				resParam.res.setReplacement(targetpkg , "drawable", "stat_sys_gps_on", new XResources.DrawableLoader() {
-					@Override
-					public Drawable newDrawable(XResources res, int id) throws Throwable {
-						if (paramPrefs.getBoolean("gpscolor_enabled", false)) {
-							BitmapDrawable gd = new BitmapDrawable(null, g);
-							gd.setColorFilter(paramPrefs.getInt("gpscolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
-							return gd;
-						} else {
-							return new BitmapDrawable(null, g);
-						}
-					}
-				});
-			}
 			if (h != null) {
+//				XposedBridge.log("XSBM: replacing gps_acq in sysui");
 				resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_gps_acquiring", new XResources.DrawableLoader() {
 					@Override
 					public Drawable newDrawable(XResources res, int id) throws Throwable {

@@ -26,9 +26,7 @@ public class TpNotif {
 						if (pv == null) {
 							return;
 						} else {
-	//						String bgcolor = Integer.toString(paramPrefs.getInt("notif_bg_color", 0xff000000));
-	//						pv.getBackground().setColorFilter(Color.parseColor(bgcolor), PorterDuff.Mode.MULTIPLY); 
-							pv.setBackgroundColor(paramPrefs.getInt("notif_bg_color", 0xff000000));
+							pv.setBackgroundColor(paramPrefs.getInt("tpnotif", 0x7f000000));
 						}
 					} else {
 						return;

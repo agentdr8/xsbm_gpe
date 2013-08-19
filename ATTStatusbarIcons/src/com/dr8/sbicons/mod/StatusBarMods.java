@@ -8,25 +8,19 @@ import com.dr8.sbicons.mod.hax.AppIcons;
 import com.dr8.sbicons.mod.hax.BatteryIconColor;
 import com.dr8.sbicons.mod.hax.BatteryIcons;
 import com.dr8.sbicons.mod.hax.BatteryRainbow;
-import com.dr8.sbicons.mod.hax.BatteryTextColor;
 import com.dr8.sbicons.mod.hax.Bluetooth;
 import com.dr8.sbicons.mod.hax.CenterClock;
 import com.dr8.sbicons.mod.hax.ClockAMPM;
 import com.dr8.sbicons.mod.hax.ClockColor;
 import com.dr8.sbicons.mod.hax.GPS;
-import com.dr8.sbicons.mod.hax.HtcNetworkController;
 import com.dr8.sbicons.mod.hax.InvisBattery;
 import com.dr8.sbicons.mod.hax.InvisClock;
-import com.dr8.sbicons.mod.hax.InvisSignal;
-import com.dr8.sbicons.mod.hax.InvisSimCard;
-import com.dr8.sbicons.mod.hax.MobileData;
-import com.dr8.sbicons.mod.hax.MobileDataNonOne;
+import com.dr8.sbicons.mod.hax.MobileDataGE;
 import com.dr8.sbicons.mod.hax.SignalBars;
 import com.dr8.sbicons.mod.hax.SystemWide;
 import com.dr8.sbicons.mod.hax.ToTheLeft;
-import com.dr8.sbicons.mod.hax.TpNav;
 import com.dr8.sbicons.mod.hax.TpNotif;
-import com.dr8.sbicons.mod.hax.TpStatusbar;
+import com.dr8.sbicons.mod.hax.TpStatusBar;
 import com.dr8.sbicons.mod.hax.Wifi;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -77,9 +71,15 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 //		XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, null);
 		pref.reload();
 
-		if (pref.getBoolean("framework", false)) {
+		if (pref.getBoolean("framework", false) || pref.getBoolean("gps", false)) {
+//			XposedBridge.log("XSBM: launching zygote stuff");
 			SystemWide.initHandleZygote(startupParam, pref);
 		}
+		
+		if (pref.getBoolean("tpstatus_enabled", false)) {
+			TpStatusBar.initZygote();
+		}
+			
 	}
 
 	@Override
@@ -87,37 +87,32 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		pref.reload();
 		if (lpparam.packageName.equals("com.android.systemui")) {
 			BatteryRainbow.initHandleLoadPackage(pref, lpparam);
-			BatteryIconColor.initHandleLoadPackage(pref, lpparam);
-			BatteryIcons.initHandleLoadPackage(pref, lpparam);
-			HtcNetworkController.initHandleLoadPackage(pref, lpparam);
+			
+			if (pref.getBoolean("batt_text_color_enabled", false)) {
+				BatteryIconColor.initHandleLoadPackage(pref, lpparam);
+			}
+			
+			if (pref.getBoolean("battery", false)) {
+				BatteryIcons.initHandleLoadPackage(pref, lpparam);
+			}
 			
 			if(pref.getBoolean("centerclock", false)) {
 				CenterClock.initHandleLoadPackage(pref, lpparam.classLoader);
 			}
 			
-//			Log.i(TAG, ": my model is " + getDeviceModel().toString());
-			
-			if (pref.getBoolean("mobile_data", false) && !pref.getBoolean("altsysui", false)) {
-				MobileData.initHandleLoadPackage(pref, lpparam);
-			} else if (pref.getBoolean("mobile_data", false) && pref.getBoolean("altsysui", false)) {
-				MobileDataNonOne.initHandleLoadPackage(pref, lpparam);
+			if (pref.getBoolean("addampm", false) && !pref.getBoolean("invisclock", false)) {
+				ClockAMPM.initHandleLoadPackage(pref, lpparam, StatusBarModsSettings.IS_24H);
+			}
+		
+			if (pref.getBoolean("tpstatus_enabled", false)) {
+				TpStatusBar.initHandleLoadPackage(pref, lpparam.classLoader);
 			}
 			
-			if (pref.getBoolean("hideampm", false) && !pref.getBoolean("invisclock", false)) {
-				ClockAMPM.initHandleLoadPackage(pref, lpparam);
-			}
-			
-			if (pref.getBoolean("hidesignal", false)) {
-				InvisSignal.initHandleLoadPackage(pref, lpparam);
-			}
-			
-			if (pref.getBoolean("hidesim", false)) {
-				InvisSimCard.initHandleLoadPackage(pref, lpparam);
+			if (pref.getBoolean("invisclock", false)) {
+				InvisClock.initHandleLoadPackage(pref, lpparam);
 			}
 		}
-//		if (lpparam.packageName.equals("com.htc.launcher")) {
-//			TpApps.initHandleLoadPackage(pref, lpparam);
-//		}
+
 	}
 	
 	@Override
@@ -150,33 +145,19 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			}
 		}
 	
-		if (resparam.packageName.equals("com.htc.launcher")) {
-			if (pref.getBoolean("tpnav", false)) {
-				TpNav.initPackageResources(pref, modRes, resparam);
-			}
-//			if (pref.getBoolean("tpapps", false)) {
-//				TpApps.initPackageResources(pref, modRes, resparam);
-//			}
-			if (pref.getBoolean("tpstatus", false)) {
-				TpStatusbar.initPackageResources(pref, modRes, resparam);
-			}
-		}
-
 		if (!resparam.packageName.equals(targetpkg)) {
 			return;
 		}
 		
-		TpStatusbar.initPackageResources(pref, modRes, resparam);
+		if (pref.getBoolean("mobile_data", false)) {
+			MobileDataGE.initPackageResources(pref, modRes, resparam);
+		}
 		
 		if (pref.getBoolean("centerclock", false)) {
 			CenterClock.initPackageResources(pref, resparam);
 		}
 
-//		if (pref.getBoolean("qstile_bg_color_enabled", false)) {
-//			TpQSTiles.initPackageResources(pref, modRes, resparam);
-//		}
-		
-		if (pref.getBoolean("tpnotif", false)) {
+		if (pref.getBoolean("tpnotif_enabled", false)) {
 			TpNotif.initPackageResources(pref, modRes, resparam);
 		}
 			
@@ -184,14 +165,8 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			InvisBattery.initPackageResources(pref, modRes, resparam);
 		}
 		
-		if (pref.getBoolean("invisclock", false)) {
-			InvisClock.initPackageResources(pref, modRes, resparam);
-		}
-		
-		if (pref.getBoolean("batt_text_color_enabled", false) && (!pref.getBoolean("batt_text_rainbow", false))) {
-			BatteryTextColor.initPackageResources(pref, modRes, resparam);
-		}
-		
+	
+				
 		if (pref.getBoolean("clock_text_color_enabled", false)) {
 			ClockColor.initPackageResources(pref, modRes, resparam); 
 		}

@@ -20,17 +20,25 @@ public class Wifi {
 			String path = "/data/data/com.dr8.sbicons/xsbm/";
 		
 			String[] wifiarray = {
-					"stat_sys_wifi_signal_0.png",
-					"stat_sys_wifi_signal_1.png",
-					"stat_sys_wifi_signal_2.png",
-					"stat_sys_wifi_signal_3.png",
-					"stat_sys_wifi_signal_4.png" };
+					"stat_sys_wifi_signal_0",
+					"stat_sys_wifi_signal_1",
+					"stat_sys_wifi_signal_2",
+					"stat_sys_wifi_signal_3",
+					"stat_sys_wifi_signal_4",
+					"stat_sys_wifi_inout",
+					"stat_sys_wifi_in",
+					"stat_sys_wifi_out",
+					"stat_sys_wifi_signal_1_fully",
+					"stat_sys_wifi_signal_2_fully",
+					"stat_sys_wifi_signal_3_fully",
+					"stat_sys_wifi_signal_4_fully"
+					};
 			
 			for (int i = 0; i < wifiarray.length; i++) {
-				String wimg = "wifi/" + wifiarray[i];
+				String wimg = "wifi/" + wifiarray[i] + ".png";
 				final Bitmap w = ZipStuff.getBitmap(path, wimg);
 				if (w != null) {
-					resParam.res.setReplacement(targetpkg, "drawable", "stat_sys_wifi_signal_" + i, new XResources.DrawableLoader() {
+					resParam.res.setReplacement(targetpkg, "drawable", wifiarray[i], new XResources.DrawableLoader() {
 						@Override
 						public Drawable newDrawable(XResources res, int id) throws Throwable {
 							if (paramPrefs.getBoolean("wificolor_enabled", false)) {
@@ -42,8 +50,9 @@ public class Wifi {
 							}
 						}
 					});
+				} else {
+					return;
 				}
-				
 			}
 		} catch (Throwable t) { XposedBridge.log(t); }
 	}

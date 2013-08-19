@@ -1,27 +1,23 @@
 package com.dr8.sbicons.mod.hax;
 
-import android.content.res.XModuleResources;
+import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
+import android.view.View;
 import android.widget.TextView;
 
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
-import de.robv.android.xposed.XposedBridge;
-import de.robv.android.xposed.callbacks.XC_InitPackageResources;
-import de.robv.android.xposed.callbacks.XC_LayoutInflated;
+import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class InvisClock {
 
-	public static void initPackageResources(final XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
-//		XposedBridge.log("Hooking statusbar");
-		resParam.res.hookLayout("com.android.systemui", "layout", "super_status_bar", new XC_LayoutInflated() {
+	public static void initHandleLoadPackage(final XSharedPreferences paramPrefs, XC_LoadPackage.LoadPackageParam lpParam) {
+		findAndHookMethod("com.android.systemui.statusbar.policy.Clock", lpParam.classLoader, "updateClock", new XC_MethodHook() {
 			@Override
-			public void handleLayoutInflated(LayoutInflatedParam liparam) throws Throwable {
-				try {
-//					XposedBridge.log("Inside inflated layout");
-					TextView clock = (TextView) liparam.view.findViewById(liparam.res.getIdentifier("clock", "id", "com.android.systemui"));
-					clock.setVisibility(8);
-//					XposedBridge.log("Changed clock visibility");
-				} catch (Throwable t) { XposedBridge.log(t); }
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+				TextView clock = (TextView) param.thisObject;
+				clock.setText(null);
+				clock.setVisibility(View.GONE);
 			}
-		});  
+		});
 	}
 }

@@ -11,13 +11,15 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+import android.text.format.DateFormat;
 import android.widget.Toast;
 
 public class StatusBarModsSettings extends Activity {
 
-	String VERSION_URL = "https://dl.dropboxusercontent.com/u/3842440/version";
-	String REMOTE_APK_URL = "https://dl.dropboxusercontent.com/u/3842440/StatusbarIcons_latest.apk";
-
+	String VERSION_URL = "https://dl.dropboxusercontent.com/u/3842440/version_ge";
+	String REMOTE_APK_URL = "https://dl.dropboxusercontent.com/u/3842440/StatusbarIconsGE_latest.apk";
+	public static int IS_24H;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setTitle(R.string.app_name);
@@ -28,7 +30,12 @@ public class StatusBarModsSettings extends Activity {
 			getFragmentManager().beginTransaction().replace(android.R.id.content,
 	                new PrefsFragment()).commit();
         
-
+        if (!DateFormat.is24HourFormat(this)) {
+        	IS_24H = 0;
+        } else {
+        	IS_24H = 1;
+        }
+        
     	int ALERT_ICON = R.drawable.update;
     	UpdateChecker uc = new UpdateChecker(this, VERSION_URL, REMOTE_APK_URL, ALERT_ICON);
     	uc.startUpdateChecker();

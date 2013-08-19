@@ -12,41 +12,33 @@ import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_InitPackageResources;
 
-public class SignalBars {
+public class MobileDataGE {
 
 	public static void initPackageResources(final XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
 			String path = "/data/data/com.dr8.sbicons/xsbm/";
 
-			String[] signalarray = {
-					"stat_sys_signal_0_fully",
-					"stat_sys_signal_0",
-					"stat_sys_signal_1_fully",
-					"stat_sys_signal_1",
-					"stat_sys_signal_2_fully",
-					"stat_sys_signal_2",
-					"stat_sys_signal_3_fully",
-					"stat_sys_signal_3",
-					"stat_sys_signal_4_fully",
-					"stat_sys_signal_4",
-					"stat_sys_signal_inout",
-					"stat_sys_signal_in",
-					"stat_sys_signal_out",
-					"stat_sys_signal_null",
-					"stat_sys_signal_flightmode"
+			String[] mobicons = {
+					"stat_sys_data_connected_g",
+					"stat_sys_data_connected_e",
+					"stat_sys_data_connected_3g",
+					"stat_sys_data_connected_h",
+					"stat_sys_data_connected_4g",
+					"stat_sys_data_connected_lte",
+					"stat_sys_data_connected_roam"
 			};
 
-			for (int i = 0; i < signalarray.length; i++) {
-				String simg = "signal/" + signalarray[i] + ".png";
+			for (int i = 0; i < mobicons.length; i++) {
+				String simg = "mobile/" + mobicons[i] + ".png";
 				final Bitmap s = ZipStuff.getBitmap(path, simg);
 				if (s != null) {
-					resParam.res.setReplacement(targetpkg, "drawable", signalarray[i], new XResources.DrawableLoader() {
+					resParam.res.setReplacement(targetpkg, "drawable", mobicons[i], new XResources.DrawableLoader() {
 						@Override
 						public Drawable newDrawable(XResources res, int id) throws Throwable {
-							if (paramPrefs.getBoolean("signalcolor_enabled", false)) {
+							if (paramPrefs.getBoolean("mobilecolor_enabled", false)) {
 								BitmapDrawable sd = new BitmapDrawable(null, s);
-								sd.setColorFilter(paramPrefs.getInt("signalcolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
+								sd.setColorFilter(paramPrefs.getInt("mobilecolor", 0xffffffff), PorterDuff.Mode.MULTIPLY);
 								return sd;
 							} else {
 								return new BitmapDrawable(null, s);

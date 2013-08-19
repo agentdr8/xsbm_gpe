@@ -1,7 +1,6 @@
 package com.dr8.sbicons.mod.hax;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
-import static de.robv.android.xposed.XposedHelpers.getIntField;
 import static de.robv.android.xposed.XposedHelpers.getObjectField;
 import java.util.ArrayList;
 import android.content.Context;
@@ -22,7 +21,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class BatteryIcons {
 
 	public static void initHandleLoadPackage(final XSharedPreferences paramPrefs, XC_LoadPackage.LoadPackageParam lpParam) {
-		
+
 		final String path = "/data/data/com.dr8.sbicons/xsbm/";
 		final String[] battarray = {
 				"stat_sys_battery_0.png",
@@ -127,7 +126,7 @@ public class BatteryIcons {
 				"stat_sys_battery_99.png",
 				"stat_sys_battery_100.png"
 		};
-		
+
 		final String[] charge = {
 				"stat_sys_battery_charge_anim0.png",
 				"stat_sys_battery_charge_anim1.png",
@@ -141,55 +140,53 @@ public class BatteryIcons {
 				"stat_sys_battery_charge_anim9.png",
 				"stat_sys_battery_charge_anim10.png"
 		};
-		
-		if (paramPrefs.getBoolean("battery", true)) {
-			findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", lpParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook() {
-				@Override
-				protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-					try {
-//						boolean plugged = getBooleanField(param.thisObject, "plugged");
-						int status = getIntField(param.thisObject, "status");
-						int blevel = getIntField(param.thisObject, "level");
+
+		findAndHookMethod("com.android.systemui.statusbar.policy.BatteryController", lpParam.classLoader, "onReceive", Context.class, Intent.class, new XC_MethodHook() {
+			@Override
+			protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+				try {
+					Intent pi = (Intent) param.args[1];
+					int status = pi.getIntExtra("status", 1);
+					int blevel = pi.getIntExtra("level", 0);
+//					XposedBridge.log("XSBM: status: " + status + ", level: " + blevel);
+					@SuppressWarnings("unchecked")
+					int j = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).size();
+					for (int k = 0; k < j; k++) {
 						@SuppressWarnings("unchecked")
-						int j = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).size();
-						for (int k = 0; k < j; k++) {
-							@SuppressWarnings("unchecked")
-							ImageView iv = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).get(k);
-							if (status == 2 && blevel < 100) {
-								AnimationDrawable animation = new AnimationDrawable();
-								for (int i = 0; i < charge.length; i++) {
-									String cbimg = "battery/charge/" + charge[i];
-									final Bitmap cb = ZipStuff.getBitmap(path, cbimg);
-									Drawable cd = new BitmapDrawable(null, cb);
-									if (paramPrefs.getBoolean("altcharge", false)) {
-										String bimg = "battery/" + battarray[blevel];
-										final Bitmap b = ZipStuff.getBitmap(path, bimg);
-										Drawable bd = new BitmapDrawable(null, b);
-										animation.addFrame(cd, 1000);
-										animation.addFrame(bd, 500);
-									} else {
-										animation.addFrame(cd, 1000);
-									}
+						ImageView iv = ((ArrayList<ImageView>) getObjectField(param.thisObject, "mIconViews")).get(k);
+						if (status == 2 && blevel < 100) {
+							AnimationDrawable animation = new AnimationDrawable();
+							for (int i = 0; i < charge.length; i++) {
+								String cbimg = "battery/charge/" + charge[i];
+								final Bitmap cb = ZipStuff.getBitmap(path, cbimg);
+								Drawable cd = new BitmapDrawable(null, cb);
+								if (paramPrefs.getBoolean("altcharge", false)) {
+									String bimg = "battery/" + battarray[blevel];
+									final Bitmap b = ZipStuff.getBitmap(path, bimg);
+									Drawable bd = new BitmapDrawable(null, b);
+									animation.addFrame(cd, 1000);
+									animation.addFrame(bd, 500);
+								} else {
+									animation.addFrame(cd, 1000);
 								}
-								animation.setOneShot(false);
-								iv.setImageDrawable(animation);
-								animation.start();
-							} else if (status == 2 && blevel >= 100) {
-								String bimg = "battery/" + battarray[100];
-								final Bitmap b = ZipStuff.getBitmap(path, bimg);
-								Drawable d = new BitmapDrawable(null, b);
-								iv.setImageDrawable(d);
-							} else { 
-								String bimg = "battery/" + battarray[blevel];
-								final Bitmap b = ZipStuff.getBitmap(path, bimg);
-								Drawable d = new BitmapDrawable(null, b);
-								iv.setImageDrawable(d);
 							}
+							animation.setOneShot(false);
+							iv.setImageDrawable(animation);
+							animation.start();
+						} else if (status == 2 && blevel >= 100) {
+							String bimg = "battery/" + battarray[100];
+							final Bitmap b = ZipStuff.getBitmap(path, bimg);
+							Drawable d = new BitmapDrawable(null, b);
+							iv.setImageDrawable(d);
+						} else { 
+							String bimg = "battery/" + battarray[blevel];
+							final Bitmap b = ZipStuff.getBitmap(path, bimg);
+							Drawable d = new BitmapDrawable(null, b);
+							iv.setImageDrawable(d);
 						}
-					} catch (Throwable t) { XposedBridge.log(t); }
-				}
-	
-			});	
-		}
+					}
+				} catch (Throwable t) { XposedBridge.log(t); }
+			}
+		});	
 	}
 }
