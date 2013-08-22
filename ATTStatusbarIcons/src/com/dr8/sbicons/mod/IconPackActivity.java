@@ -43,6 +43,8 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
         intpath = getApplicationContext().getFilesDir().getParent() + "/xsbm/";
         extpath = Environment.getExternalStorageDirectory().toString() + "/xsbm/";
         
+    	prefs = getSharedPreferences("com.dr8.sbicons_preferences", MODE_PRIVATE);
+
 		Uri uri = getIntent().getData();
 		final File intentfile = (uri != null) ? new File(uri.getPath()) : null;
 		if (intentfile != null) {
@@ -108,12 +110,23 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
                 out.close();
             } catch (IOException e) {
             } 
-			final File file[] = f.listFiles();
-	        for (int i=0; i < file.length; i++) {
-	        	if (file[i].getName().toLowerCase().endsWith(".zip")) {
-	        		filearray.add(file[i].getName());
-	        	}
-	        }
+			if (prefs.getBoolean("firstrun", true)) {
+				String item = "default_iconpack_ge.xsbm.zip";
+				String path = extpath;
+				File df = new File(intpath);
+				df.mkdir();
+				ZipStuff.unpackZip(intpath, path + "/" + item);
+				ChmodRecursive(df);
+	            prefs.edit().putBoolean("firstrun", false).commit();
+	            IconPackActivity.this.finish();
+			} else {
+				final File file[] = f.listFiles();
+		        for (int i=0; i < file.length; i++) {
+		        	if (file[i].getName().toLowerCase().endsWith(".zip")) {
+		        		filearray.add(file[i].getName());
+		        	}
+		        }
+			}
         }
         
         ListView lv = getListView();
@@ -139,7 +152,7 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
         	        builder.setTitle("Pack details")
         	        .setIcon(R.drawable.about)
         	        .setMessage("Author: " + hash.get("author") + "\n" + "Notes: " + hash.get("note"))
-        	        .setCancelable(false)
+        	        .setCancelable(true)
         	        .setNegativeButton("Close",new DialogInterface.OnClickListener() {
         	            public void onClick(DialogInterface dialog, int id) {
         	                dialog.cancel();

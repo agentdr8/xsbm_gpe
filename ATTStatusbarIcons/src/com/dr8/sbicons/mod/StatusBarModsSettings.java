@@ -1,6 +1,7 @@
 package com.dr8.sbicons.mod;
 
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 
 import com.dr8.sbicons.R;
@@ -8,7 +9,10 @@ import com.stericson.RootTools.RootTools;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.text.format.DateFormat;
@@ -19,6 +23,8 @@ public class StatusBarModsSettings extends Activity {
 	String VERSION_URL = "https://dl.dropboxusercontent.com/u/3842440/version_ge";
 	String REMOTE_APK_URL = "https://dl.dropboxusercontent.com/u/3842440/StatusbarIconsGE_latest.apk";
 	public static int IS_24H;
+	SharedPreferences prefs = null;
+	Context mCtx;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,8 @@ public class StatusBarModsSettings extends Activity {
     	int ALERT_ICON = R.drawable.update;
     	UpdateChecker uc = new UpdateChecker(this, VERSION_URL, REMOTE_APK_URL, ALERT_ICON);
     	uc.startUpdateChecker();
+    	
+    	prefs = getSharedPreferences("com.dr8.sbicons_preferences", MODE_PRIVATE);
 	}
 	
 	public static class PrefsFragment extends PreferenceFragment {
@@ -57,6 +65,22 @@ public class StatusBarModsSettings extends Activity {
 	public void onStop() {
 		super.onStop();
 	}
+	
+	@Override
+    protected void onResume() {
+        super.onResume();
+        mCtx = getApplicationContext();
+        String intpath = getApplicationContext().getFilesDir().getParent() + "/xsbm/";
+        File f = new File(intpath);
+        if (prefs.getBoolean("firstrun", true) && !f.exists()) {
+			Toast.makeText(StatusBarModsSettings.this, "This appears to be your first time\nlaunching XSBM. Setting up default iconpack..", Toast.LENGTH_LONG).show();
+			Intent i = new Intent(mCtx, IconPackActivity.class);
+			i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			mCtx.startActivity(i);
+        } else {
+        	prefs.edit().putBoolean("firstrun", false).commit();
+        }
+    }
 	
 	@Override
 	public void onBackPressed() {
