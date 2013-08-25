@@ -164,8 +164,6 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 		if (pref.getBoolean("invisbatt", false)) {
 			InvisBattery.initPackageResources(pref, modRes, resparam);
 		}
-		
-	
 				
 		if (pref.getBoolean("clock_text_color_enabled", false)) {
 			ClockColor.initPackageResources(pref, modRes, resparam); 
