@@ -160,15 +160,13 @@ public class BatteryIcons {
 								String cbimg = "battery/charge/" + charge[i];
 								final Bitmap cb = ZipStuff.getBitmap(path, cbimg);
 								Drawable cd = new BitmapDrawable(null, cb);
-								if (paramPrefs.getBoolean("altcharge", false)) {
-									String bimg = "battery/" + battarray[blevel];
-									final Bitmap b = ZipStuff.getBitmap(path, bimg);
-									Drawable bd = new BitmapDrawable(null, b);
-									animation.addFrame(cd, 1000);
-									animation.addFrame(bd, 500);
-								} else {
-									animation.addFrame(cd, 1000);
-								}
+								animation.addFrame(cd, 1000);								
+							}
+							if (paramPrefs.getBoolean("altcharge", false)) {
+								String bimg = "battery/" + battarray[blevel];
+								final Bitmap b = ZipStuff.getBitmap(path, bimg);
+								Drawable bd = new BitmapDrawable(null, b);
+								animation.addFrame(bd, 500);
 							}
 							animation.setOneShot(false);
 							iv.setImageDrawable(animation);
