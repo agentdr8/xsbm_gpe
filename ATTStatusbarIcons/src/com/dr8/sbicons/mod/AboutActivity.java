@@ -52,6 +52,5 @@ public class AboutActivity extends Activity
     @Override
     protected void onStop() {
     	super.onStop();
-        AboutActivity.this.finish();
     }
 }

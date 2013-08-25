@@ -211,7 +211,6 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
     @Override
     protected void onStop() {
     	super.onStop();
-	    IconPackActivity.this.finish();
     }
 
 	@Override
