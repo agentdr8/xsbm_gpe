@@ -69,6 +69,9 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
         
         File f = new File(extpath);
         if (f.isDirectory()) {
+        	if (prefs.getBoolean("firstrun", true)) {
+        		prefs.edit().putBoolean("firstrun", false).commit();
+        	}
         	try {
         		InputStream in = getResources().openRawResource(R.raw.default_iconpack_ge);
                 FileOutputStream out;
