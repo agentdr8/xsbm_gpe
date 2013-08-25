@@ -7,6 +7,7 @@ import java.io.IOException;
 import com.dr8.sbicons.R;
 import com.stericson.RootTools.RootTools;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -18,6 +19,7 @@ import android.preference.PreferenceFragment;
 import android.text.format.DateFormat;
 import android.widget.Toast;
 
+@SuppressLint("WorldReadableFiles")
 public class StatusBarModsSettings extends Activity {
 
 	String VERSION_URL = "https://dl.dropboxusercontent.com/u/3842440/version_ge";
@@ -46,7 +48,7 @@ public class StatusBarModsSettings extends Activity {
     	UpdateChecker uc = new UpdateChecker(this, VERSION_URL, REMOTE_APK_URL, ALERT_ICON);
     	uc.startUpdateChecker();
     	
-    	prefs = getSharedPreferences("com.dr8.sbicons_preferences", MODE_PRIVATE);
+    	prefs = getSharedPreferences("com.dr8.sbicons_preferences", MODE_WORLD_READABLE);
 	}
 	
 	public static class PrefsFragment extends PreferenceFragment {

@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.dr8.sbicons.R;
 
+@SuppressLint("WorldReadableFiles")
 public class IconPackActivity extends ListActivity implements OnItemLongClickListener
 {
     private String intpath = null;
@@ -43,7 +44,7 @@ public class IconPackActivity extends ListActivity implements OnItemLongClickLis
         intpath = getApplicationContext().getFilesDir().getParent() + "/xsbm/";
         extpath = Environment.getExternalStorageDirectory().toString() + "/xsbm/";
         
-    	prefs = getSharedPreferences("com.dr8.sbicons_preferences", MODE_PRIVATE);
+    	prefs = getSharedPreferences("com.dr8.sbicons_preferences", MODE_WORLD_READABLE);
 
 		Uri uri = getIntent().getData();
 		final File intentfile = (uri != null) ? new File(uri.getPath()) : null;
