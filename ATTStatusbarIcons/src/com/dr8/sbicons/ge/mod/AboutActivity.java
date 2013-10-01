@@ -1,6 +1,6 @@
 package com.dr8.sbicons.ge.mod;
 
-import com.dr8.sbicons.R;
+import com.dr8.sbicons.ge.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

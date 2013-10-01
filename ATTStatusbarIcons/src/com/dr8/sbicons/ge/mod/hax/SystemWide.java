@@ -1,6 +1,6 @@
 package com.dr8.sbicons.ge.mod.hax;
 
-import com.dr8.sbicons.mod.ZipStuff;
+import com.dr8.sbicons.ge.mod.ZipStuff;
 
 import android.annotation.SuppressLint;
 import android.content.res.XResources;

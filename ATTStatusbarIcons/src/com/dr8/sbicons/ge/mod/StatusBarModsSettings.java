@@ -4,7 +4,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 
-import com.dr8.sbicons.R;
+import com.dr8.sbicons.ge.R;
 import com.stericson.RootTools.RootTools;
 
 import android.annotation.SuppressLint;

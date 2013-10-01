@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import com.dr8.sbicons.mod.ZipStuff;
+import com.dr8.sbicons.ge.mod.ZipStuff;
 
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;

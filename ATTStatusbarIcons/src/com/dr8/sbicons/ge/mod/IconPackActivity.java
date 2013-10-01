@@ -26,7 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.dr8.sbicons.R;
+import com.dr8.sbicons.ge.R;
 
 @SuppressLint("WorldReadableFiles")
 public class IconPackActivity extends ListActivity implements OnItemLongClickListener
