@@ -1,4 +1,4 @@
-package com.dr8.sbicons.mod.hax;
+package com.dr8.sbicons.ge.mod.hax;
 
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;

@@ -1,4 +1,4 @@
-package com.dr8.sbicons.mod;
+package com.dr8.sbicons.ge.mod;
 
 import java.io.BufferedInputStream;
 import java.io.File;

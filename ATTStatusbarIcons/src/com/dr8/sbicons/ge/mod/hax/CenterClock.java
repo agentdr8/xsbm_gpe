@@ -1,4 +1,4 @@
-package com.dr8.sbicons.mod.hax;
+package com.dr8.sbicons.ge.mod.hax;
 
 /*
  *  Excellent center clock mod code by C3C076 @ XDA

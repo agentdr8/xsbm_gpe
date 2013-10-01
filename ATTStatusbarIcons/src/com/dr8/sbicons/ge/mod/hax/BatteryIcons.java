@@ -1,4 +1,4 @@
-package com.dr8.sbicons.mod.hax;
+package com.dr8.sbicons.ge.mod.hax;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.getObjectField;
@@ -11,7 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
-import com.dr8.sbicons.mod.ZipStuff;
+import com.dr8.sbicons.ge.mod.ZipStuff;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;

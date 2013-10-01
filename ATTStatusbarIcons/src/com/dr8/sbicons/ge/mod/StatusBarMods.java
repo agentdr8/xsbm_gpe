@@ -1,27 +1,27 @@
-package com.dr8.sbicons.mod;
+package com.dr8.sbicons.ge.mod;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
 
-import com.dr8.sbicons.mod.hax.AppIcons;
-import com.dr8.sbicons.mod.hax.BatteryIconColor;
-import com.dr8.sbicons.mod.hax.BatteryIcons;
-import com.dr8.sbicons.mod.hax.BatteryRainbow;
-import com.dr8.sbicons.mod.hax.Bluetooth;
-import com.dr8.sbicons.mod.hax.CenterClock;
-import com.dr8.sbicons.mod.hax.ClockAMPM;
-import com.dr8.sbicons.mod.hax.ClockColor;
-import com.dr8.sbicons.mod.hax.GPS;
-import com.dr8.sbicons.mod.hax.InvisBattery;
-import com.dr8.sbicons.mod.hax.InvisClock;
-import com.dr8.sbicons.mod.hax.MobileDataGE;
-import com.dr8.sbicons.mod.hax.SignalBars;
-import com.dr8.sbicons.mod.hax.SystemWide;
-import com.dr8.sbicons.mod.hax.ToTheLeft;
-import com.dr8.sbicons.mod.hax.TpNotif;
-import com.dr8.sbicons.mod.hax.TpStatusBar;
-import com.dr8.sbicons.mod.hax.Wifi;
+import com.dr8.sbicons.ge.mod.hax.AppIcons;
+import com.dr8.sbicons.ge.mod.hax.BatteryIconColor;
+import com.dr8.sbicons.ge.mod.hax.BatteryIcons;
+import com.dr8.sbicons.ge.mod.hax.BatteryRainbow;
+import com.dr8.sbicons.ge.mod.hax.Bluetooth;
+import com.dr8.sbicons.ge.mod.hax.CenterClock;
+import com.dr8.sbicons.ge.mod.hax.ClockAMPM;
+import com.dr8.sbicons.ge.mod.hax.ClockColor;
+import com.dr8.sbicons.ge.mod.hax.GPS;
+import com.dr8.sbicons.ge.mod.hax.InvisBattery;
+import com.dr8.sbicons.ge.mod.hax.InvisClock;
+import com.dr8.sbicons.ge.mod.hax.MobileDataGE;
+import com.dr8.sbicons.ge.mod.hax.SignalBars;
+import com.dr8.sbicons.ge.mod.hax.SystemWide;
+import com.dr8.sbicons.ge.mod.hax.ToTheLeft;
+import com.dr8.sbicons.ge.mod.hax.TpNotif;
+import com.dr8.sbicons.ge.mod.hax.TpStatusBar;
+import com.dr8.sbicons.ge.mod.hax.Wifi;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 

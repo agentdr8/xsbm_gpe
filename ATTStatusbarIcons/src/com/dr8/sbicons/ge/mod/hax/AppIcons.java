@@ -1,4 +1,4 @@
-package com.dr8.sbicons.mod.hax;
+package com.dr8.sbicons.ge.mod.hax;
 
 import android.annotation.SuppressLint;
 import android.content.res.XModuleResources;

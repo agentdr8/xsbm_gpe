@@ -1,4 +1,4 @@
-package com.dr8.sbicons.mod;
+package com.dr8.sbicons.ge.mod;
 
 import com.dr8.sbicons.R;
 

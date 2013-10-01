@@ -1,4 +1,4 @@
-package com.dr8.sbicons.mod.hax;
+package com.dr8.sbicons.ge.mod.hax;
 
 import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 
