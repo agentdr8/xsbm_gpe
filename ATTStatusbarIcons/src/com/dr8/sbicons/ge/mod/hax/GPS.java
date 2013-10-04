@@ -17,7 +17,7 @@ public class GPS {
 	public static void initPackageResources(final XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
-			String path = "/data/data/com.dr8.sbicons/xsbm/";
+			String path = "/data/data/com.dr8.sbicons.ge/xsbm/";
 			String gacq = "gps/stat_sys_gps_acquiring.png";
 			final Bitmap h = ZipStuff.getBitmap(path, gacq);
 			final BitmapDrawable hd = new BitmapDrawable(null, h);

@@ -17,7 +17,7 @@ public class MobileDataGE {
 	public static void initPackageResources(final XSharedPreferences paramPrefs, XModuleResources modRes, XC_InitPackageResources.InitPackageResourcesParam resParam) {
 		try {
 			String targetpkg = "com.android.systemui";
-			String path = "/data/data/com.dr8.sbicons/xsbm/";
+			String path = "/data/data/com.dr8.sbicons.ge/xsbm/";
 
 			String[] mobicons = {
 					"stat_sys_data_connected_g",

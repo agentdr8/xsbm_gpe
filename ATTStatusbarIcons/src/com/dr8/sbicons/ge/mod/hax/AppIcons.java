@@ -19,7 +19,7 @@ public class AppIcons {
 	public static void initPackageResources(final XSharedPreferences paramPrefs, XC_InitPackageResources.InitPackageResourcesParam resParam, String rep, XModuleResources modres) {
 		try {
 			String target = resParam.packageName;
-			String path = "/data/data/com.dr8.sbicons/xsbm/";
+			String path = "/data/data/com.dr8.sbicons.ge/xsbm/";
 			
 	    	String repl = "apps/" + target + "-" + rep;
 //	    	Log.d("XSBM", "getting image from zip: " + repl);

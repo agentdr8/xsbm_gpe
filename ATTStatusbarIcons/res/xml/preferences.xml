@@ -71,8 +71,8 @@
             android:icon="@drawable/import_img" >
             <intent
                 android:action="android.intent.action.VIEW"
-                android:targetClass="com.dr8.sbicons.mod.IconPackActivity"
-                android:targetPackage="com.dr8.sbicons" />
+                android:targetClass="com.dr8.sbicons.ge.mod.IconPackActivity"
+                android:targetPackage="com.dr8.sbicons.ge" />
         </PreferenceScreen>
         <CheckBoxPreference
             android:defaultValue="false"
@@ -254,8 +254,8 @@
         android:title="About" >
         <intent
             android:action="android.intent.action.VIEW"
-            android:targetClass="com.dr8.sbicons.mod.AboutActivity"
-            android:targetPackage="com.dr8.sbicons" />
+            android:targetClass="com.dr8.sbicons.ge.mod.AboutActivity"
+            android:targetPackage="com.dr8.sbicons.ge" />
     </PreferenceScreen>
 
 </PreferenceScreen>

@@ -22,8 +22,6 @@ import android.widget.Toast;
 @SuppressLint("WorldReadableFiles")
 public class StatusBarModsSettings extends Activity {
 
-	String VERSION_URL = "https://dl.dropboxusercontent.com/u/3842440/version_ge";
-	String REMOTE_APK_URL = "https://dl.dropboxusercontent.com/u/3842440/StatusbarIconsGE_latest.apk";
 	public static int IS_24H;
 	SharedPreferences prefs = null;
 	Context mCtx;
@@ -44,11 +42,11 @@ public class StatusBarModsSettings extends Activity {
         	IS_24H = 1;
         }
         
-    	int ALERT_ICON = R.drawable.update;
-    	UpdateChecker uc = new UpdateChecker(this, VERSION_URL, REMOTE_APK_URL, ALERT_ICON);
-    	uc.startUpdateChecker();
+//    	int ALERT_ICON = R.drawable.update;
+//    	UpdateChecker uc = new UpdateChecker(this, VERSION_URL, REMOTE_APK_URL, ALERT_ICON);
+//    	uc.startUpdateChecker();
     	
-    	prefs = getSharedPreferences("com.dr8.sbicons_preferences", MODE_WORLD_READABLE);
+    	prefs = getSharedPreferences("com.dr8.sbicons.ge_preferences", MODE_WORLD_READABLE);
 	}
 	
 	public static class PrefsFragment extends PreferenceFragment {

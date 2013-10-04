@@ -22,7 +22,7 @@ public class BatteryIcons {
 
 	public static void initHandleLoadPackage(final XSharedPreferences paramPrefs, XC_LoadPackage.LoadPackageParam lpParam) {
 
-		final String path = "/data/data/com.dr8.sbicons/xsbm/";
+		final String path = "/data/data/com.dr8.sbicons.ge/xsbm/";
 		final String[] battarray = {
 				"stat_sys_battery_0.png",
 				"stat_sys_battery_1.png",

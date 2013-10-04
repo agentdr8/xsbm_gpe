@@ -18,7 +18,7 @@ public class SystemWide {
 	public static void initHandleZygote(StartupParam startupParam, final XSharedPreferences paramPrefs) {
 
 
-		String path = "/data/data/com.dr8.sbicons/xsbm/";
+		String path = "/data/data/com.dr8.sbicons.ge/xsbm/";
 
 		String[] fwicons = {
 				"stat_notify_car_mode",

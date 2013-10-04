@@ -67,7 +67,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 	@Override
 	public void initZygote(StartupParam startupParam) throws Throwable {
 		MODULE_PATH = startupParam.modulePath;
-		pref = new XSharedPreferences("com.dr8.sbicons", "com.dr8.sbicons_preferences");
+		pref = new XSharedPreferences("com.dr8.sbicons.ge", "com.dr8.sbicons.ge_preferences");
 //		XModuleResources modRes = XModuleResources.createInstance(MODULE_PATH, null);
 		pref.reload();
 
@@ -124,7 +124,7 @@ public class StatusBarMods implements IXposedHookZygoteInit, IXposedHookInitPack
 			ToTheLeft.initPackageResources(pref, modRes, resparam);
 		}
 				
-		String intpath = "/data/data/com.dr8.sbicons/xsbm/apps.txt";
+		String intpath = "/data/data/com.dr8.sbicons.ge/xsbm/apps.txt";
 		if (pref.getBoolean("thirdparty", false)) {
 			appsmap = ZipStuff.getAppsList(intpath);
 			String currentpkg = resparam.packageName;
