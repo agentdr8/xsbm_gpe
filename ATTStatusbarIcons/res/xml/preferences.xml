@@ -8,55 +8,68 @@
 
     <PreferenceScreen
         android:key="prefs_tweaks"
-        android:title="Statusbar/Notification" >
-        <CheckBoxPreference
-            android:defaultValue="false"
+        android:title="@string/ps_sbtitle" >
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            alphaSlider="true"
+            showCheckbox="true"
+            android:defaultValue="#7f000000"
             android:key="tpstatus"
-            android:summary="Transparent statusbar background"
-            android:title="Transparent Statusbar" />
-        <CheckBoxPreference
-            android:defaultValue="false"
+            android:summary="@string/ps_cb2_summ"
+            android:title="@string/ps_cb2_title" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            alphaSlider="true"
+            showCheckbox="true"
+            android:defaultValue="#7f000000"
             android:key="tpnotif"
-            android:summary="Override notification background (set color in Color Settings)"
-            android:title="Notification Background" />
-    </PreferenceScreen>
+            android:summary="@string/ps_cb1_summ"
+            android:title="@string/ps_cb1_title" />
+</PreferenceScreen>
     <PreferenceScreen
         android:key="prefs_clock"
-        android:title="Clock" >
+        android:title="@string/ps_cltitle" >
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="centerclock"
-            android:summary="Moves clock to center"
-            android:title="Center Clock" />
+            android:summary="@string/ps_cl_cb1_summ"
+            android:title="@string/ps_cl_cb1_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="invisclock"
-            android:summary="Removes clock from statusbar"
-            android:title="Remove Clock" />
+            android:summary="@string/ps_cl_cb2_summ"
+            android:title="@string/ps_cl_cb2_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="addampm"
-            android:summary="Adds AM/PM to clock"
-            android:title="Add AM/PM" />
+            android:summary="@string/ps_cl_cb3_summ"
+            android:title="@string/ps_cl_cb3_title" />
     </PreferenceScreen>
     <PreferenceScreen
         android:key="prefs_battery"
-        android:title="Battery" >
+        android:title="@string/ps_batitle" >
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="invisbatt"
-            android:summary="Removes battery icon from statusbar"
-            android:title="Remove Battery" />
+            android:summary="@string/ps_ba_cb1_summ"
+            android:title="@string/ps_ba_cb1_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="altcharge"
-            android:summary="Show battery percent during charging animation"
-            android:title="Show battery % charging" />
+            android:summary="@string/ps_ba_cb2_summ"
+            android:title="@string/ps_ba_cb2_title" />
+        <de.robv.android.xposed.library.ui.ValueSeekBarPreference
+        	displayFormat="%d milliseconds"
+            max="1000"
+            min="100"
+            android:defaultValue="350"
+            android:key="charge_delay"
+            android:summary="@string/ps_ba_sb1_summ"
+            android:title="@string/ps_ba_sb1_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="batt_icon_rainbow"
-            android:summary="Colorizes battery icons based on current charge level (works best with light-colored battery icons; overrides fixed color selection)"
-            android:title="Battery Icon Colorize" />
+            android:summary="@string/ps_ba_cb3_summ"
+            android:title="@string/ps_ba_cb3_title" />
+
     </PreferenceScreen>
     <de.robv.android.xposed.library.ui.TextViewPreference
         android:selectable="false"
@@ -64,10 +77,10 @@
     <de.robv.android.xposed.library.ui.SeparatorPreference height="3" />
     <PreferenceScreen
         android:key="prefs_icons"
-        android:title="Icon Settings" >
+        android:title="@string/ps_istitle" >
         <PreferenceScreen
             android:key="prefs_theme"
-            android:title="Select Iconpack to Import" 
+            android:title="@string/ps_is_import_title" 
             android:icon="@drawable/import_img" >
             <intent
                 android:action="android.intent.action.VIEW"
@@ -77,48 +90,48 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="framework"
-            android:summary="Override framework icons"
-            android:title="Framework" />
+            android:summary="@string/ps_is_cb5_summ"
+            android:title="@string/ps_is_cb5_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="thirdparty"
-            android:summary="Override 3rd-party app icons"
-            android:title="3rd-Party Apps" />
+            android:summary="@string/ps_is_cb6_summ"
+            android:title="@string/ps_is_cb6_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="battery"
-            android:summary="Override battery icons"
-            android:title="Battery" />
+            android:summary="@string/ps_is_cb7_summ"
+            android:title="@string/ps_is_cb7_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="signal"
-            android:summary="Override cellular signal bars"
-            android:title="Signal Bar" />
+            android:summary="@string/ps_is_cb8_summ"
+            android:title="@string/ps_is_cb8_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="mobile_data"
-            android:summary="Override mobile data icons"
-            android:title="Mobile Data" />
+            android:summary="@string/ps_is_cb9_summ"
+            android:title="@string/ps_is_cb9_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="wifi"
-            android:summary="Override Wifi signal icons"
-            android:title="Wifi" />
+            android:summary="@string/ps_is_cb10_summ"
+            android:title="@string/ps_is_cb10_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="bluetooth"
-            android:summary="Override Bluetooth icons"
-            android:title="Bluetooth" />
+            android:summary="@string/ps_is_cb11_summ"
+            android:title="@string/ps_is_cb11_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="gps"
-            android:summary="Override GPS icons"
-            android:title="GPS" />
+            android:summary="@string/ps_is_cb12_summ"
+            android:title="@string/ps_is_cb12_title" />
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="to_the_left"
-            android:summary="Override all other icons to the left of GPS (Sync, Headphone, Ringer, e911, etc.)"
-            android:title="Misc Status Icons" />
+            android:summary="@string/ps_is_cb13_summ"
+            android:title="@string/ps_is_cb13_title" />
     </PreferenceScreen>
 
     <de.robv.android.xposed.library.ui.TextViewPreference
@@ -128,121 +141,113 @@
 
     <PreferenceScreen
         android:key="prefs_color"
-        android:title="Color Settings" >
-        <net.margaritov.preference.colorpicker.ColorPickerPreference
-            alphaSlider="true"
-            showCheckbox="true"
-            android:defaultValue="#ff000000"
-            android:key="notif_bg_color"
-            android:summary="Color of the notification pulldown bg"
-            android:title="Notification bg color" />
+        android:title="@string/ps_cstitle" >
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             alphaSlider="true"
             showCheckbox="true"
             android:defaultValue="#ff35b5e5"
             android:key="clock_text_color"
-            android:summary="Color of the clock if visible"
-            android:title="Clock color" />
+            android:summary="@string/ps_cs_cp3_summ"
+            android:title="@string/ps_cs_cp3_title" />
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             alphaSlider="true"
             showCheckbox="true"
             android:defaultValue="#ff35b5e5"
             android:key="batt_text_color"
-            android:summary="Fixed color of the text battery and icon battery"
-            android:title="Battery % color" />
-
+            android:summary="@string/ps_cs_cp4_summ"
+            android:title="@string/ps_cs_cp4_title" />
         <PreferenceScreen
             android:key="prefs_battery_color_ranges"
-            android:summary="Applies to colorized text and icon batteries"
-            android:title="Battery Range Colors" >
+            android:summary="@string/ps_cs_br_summ"
+            android:title="@string/ps_cs_br_title" >
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ffff0000"
                 android:key="batt_color_0-20"
-                android:summary="Color for 0-20% (default: red)"
-                android:title="0 - 20" />
+                android:summary="@string/ps_cs_br_cp1_summ"
+                android:title="@string/ps_cs_br_cp1_title" />
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ffffff00"
                 android:key="batt_color_21-40"
-                android:summary="Color for 21-40% (default: yellow)"
-                android:title="21 - 40" />
+                android:summary="@string/ps_cs_br_cp2_summ"
+                android:title="@string/ps_cs_br_cp2_title" />
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ffffff00"
                 android:key="batt_color_41-60"
-                android:summary="Color for 41-60% (default: yellow)"
-                android:title="41 - 60" />
+                android:summary="@string/ps_cs_br_cp3_summ"
+                android:title="@string/ps_cs_br_cp3_title" />
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ff00ff00"
                 android:key="batt_color_61-80"
-                android:summary="Color for 61-80% (default: green)"
-                android:title="61 - 80" />
+                android:summary="@string/ps_cs_br_cp4_summ"
+                android:title="@string/ps_cs_br_cp4_title" />
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ff35b5e5"
                 android:key="batt_color_81-100"
-                android:summary="Color for 81-100% (default: blue)"
-                android:title="81 - 100" />
+                android:summary="@string/ps_cs_br_cp5_summ"
+                android:title="@string/ps_cs_br_cp5_title" />
         </PreferenceScreen>
         <PreferenceScreen
             android:key="prefs_icon_colors"
-            android:title="Icon Colors" >
+            android:title="@string/ps_ictitle" >
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ffffffff"
                 android:key="fwcolor"
-                android:summary="Color for framework icons"
-                android:title="Framework Color" />
+                android:summary="@string/ps_ic_cp1_summ"
+                android:title="@string/ps_ic_cp1_title" />
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ffffffff"
                 android:key="appscolor"
-                android:summary="Color for 3rd-party icons"
-                android:title="3rd-Party Apps Color" />
+                android:summary="@string/ps_ic_cp2_summ"
+                android:title="@string/ps_ic_cp2_title" />
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ffffffff"
                 android:key="signalcolor"
-                android:summary="Color for phone signal icons"
-                android:title="Signal Color" />
+                android:summary="@string/ps_ic_cp3_summ"
+                android:title="@string/ps_ic_cp3_title" />
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ffffffff"
                 android:key="mobilecolor"
-                android:summary="Color for mobile data icons"
-                android:title="Mobile Data Color" />
+                android:summary="@string/ps_ic_cp4_summ"
+                android:title="@string/ps_ic_cp4_title" />
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ffffffff"
                 android:key="wificolor"
-                android:summary="Color for wifi icons"
-                android:title="Wifi Color" />
+                android:summary="@string/ps_ic_cp5_summ"
+                android:title="@string/ps_ic_cp5_title" />
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ffffffff"
                 android:key="gpscolor"
-                android:summary="Color for GPS icons"
-                android:title="GPS Color" />
+                android:summary="@string/ps_ic_cp6_summ"
+                android:title="@string/ps_ic_cp6_title" />
             <net.margaritov.preference.colorpicker.ColorPickerPreference
                 alphaSlider="true"
                 showCheckbox="true"
                 android:defaultValue="#ffffffff"
                 android:key="misccolor"
-                android:summary="Color for misc icons"
-                android:title="Misc Color" />
+                android:summary="@string/ps_ic_cp7_summ"
+                android:title="@string/ps_ic_cp7_title" />
         </PreferenceScreen>
     </PreferenceScreen>
     <de.robv.android.xposed.library.ui.TextViewPreference
@@ -251,7 +256,7 @@
     <de.robv.android.xposed.library.ui.SeparatorPreference height="3" />
     <PreferenceScreen
         android:key="prefs_about"
-        android:title="About" >
+        android:title="@string/ps_abtitle" >
         <intent
             android:action="android.intent.action.VIEW"
             android:targetClass="com.dr8.sbicons.ge.mod.AboutActivity"
