@@ -18,9 +18,9 @@
 	</string>
 	
 	<string name="ps_sbtitle">Statusbar/Notification</string>
-	<string name="ps_cb1_summ">Override notification background (&amp; set color)</string>
+	<string name="ps_cb1_summ">Transparent notification background &amp; color</string>
 	<string name="ps_cb1_title">Notification Background</string>
-	<string name="ps_cb2_summ">Transparent statusbar background (&amp; set color)</string>
+	<string name="ps_cb2_summ">Transparent statusbar background &amp; color</string>
 	<string name="ps_cb2_title">Transparent Statusbar</string>
 	
 	<string name="ps_cltitle">Clock</string>

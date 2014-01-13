@@ -16,19 +16,13 @@ Merci à C3C076 pour le mod de centrer l\&amp;\'horloge!\n\n
 Merci à snachez pour faire le iconpack blanc par défaut!\n\n
 Merci à tous les utilisateurs XDA qui trouvent ce mod utile!\n\n
 Et un grand merci à ceux qui ont fait don. Jamais nécessaire, mais toujours apprécié!</string>
-	<string name="ar_ft">Totalement transparent</string>
-	<string name="ar_px">1px gris</string>
+	
 	<string name="ps_sbtitle">Barre de statut/Notification</string>
 	<string name="ps_cb1_summ">Remplacer le fond de notification (définir la couleur dans les paramètres de couleur)</string>
 	<string name="ps_cb1_title">Notification du fond</string>
 	<string name="ps_cb2_summ">Barre de statut avec fond transparent (définir la couleur dans les paramètres de couleur)</string>
 	<string name="ps_cb2_title">Transparence de la barre de statut</string>
-	<string name="ps_lp1_summ">Choisissez entre entièrement transparent et 1px  gris</string>
-	<string name="ps_lp1_title">Barre de statut transparante</string>
-	<string name="ps_cb3_summ">Barre de Navigation avec fond transparant</string>
-	<string name="ps_cb3_title">Barre de Navigation transparent</string>
-	<string name="ps_lp2_summ">Choisissez entre entièrement transparent et 1px  gris</string>
-	<string name="ps_lp2_title">Style transparent de la Barre de Navigation </string>
+	
 	<string name="ps_cltitle">Horloge</string>
 	<string name="ps_cl_cb1_summ">Déplace l\&amp;\'horloge au centre</string>
 	<string name="ps_cl_cb1_title">Centrer l\'horloge</string>
@@ -45,18 +39,10 @@ Et un grand merci à ceux qui ont fait don. Jamais nécessaire, mais toujours ap
 	<string name="ps_ba_sb1_title">Délai de l\&amp;apos;animation lors du chargement de la batterie</string>
 	<string name="ps_ba_cb3_summ">Colorier les icônes de la batterie en fonction du niveau de charge actuel (fonctionne le mieux avec des icônes de batterie de couleur pâle; remplace sélection de couleur fixe)</string>
 	<string name="ps_ba_cb3_title">Colorier l\&amp;\'icône de la batterie</string>
-	<string name="ps_ba_cb4_summ">Colorier le texte du % de la batterie en fonction du niveau de charge actuel (remplace la sélection de la couleur fix)</string>
-	<string name="ps_ba_cb4_title">Colorier le texte de la batterie</string>
+	
 	<string name="ps_istitle">Icône des Paramètres</string>
 	<string name="ps_is_import_title">Sélectionner le pack d\&amp;\'icônes pour l\'importer</string>
-	<string name="ps_is_cb1_summ">Cacher les données mobile lorsque la Wifi est connectée</string>
-	<string name="ps_is_cb1_title">Cacher automatiquement les données mobile</string>
-	<string name="ps_is_cb2_summ">Cochez cette case si l\&amp;\'icône de données mobiles ne se remplacent pas lorsque cette option est activée</string>
-	<string name="ps_is_cb2_title">Alterner le support du SystemUI</string>
-	<string name="ps_is_cb3_summ">Masquer l\&amp;\'icône de carte SIM manquant</string>
-	<string name="ps_is_cb3_title">Supprimer la notification \&amp;\'Aucune carte SIM dédectée\&amp;\'</string>
-	<string name="ps_is_cb4_summ">Cacher les barres de signal cellulaire</string>
-	<string name="ps_is_cb4_title">Supprimer les icônes de signal</string>
+	
 	<string name="ps_is_cb5_summ">Remplacer les icônes du système</string>
 	<string name="ps_is_cb5_title">Système</string>
 	<string name="ps_is_cb6_summ">Remplacer les icônes d\&amp;\'applications 3rd-party</string>
